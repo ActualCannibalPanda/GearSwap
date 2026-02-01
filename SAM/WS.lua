@@ -1,0 +1,15 @@
+return {
+    ammo = "Ginsen",
+    head = "Flam. Zucchetto +1",
+    body = "Agony Jerkin",
+    hands = "Flam. Manopolas +1",
+    legs = "Hiza. Hizayoroi +1",
+    feet = "Flam. Gambieras +1",
+    neck = "Samurai's Nodowa",
+    waist = "Sailfi Belt +1",
+    left_ear = "Thrud Earring",
+    right_ear = "Brutal Earring",
+    left_ring = "Rajas Ring",
+    right_ring = "Karieyh Ring",
+    back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+}

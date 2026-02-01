@@ -1,0 +1,18 @@
+return {
+    default = {
+        ammo = "Ginsen",
+        head = "Aya. Zucchetto +2",
+        body = "Ayanmo Corazza +2",
+        hands = "Aya. Manopolas +2",
+        legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+        feet = "Aya. Gambieras +2",
+        neck = "Loricate Torque",
+        waist = "Sailfi Belt +1",
+        left_ear = "Brutal Earring",
+        right_ear = "Moonshade Earring",
+        left_ring = "Ayanmo Ring",
+        right_ring = "Petrov Ring",
+        back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+    },
+    spells = {},
+}

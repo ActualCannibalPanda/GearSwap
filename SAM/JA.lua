@@ -1,0 +1,15 @@
+return {
+    ["Meikyo Shisui"] = {},
+    ["Third Eye"] = {},
+    ["Meditate"] = {},
+    ["Warding Circle"] = {},
+    ["Hasso"] = {},
+    ["Seigan"] = {},
+    ["Sekkanoki"] = {},
+    ["Sengikori"] = {},
+    ["Hamanoha"] = {},
+    ["Hagakure"] = {},
+    ["Konzen-ittai"] = {},
+    ["Yaegasumi"] = {},
+    ["Default"] = {},
+}

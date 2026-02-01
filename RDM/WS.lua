@@ -1,0 +1,15 @@
+return {
+    ammo = "Ginsen",
+    head = "Sukeroku Hachi.",
+    body = "Atrophy Tabard +3",
+    hands = "Atrophy Gloves +3",
+    legs = "Jhakri Slops +2",
+    feet = "Jhakri Pigaches +2",
+    neck = "Sanctity Necklace",
+    waist = "Sailfi Belt +1",
+    left_ear = "Moonshade Earring",
+    right_ear = "Mache Earring",
+    left_ring = "Petrov Ring",
+    right_ring = "Karieyh Ring",
+    back = { name = "Sucellos's Cape", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Dbl.Atk."+10', 'Damage taken-5%', } },
+}

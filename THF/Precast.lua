@@ -1,0 +1,19 @@
+return {
+    default = {
+        ammo = "Ginsen",
+        head = "Meghanada Visor",
+        body = "Meghanada Cuirie",
+        hands = "Meghanada Gloves",
+        legs = "Meg. Chausses",
+        feet = "Meg. Jambeaux",
+        neck = "Lissome Necklace",
+        waist = "Sailfi Belt +1",
+        left_ear = "Brutal Earring",
+        right_ear = "Suppanomimi",
+        left_ring = "Rajas Ring",
+        right_ring = "Petrov Ring",
+        back = "Shadow Mantle",
+    },
+    spells = {},
+    types = {}
+}

@@ -1,0 +1,16 @@
+return {
+    main = { name = "Aettir", augments = { 'Accuracy+70', 'Mag. Evasion+50', 'Weapon skill damage +10%', } },
+    sub = "Dilet.'s Grip +1",
+    head = "Aya. Zucchetto +2",
+    body = "Ayanmo Corazza +2",
+    hands = "Aya. Manopolas +2",
+    legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+    feet = "Aya. Gambieras +2",
+    neck = "Loricate Torque",
+    waist = "Dynamic Belt",
+    left_ear = "Dominance Earring",
+    right_ear = { name = "Erilaz Earring +1", augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+11', 'Mag. Acc.+11', 'Damage taken-3%', } },
+    left_ring = "Ayanmo Ring",
+    right_ring = "Enlivened Ring",
+    back = { name = "Ogma's Cape", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Mag. Evasion+10', 'Enmity+10', 'Damage taken-5%', } },
+}

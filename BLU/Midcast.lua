@@ -1,0 +1,110 @@
+return {
+    ["Elemental Magic"] = {
+        default = {
+            ammo = "Psilomene",
+            head = "Aya. Zucchetto +2",
+            body = "Ayanmo Corazza +2",
+            hands = "Assim. Bazu. +1",
+            legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+            feet = "Aya. Gambieras +2",
+            neck = "Mirage Stole",
+            waist = "Sailfi Belt +1",
+            left_ear = "Hecate's Earring",
+            right_ear = "Moldavite Earring",
+            left_ring = "Ayanmo Ring",
+            right_ring = "Rajas Ring",
+            back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+        },
+        spells = {}
+    },
+    ["Trust Magic"] = {
+        default = {
+            ammo = "Psilomene",
+            head = "Aya. Zucchetto +2",
+            body = "Ayanmo Corazza +2",
+            hands = "Assim. Bazu. +1",
+            legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+            feet = "Aya. Gambieras +2",
+            neck = "Mirage Stole",
+            waist = "Sailfi Belt +1",
+            left_ear = "Hecate's Earring",
+            right_ear = "Moldavite Earring",
+            left_ring = "Ayanmo Ring",
+            right_ring = "Rajas Ring",
+            back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+        },
+        spells = {}
+    },
+    ["Enhancing Magic"] = {
+        default = {
+            ammo = "Psilomene",
+            head = "Aya. Zucchetto +2",
+            body = "Ayanmo Corazza +2",
+            hands = "Assim. Bazu. +1",
+            legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+            feet = "Aya. Gambieras +2",
+            neck = "Mirage Stole",
+            waist = "Sailfi Belt +1",
+            left_ear = "Hecate's Earring",
+            right_ear = "Moldavite Earring",
+            left_ring = "Ayanmo Ring",
+            right_ring = "Rajas Ring",
+            back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+        },
+        spells = {}
+    },
+    ["Enfeebling Magic"] = {
+        default = {
+            ammo = "Psilomene",
+            head = "Aya. Zucchetto +2",
+            body = "Ayanmo Corazza +2",
+            hands = "Assim. Bazu. +1",
+            legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+            feet = "Aya. Gambieras +2",
+            neck = "Mirage Stole",
+            waist = "Sailfi Belt +1",
+            left_ear = "Hecate's Earring",
+            right_ear = "Moldavite Earring",
+            left_ring = "Ayanmo Ring",
+            right_ring = "Rajas Ring",
+            back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+        },
+        spells = {}
+    },
+    ["Dark Magic"] = {
+        default = {
+            ammo = "Psilomene",
+            head = "Aya. Zucchetto +2",
+            body = "Ayanmo Corazza +2",
+            hands = "Assim. Bazu. +1",
+            legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+            feet = "Aya. Gambieras +2",
+            neck = "Mirage Stole",
+            waist = "Sailfi Belt +1",
+            left_ear = "Hecate's Earring",
+            right_ear = "Moldavite Earring",
+            left_ring = "Ayanmo Ring",
+            right_ring = "Rajas Ring",
+            back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+        },
+        spells = {}
+    },
+    ["Blue Magic"] = {
+        default = {
+            ammo = "Psilomene",
+            head = "Aya. Zucchetto +2",
+            body = "Ayanmo Corazza +2",
+            hands = "Assim. Bazu. +1",
+            legs = { name = "Carmine Cuisses +1", augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6', } },
+            feet = "Aya. Gambieras +2",
+            neck = "Mirage Stole",
+            waist = "Sailfi Belt +1",
+            left_ear = "Hecate's Earring",
+            right_ear = "Moldavite Earring",
+            left_ring = "Ayanmo Ring",
+            right_ring = "Rajas Ring",
+            back = { name = "Mecisto. Mantle", augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6', } },
+        },
+        spells = {}
+    }
+}
