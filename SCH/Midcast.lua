@@ -106,6 +106,13 @@ return {
       right_ring = 'Jhakri Ring',
       back = "Taranus's Cape",
     },
-    spells = {},
+    spells = {
+      ['Regen'] = {
+        head = 'Arbatel Bonnet +1',
+      },
+      ['Regen II'] = 'Regen',
+      ['Regen III'] = 'Regen',
+      ['Regen IV'] = 'Regen',
+    },
   },
 }

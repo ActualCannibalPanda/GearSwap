@@ -115,8 +115,8 @@ function midcast(spell)
     if spell.skill ~= nil then
       local gear = sets.midcast[spell.skill] or {}
       local spellGear = gear.spells[spell.name] or {}
-      if type(spell) == 'string' then
-        spellGear = gear.spells[spell]
+      if type(spellGear) == 'string' then
+        spellGear = gear.spells[spellGear]
       end
       if gear ~= nil then
         equip(set_combine(gear.default, spellGear))
