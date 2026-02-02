@@ -99,7 +99,7 @@ return {
       legs = 'Jhakri Slops +2',
       feet = 'Jhakri Pigaches +2',
       neck = 'Loricate Torque',
-      waist = 'Witful Belt',
+      waist = 'Embla Sash',
       left_ear = 'Friomisi Earring',
       right_ear = 'Novio Earring',
       left_ring = 'Perception Ring',
