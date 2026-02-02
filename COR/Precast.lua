@@ -1,10 +1,10 @@
 return {
-    default = {},
-    spells = {
-        ["Utsusemi: Ichi"] = {
-            neck = "Magoraga Beads",
-        },
-        ["Utsusemi: Ni"] = "Utsusemi: Ichi",
+  default = {},
+  spells = {
+    ['Utsusemi: Ichi'] = {
+      neck = 'Magoraga Beads',
     },
-    types = {}
+    ['Utsusemi: Ni'] = 'Utsusemi: Ichi',
+  },
+  types = {},
 }

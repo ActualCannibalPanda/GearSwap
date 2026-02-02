@@ -1,4 +1,4 @@
 return {
-    hands = "Jhakri Cuffs +2",
-    right_ring = "Karieyh Ring",
+  hands = 'Jhakri Cuffs +2',
+  right_ring = 'Karieyh Ring',
 }

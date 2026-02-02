@@ -1,4 +1,3 @@
 return {
-    ["Default"] = {},
-    -- Black Mage
+  ['Default'] = {},
 }

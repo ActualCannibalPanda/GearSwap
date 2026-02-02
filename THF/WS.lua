@@ -1,3 +1,3 @@
 return {
-    right_ring = "Karieyh Ring",
+  right_ring = 'Karieyh Ring',
 }

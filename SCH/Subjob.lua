@@ -1,6 +1,6 @@
 return {
-	default = {
-		main = "Marin Staff +1",
-		sub = "Umbra Strap",
-	},
+  default = {
+    main = 'Marin Staff +1',
+    sub = 'Umbra Strap',
+  },
 }
