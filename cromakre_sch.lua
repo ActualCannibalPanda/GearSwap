@@ -130,6 +130,13 @@ function midcast(spell)
         end
       end
 
+      if gear ~= nil then
+        if string.match(spell.name, '^Bar') then
+          equip(set_combine(gear, spellGear, sets.midcast[spell.skill].barspells))
+        else
+          equip(set_combine(gear, spellGear))
+        end
+      end
       if spell.type == 'BlackMagic' and buffactive['Dark Arts'] then
         if buffactive['Ebullience'] then
           equip(sets.ja['Ebullience'])

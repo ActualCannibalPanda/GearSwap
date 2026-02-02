@@ -106,6 +106,11 @@ return {
       right_ring = 'Jhakri Ring',
       back = "Taranus's Cape",
     },
+    barspells = {
+      waist = 'Olympus Sash',
+      legs = 'Shedir Seraweels',
+      neck = 'Sroda Necklace',
+    },
     spells = {
       ['Regen'] = {
         head = 'Arbatel Bonnet +1',
