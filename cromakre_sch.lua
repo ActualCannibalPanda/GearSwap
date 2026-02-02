@@ -124,9 +124,20 @@ function midcast(spell)
 
       if spell.skill == 'Elemental Magic' then
         if can_burst(spell) then
-          print('Burst detected')
+          equip(gear.burst)
         else
-          print('Nuke detected')
+          equip(gear.default)
+        end
+      end
+
+      if spell.type == 'BlackMagic' and buffactive['Dark Arts'] then
+        if buffactive['Ebullience'] then
+          equip(sets.ja['Ebullience'])
+        end
+      end
+      if spell.type == 'WhiteMagic' and buffactive['Light Arts'] then
+        if buffactive['Rapture'] then
+          equip(sets.ja['Rapture'])
         end
       end
     end
