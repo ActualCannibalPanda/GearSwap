@@ -88,10 +88,6 @@ function file_unload()
 	destroy_bindings()
 end
 
-function buff_change(name, value, buff_details)
-	equip_tp()
-end
-
 function precast(spell, position)
 	if spell.type == "WeaponSkill" then
 		equip(sets.ws)
