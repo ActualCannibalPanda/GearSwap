@@ -15,7 +15,6 @@ local idle_mode = 1
 local idle_modes = {
   'default',
   'refresh',
-  'refresh speed',
 }
 
 local status = 'Idle'
@@ -51,11 +50,7 @@ local function set_lockstyle()
 end
 
 local function equip_idle()
-  if manawall_active or buffactive['Mana Wall'] then
-    equip(set_combine(sets.idle[idle_modes[idle_mode]], sets.tp.manawall))
-  else
-    equip(sets.idle[idle_modes[idle_mode]])
-  end
+  equip(sets.idle[idle_modes[idle_mode]])
 end
 
 local function equip_tp()
@@ -74,7 +69,7 @@ function get_sets()
 
   lockstyleset = 13
 
-  macro_book = 20
+  macro_book = 19
   macro_page = 1
 
   setup_bindings()
@@ -140,11 +135,15 @@ function midcast(spell)
       if spell.type == 'BlackMagic' and buffactive['Dark Arts'] then
         if buffactive['Ebullience'] then
           equip(sets.ja['Ebullience'])
+        elseif buffactive['Immanence'] then
+          equip(sets.ja['Immanence'])
         end
       end
       if spell.type == 'WhiteMagic' and buffactive['Light Arts'] then
         if buffactive['Rapture'] then
           equip(sets.ja['Rapture'])
+        elseif buffactive['Perpetuance'] then
+          equip(sets.ja['Perpetuance'])
         end
       end
     end
@@ -197,7 +196,7 @@ function self_command(command)
       send_command('gs disable back')
     end
   elseif command == 'toggle_idle' then
-    idle_mode = (idle_mode + 1) % #idle_modes + 1
+    idle_mode = (idle_mode + 2) % #idle_modes + 1
     print('Idle Mode:', idle_modes[idle_mode])
     equip_idle()
   end

@@ -7,7 +7,7 @@ return {
     legs = 'Jhakri Slops +2',
     feet = 'Jhakri Pigaches +2',
     neck = 'Voltsurge Torque',
-    waist = 'Witful Belt',
+    waist = 'Embla Sash',
     left_ear = "Hecate's Earring",
     right_ear = 'Loquac. Earring',
     left_ring = 'Mallquis Ring',
