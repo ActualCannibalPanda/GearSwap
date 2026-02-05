@@ -109,41 +109,43 @@ function midcast(spell)
   else
     if spell.skill ~= nil then
       local gear = sets.midcast[spell.skill] or {}
-      local spellGear = gear.spells[spell.name] or {}
-      if type(spellGear) == 'string' then
-        spellGear = gear.spells[spellGear]
-      end
       if gear ~= nil then
-        equip(set_combine(gear.default, spellGear))
-      end
+        local spellGear = gear.spells[spell.name] or {}
+        if type(spellGear) == 'string' then
+          spellGear = gear.spells[spellGear]
+        end
+        if gear ~= nil then
+          equip(set_combine(gear.default, spellGear))
+        end
 
-      if spell.skill == 'Elemental Magic' then
-        if can_burst(spell) then
-          equip(gear.burst)
-        else
-          equip(gear.default)
+        if spell.skill == 'Elemental Magic' then
+          if can_burst(spell) then
+            equip(gear.burst)
+          else
+            equip(gear.default)
+          end
         end
-      end
 
-      if gear ~= nil then
-        if string.match(spell.name, '^Bar') then
-          equip(set_combine(gear, spellGear, sets.midcast[spell.skill].barspells))
-        else
-          equip(set_combine(gear, spellGear))
+        if gear ~= nil then
+          if string.match(spell.name, '^Bar') then
+            equip(set_combine(gear, spellGear, sets.midcast[spell.skill].barspells))
+          else
+            equip(set_combine(gear, spellGear))
+          end
         end
-      end
-      if spell.type == 'BlackMagic' and buffactive['Dark Arts'] then
-        if buffactive['Ebullience'] then
-          equip(sets.ja['Ebullience'])
-        elseif buffactive['Immanence'] then
-          equip(sets.ja['Immanence'])
+        if spell.type == 'BlackMagic' and buffactive['Dark Arts'] then
+          if buffactive['Ebullience'] then
+            equip(sets.ja['Ebullience'])
+          elseif buffactive['Immanence'] then
+            equip(sets.ja['Immanence'])
+          end
         end
-      end
-      if spell.type == 'WhiteMagic' and buffactive['Light Arts'] then
-        if buffactive['Rapture'] then
-          equip(sets.ja['Rapture'])
-        elseif buffactive['Perpetuance'] then
-          equip(sets.ja['Perpetuance'])
+        if spell.type == 'WhiteMagic' and buffactive['Light Arts'] then
+          if buffactive['Rapture'] then
+            equip(sets.ja['Rapture'])
+          elseif buffactive['Perpetuance'] then
+            equip(sets.ja['Perpetuance'])
+          end
         end
       end
     end
