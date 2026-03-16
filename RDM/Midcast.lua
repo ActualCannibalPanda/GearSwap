@@ -48,7 +48,7 @@ return {
       left_ear = "Hecate's Earring",
       right_ear = 'Moldavite Earring',
       left_ring = 'Ayanmo Ring',
-      right_ring = 'Jhakri Ring',
+      right_ring = 'Metamor. Ring +1',
       back = {
         name = "Sucellos's Cape",
         augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
@@ -99,7 +99,7 @@ return {
       left_ear = 'Mache Earring',
       right_ear = 'Brutal Earring',
       left_ring = 'Ayanmo Ring',
-      right_ring = 'Karieyh Ring',
+      right_ring = 'Metamor. Ring +1',
       back = {
         name = "Sucellos's Cape",
         augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
@@ -134,7 +134,7 @@ return {
         augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+7', 'Mag. Acc.+7' },
       },
       left_ring = 'Ayanmo Ring',
-      right_ring = 'Jhakri Ring',
+      right_ring = 'Metamor. Ring +1',
     },
     barspells = {
       waist = 'Olympus Sash',
