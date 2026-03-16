@@ -6,7 +6,7 @@ return {
       body = 'Jhakri Robe +2',
       hands = 'Arbatel Bracers +2',
       legs = 'Jhakri Slops +2',
-      feet = 'Jhakri Pigaches +2',
+      feet = 'Arbatel Loafers +2',
       neck = 'Saevus Pendant +1',
       waist = 'Hachirin-no-Obi',
       left_ear = 'Friomisi Earring',
@@ -21,7 +21,7 @@ return {
       body = 'Jhakri Robe +2',
       hands = 'Arbatel Bracers +2',
       legs = 'Mallquis Trews +1',
-      feet = 'Jhakri Pigaches +2',
+      feet = 'Arbatel Loafers +2',
       neck = 'Saevus Pendant +1',
       waist = 'Hachirin-no-Obi',
       left_ear = 'Friomisi Earring',
@@ -52,6 +52,9 @@ return {
         left_ring = 'Excelsis Ring',
       },
       ['Drain'] = 'Aspir',
+      ['Klimaform'] = {
+        feet = 'Arbatel Loafers +2',
+      },
     },
   },
   ['Enfeebling Magic'] = {
