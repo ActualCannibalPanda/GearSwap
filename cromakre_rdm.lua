@@ -156,7 +156,7 @@ function midcast(spell)
       end
     end
     if spell.skill == 'Elemental Magic' then
-      if can_burst() then
+      if can_burst(spell) then
         gear = sets.midcast[spell.skill].burst
       end
     end
