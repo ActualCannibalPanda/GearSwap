@@ -13,7 +13,7 @@ return {
       name = 'Lethargy Earring',
       augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+7', 'Mag. Acc.+7' },
     },
-    left_ring = 'Ayanmo Ring',
+    left_ring = 'Kishar Ring',
     right_ring = 'Jhakri Ring',
     back = {
       name = "Sucellos's Cape",
