@@ -145,12 +145,12 @@ return {
       ['Refresh'] = {
         self = {
           body = 'Atrophy Tabard +3',
-          legs = 'Leth. Fuseau +1',
+          legs = 'Leth. Fuseau +2',
           waist = 'Gishdubar Sash',
         },
         other = {
           body = 'Atrophy Tabard +3',
-          legs = 'Leth. Fuseau +1',
+          legs = 'Leth. Fuseau +2',
           waist = 'Embla Sash',
         },
       },
