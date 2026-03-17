@@ -1,7 +1,5 @@
 return {
   default = {
-    main = { name = "Nixxer", augments = { 'DMG:+17', 'STR+15', 'VIT+15', } },
-    sub = "Priwen",
     ammo = "Ginsen",
     head = { name = "Souveran Schaller", augments = { 'HP+80', 'Enmity+7', 'Potency of "Cure" effect received +10%', } },
     body = { name = "Souveran Cuirass", augments = { 'HP+80', 'Enmity+7', 'Potency of "Cure" effect received +10%', } },
