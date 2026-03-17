@@ -1,9 +1,10 @@
-return {
-  idle = require('BRD/Idle.lua'),
-  tp = require('BRD/TP.lua'),
-  precast = require('BRD/Precast.lua'),
-  midcast = require('BRD/Midcast.lua'),
-  ws = require('BRD/WS.lua'),
-  ja = require('BRD/JA.lua'),
-  subjob = require('BRD/Subjob.lua'),
-}
+return function(sets)
+  sets.idle = require('BRD/Idle.lua')
+  sets.tp = require('BRD/TP.lua')
+  sets.precast = require('BRD/Precast.lua')
+  sets.midcast = require('BRD/Midcast.lua')
+  sets.ws = require('BRD/WS.lua')
+  sets.ja = require('BRD/JA.lua')
+  sets.subjob = require('BRD/Subjob.lua')
+  return sets
+end

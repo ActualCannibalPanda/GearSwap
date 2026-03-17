@@ -74,7 +74,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('BLM.lua')
+  sets = require('BLM.lua')(sets)
 
   lockstyleset = 8
 

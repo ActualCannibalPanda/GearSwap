@@ -59,7 +59,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('SAM.lua')
+  sets = require('SAM.lua')(sets)
 
   lockstyleset = 7
 

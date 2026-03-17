@@ -74,7 +74,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('COR.lua')
+  sets = require('COR.lua')(sets)
 
   lockstyleset = 9
 

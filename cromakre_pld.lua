@@ -79,7 +79,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('PLD.lua')
+  sets = require('PLD.lua')(sets)
 
   lockstyleset = 14
 

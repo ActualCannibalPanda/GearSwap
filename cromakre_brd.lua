@@ -78,7 +78,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('BRD.lua')
+  sets = require('BRD.lua')(sets)
 
   lockstyleset = 12
 

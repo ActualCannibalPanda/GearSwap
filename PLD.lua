@@ -1,26 +1,10 @@
-return {
-  idle = require('PLD/Idle.lua'),
-  tp = require('PLD/TP.lua'),
-  precast = require('PLD/Precast.lua'),
-  midcast = require('PLD/Midcast.lua'),
-  ws = require('PLD/WS.lua'),
-  ja = require('PLD/JA.lua'),
-  subjob = require('PLD/Subjob.lua'),
-  naked = {
-    main = nil,
-    sub = nil,
-    ammo = nil,
-    neck = nil,
-    head = nil,
-    body = nil,
-    hands = nil,
-    legs = nil,
-    feet = nil,
-    left_ear = nil,
-    right_ear = nil,
-    left_ring = nil,
-    right_ring = nil,
-    back = nil,
-    waist = nil,
-  },
-}
+return function(sets)
+  sets.idle = require('PLD/Idle.lua')
+  sets.tp = require('PLD/TP.lua')
+  sets.precast = require('PLD/Precast.lua')
+  sets.midcast = require('PLD/Midcast.lua')
+  sets.ws = require('PLD/WS.lua')
+  sets.ja = require('PLD/JA.lua')
+  sets.subjob = require('PLD/Subjob.lua')
+  return sets
+end

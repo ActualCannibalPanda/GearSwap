@@ -65,7 +65,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('SCH.lua')
+  sets = require('SCH.lua')(sets)
 
   lockstyleset = 13
 

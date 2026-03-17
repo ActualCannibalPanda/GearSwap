@@ -1,26 +1,10 @@
-return {
-  idle = require('RDM/Idle.lua'),
-  tp = require('RDM/TP.lua'),
-  precast = require('RDM/Precast.lua'),
-  midcast = require('RDM/Midcast.lua'),
-  ws = require('RDM/WS.lua'),
-  ja = require('RDM/JA.lua'),
-  subjob = require('RDM/Subjob.lua'),
-  naked = {
-    main = nil,
-    sub = nil,
-    ammo = nil,
-    neck = nil,
-    head = nil,
-    body = nil,
-    hands = nil,
-    legs = nil,
-    feet = nil,
-    left_ear = nil,
-    right_ear = nil,
-    left_ring = nil,
-    right_ring = nil,
-    back = nil,
-    waist = nil,
-  },
-}
+return function(sets)
+  sets.idle = require('RDM/Idle.lua')
+  sets.tp = require('RDM/TP.lua')
+  sets.precast = require('RDM/Precast.lua')
+  sets.midcast = require('RDM/Midcast.lua')
+  sets.ws = require('RDM/WS.lua')
+  sets.ja = require('RDM/JA.lua')
+  sets.subjob = require('RDM/Subjob.lua')
+  return sets
+end

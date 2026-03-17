@@ -77,7 +77,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('DRK.lua')
+  sets = require('DRK.lua')(sets)
 
   lockstyleset = 11
 

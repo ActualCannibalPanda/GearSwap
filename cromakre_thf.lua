@@ -78,7 +78,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('THF.lua')
+  sets = require('THF.lua')(sets)
 
   lockstyleset = 10
 

@@ -81,7 +81,7 @@ end
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('RDM.lua')
+  sets = require('RDM.lua')(sets)
 
   lockstyleset = 6
 
@@ -101,11 +101,11 @@ end
 
 function buff_change(name, value, buff_details)
   if
-    string.match(name, '^Enfire')
-    or string.match(name, '^Enwater')
-    or string.match(name, '^Enblizzard')
-    or string.match(name, '^Enaero')
-    or string.match(name, '^Enthunder')
+      string.match(name, '^Enfire')
+      or string.match(name, '^Enwater')
+      or string.match(name, '^Enblizzard')
+      or string.match(name, '^Enaero')
+      or string.match(name, '^Enthunder')
   then
     -- enspells change
     enspell_active = value
