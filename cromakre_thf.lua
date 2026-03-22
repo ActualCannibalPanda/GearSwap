@@ -80,7 +80,7 @@ end
 function get_sets()
   sets = require('THF.lua')(sets)
 
-  lockstyleset = 10
+  lockstyleset = 15
 
   macro_book = 6
   macro_page = 1
