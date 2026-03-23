@@ -113,8 +113,6 @@ end
 function midcast(spell)
   if spell.type == 'JobAbility' then
     equip(sets.ja[spell.name])
-  elseif spell.type == 'WeaponSkill' then
-    equip(sets.ws)
   end
 end
 
