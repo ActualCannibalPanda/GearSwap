@@ -2,7 +2,7 @@ return {
   default = {
     ammo = "Ginsen",
     head = "Flam. Zucchetto +2",
-    body = "Flamma Korazin +1",
+    body = "Flamma Korazin +2",
     hands = "Flam. Manopolas +1",
     legs = "Flamma Dirs +1",
     feet = "Flam. Gambieras +2",
