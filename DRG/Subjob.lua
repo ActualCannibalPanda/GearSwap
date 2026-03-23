@@ -1,6 +1,6 @@
 return {
   default = {
-    main = "Rhomphaia",
+    main = "Kaja Lance",
     sub = "Utu Grip",
   },
 }
