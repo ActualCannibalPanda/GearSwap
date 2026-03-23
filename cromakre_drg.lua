@@ -97,9 +97,6 @@ function file_unload()
   destroy_bindings()
 end
 
-function buff_change(name, value, buff_details)
-end
-
 function precast(spell, position)
   if spell.type == 'WeaponSkill' then
     equip(sets.ws.default)
@@ -110,13 +107,6 @@ function precast(spell, position)
     if sets.ja[spell.name] ~= nil then
       equip(sets.ja[spell.name])
     end
-  else
-    local skill = sets.precast.types[spell.skill] or {}
-    local spellGear = sets.precast.spells[spell.name] or {}
-    if type(spellGear) == 'string' then
-      spellGear = sets.precast.spells[spellGear]
-    end
-    equip(set_combine(sets.precast.default, spellGear, skill))
   end
 end
 
@@ -125,7 +115,6 @@ function midcast(spell)
     equip(sets.ja[spell.name])
   elseif spell.type == 'WeaponSkill' then
     equip(sets.ws)
-  else
   end
 end
 
