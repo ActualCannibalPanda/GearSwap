@@ -8,7 +8,7 @@ return {
     feet = "Flam. Gambieras +2",
     neck = "Lissome Necklace",
     waist = "Ioskeha Belt",
-    left_ear = "Mache Earring",
+    left_ear = "Sroda Earring",
     right_ear = "Brutal Earring",
     left_ring = "Hetairoi Ring",
     right_ring = "Petrov Ring",
