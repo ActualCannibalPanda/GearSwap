@@ -102,6 +102,7 @@ function precast(spell, position)
   if spell.type == 'WeaponSkill' then
     equip(sets.ws)
   elseif spell.type == 'JobAbility' then
+    equip(sets.ja.default)
     if sets.ja[spell.name] ~= nil then
       equip(sets.ja[spell.name])
     end
