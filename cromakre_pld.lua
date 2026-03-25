@@ -16,8 +16,7 @@ local bindings = {
 local idle_mode = 1
 local idle_modes = {
   'default',
-  'refresh',
-  'refresh speed',
+  'default speed',
 }
 
 local tp_mode = 1
