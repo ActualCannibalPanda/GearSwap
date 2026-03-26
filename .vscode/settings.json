@@ -15,6 +15,7 @@
         "aftercast",
         "status_change",
         "sub_job_change",
-        "self_command"
+        "self_command",
+        "windower"
     ]
 }
