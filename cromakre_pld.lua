@@ -101,11 +101,6 @@ function buff_change(name, value, buff_details) end
 function precast(spell, position)
   if spell.type == 'WeaponSkill' then
     equip(sets.ws)
-  elseif spell.type == 'JobAbility' then
-    equip(sets.ja.default)
-    if sets.ja[spell.name] ~= nil then
-      equip(sets.ja[spell.name])
-    end
   else
     local skill = sets.precast.types[spell.skill] or {}
     local spellGear = sets.precast.spells[spell.name] or {}
@@ -118,7 +113,10 @@ end
 
 function midcast(spell)
   if spell.type == 'JobAbility' then
-    equip(sets.ja[spell.name])
+    equip(sets.ja.default)
+    if sets.ja[spell.name] ~= nil then
+      equip(sets.ja[spell.name])
+    end
   elseif spell.type == 'WeaponSkill' then
     equip(sets.ws)
   else
