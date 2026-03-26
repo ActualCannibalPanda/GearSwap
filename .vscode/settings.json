@@ -1,0 +1,20 @@
+{
+    "Lua.diagnostics.globals": [
+        "send_command",
+        "set_combine",
+        "equip",
+        "player",
+        "file_unload",
+        "get_sets",
+        "sets",
+        "lockstyleset",
+        "macro_book",
+        "macro_page",
+        "precast",
+        "midcast",
+        "aftercast",
+        "status_change",
+        "sub_job_change",
+        "self_command"
+    ]
+}
