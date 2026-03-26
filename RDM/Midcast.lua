@@ -1,19 +1,22 @@
 return {
   ['Elemental Magic'] = {
     default = {
-      ammo = "Ghastly Tathlum +1",
-      head = "Leth. Chappel +2",
-      body = "Lethargy Sayon +2",
-      hands = "Leth. Ganth. +2",
-      legs = "Leth. Fuseau +2",
-      feet = "Leth. Houseaux +2",
-      neck = "Sanctity Necklace",
-      waist = "Witful Belt",
-      left_ear = "Friomisi Earring",
-      right_ear = "Novio Earring",
-      left_ring = "Metamor. Ring +1",
-      right_ring = "Jhakri Ring",
-      back = { name = "Sucellos's Cape", augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', } },
+      ammo = 'Ghastly Tathlum +1',
+      head = 'Leth. Chappel +2',
+      body = 'Lethargy Sayon +2',
+      hands = 'Leth. Ganth. +2',
+      legs = 'Leth. Fuseau +2',
+      feet = 'Leth. Houseaux +2',
+      neck = 'Sanctity Necklace',
+      waist = 'Witful Belt',
+      left_ear = 'Friomisi Earring',
+      right_ear = 'Novio Earring',
+      left_ring = 'Metamor. Ring +1',
+      right_ring = 'Jhakri Ring',
+      back = {
+        name = "Sucellos's Cape",
+        augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
+      },
     },
     burst = {
       ammo = 'Ghastly Tathlum +1',
@@ -26,7 +29,7 @@ return {
       waist = 'Witful Belt',
       left_ear = 'Friomisi Earring',
       right_ear = 'Novio Earring',
-      left_ring = "Metamor. Ring +1",
+      left_ring = 'Metamor. Ring +1',
       right_ring = 'Jhakri Ring',
       back = {
         name = "Sucellos's Cape",
@@ -74,7 +77,7 @@ return {
       left_ear = "Hecate's Earring",
       right_ear = 'Snotra Earring',
       left_ring = 'Kishar Ring',
-      right_ring = "Metamor. Ring +1",
+      right_ring = 'Metamor. Ring +1',
       back = {
         name = "Sucellos's Cape",
         augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },

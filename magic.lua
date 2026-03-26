@@ -39,12 +39,12 @@ local skillchains = {
   [770] = { id = 770, english = 'Umbra', elements = { 'Dark', 'Ice', 'Water', 'Earth' } },
 }
 
-function run_burst(data)
+local function run_burst(data)
   local action = data.targets[1].actions[1]
   if
-    (action.add_effect_message > 287 and action.add_effect_message < 302) -- Normal SC DMG
-    or (action.add_effect_message > 384 and action.add_effect_message < 399) -- SC Heals
-    or (action.add_effect_message > 766 and action.add_effect_message < 771) -- Umbra/Radiance
+      (action.add_effect_message > 287 and action.add_effect_message < 302)    -- Normal SC DMG
+      or (action.add_effect_message > 384 and action.add_effect_message < 399) -- SC Heals
+      or (action.add_effect_message > 766 and action.add_effect_message < 771) -- Umbra/Radiance
   then
     local t = windower.ffxi.get_mob_by_id(data.targets[1].id)
     -- valid party target and within range
@@ -86,9 +86,9 @@ return function(spell)
   local element = res.spells[spell.id].element
   local element_name = res.elements[element].en
   if
-    spell.target.id == last_skillchain_id
-    and os.clock() - last_skillchain_time < 8
-    and last_skillchain_elements[element_name]
+      spell.target.id == last_skillchain_id
+      and os.clock() - last_skillchain_time < 8
+      and last_skillchain_elements[element_name]
   then
     return true
   else
