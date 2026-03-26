@@ -22,10 +22,7 @@ local idle_modes = {
 local tp_mode = 1
 local tp_modes = {
   'default',
-  'hybrid',
 }
-
-local enspell_active = false
 
 local status = 'Idle'
 
@@ -60,19 +57,7 @@ local function equip_idle()
 end
 
 local function equip_tp()
-  if enspell_active then
-    equip(set_combine(sets.tp.default, sets.tp.subjob[player.sub_job] or {}, sets.tp.enspell))
-  else
-    equip(set_combine(sets.tp.default, sets.tp.subjob[player.sub_job] or {}))
-  end
-  if tp_mode > 1 then
-    equip(sets.tp[tp_modes[tp_mode]])
-  end
-end
-
-local function equip_weapons()
-  local subjob = sets.subjob[player.sub_job] or {}
-  equip(set_combine(sets.subjob.default, subjob))
+  equip(set_combine(sets.tp.default, sets.tp[tp_modes[tp_mode]] or {}))
 end
 
 -- custom functions
@@ -89,26 +74,19 @@ function get_sets()
   set_macros()
   set_lockstyle()
   equip_idle()
-  equip_weapons()
 end
 
 function file_unload()
   destroy_bindings()
 end
 
-function buff_change(name, value, buff_details) end
-
-function precast(spell, position)
-  if spell.type == 'WeaponSkill' then
-    equip(sets.ws)
-  else
-    local skill = sets.precast.types[spell.skill] or {}
-    local spellGear = sets.precast.spells[spell.name] or {}
-    if type(spellGear) == 'string' then
-      spellGear = sets.precast.spells[spellGear]
-    end
-    equip(set_combine(sets.precast.default, spellGear, skill))
+function precast(spell)
+  local skill = sets.precast.types[spell.skill] or {}
+  local spellGear = sets.precast.spells[spell.name] or {}
+  if type(spellGear) == 'string' then
+    spellGear = sets.precast.spells[spellGear]
   end
+  equip(set_combine(sets.precast.default, spellGear, skill))
 end
 
 function midcast(spell)
@@ -149,30 +127,27 @@ function midcast(spell)
   end
 end
 
-function aftercast(spell)
+function aftercast()
   if status == 'Idle' then
     equip_idle()
   elseif status == 'Engaged' then
     equip_tp()
   end
-  equip_weapons()
 end
 
-function status_change(new, old)
+function status_change(new)
   status = new
   if new == 'Idle' then
     equip_idle()
   elseif new == 'Engaged' then
     equip_tp()
   end
-  equip_weapons()
 end
 
-function sub_job_change(new, old)
+function sub_job_change()
   set_macros()
   set_lockstyle()
   equip_idle()
-  equip_weapons()
 end
 
 function self_command(command)
