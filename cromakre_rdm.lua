@@ -16,7 +16,7 @@ local bindings = {
 local idle_mode = 1
 local idle_modes = {
   'default',
-  "default speed",
+  'default speed',
   'refresh',
   'refresh speed',
 }
@@ -102,11 +102,11 @@ end
 
 function buff_change(name, value, buff_details)
   if
-      string.match(name, '^Enfire')
-      or string.match(name, '^Enwater')
-      or string.match(name, '^Enblizzard')
-      or string.match(name, '^Enaero')
-      or string.match(name, '^Enthunder')
+    string.match(name, '^Enfire')
+    or string.match(name, '^Enwater')
+    or string.match(name, '^Enblizzard')
+    or string.match(name, '^Enaero')
+    or string.match(name, '^Enthunder')
   then
     -- enspells change
     enspell_active = value
@@ -145,6 +145,7 @@ function midcast(spell)
     if type(spellGear) == 'string' then
       spellGear = sets.midcast[spell.skill].spells[spellGear]
     end
+    -- you use different gear depending on who you are targetting
     if spell.skill == 'Enhancing Magic' then
       if spellGear.self ~= nil then
         if spell.target.name == player.name then
@@ -162,18 +163,22 @@ function midcast(spell)
       end
     end
     if gear ~= nil then
+      -- equip barspell gear if caseting bar
       if string.match(spell.name, '^Bar') then
         equip(set_combine(gear, spellGear, sets.midcast[spell.skill].barspells))
       else
         equip(set_combine(gear, spellGear))
       end
     end
+    -- just add refresh gear here
     if string.match(spell.name, '^Refresh') and spell.target.name == player.name then
       equip({ waist = 'Gishdubar Sash' })
     end
+    -- Composure gear is only for targeting other players, don't need it if you are targetting yourself
     if spell.skill == 'Enhancing Magic' and spell.target.name ~= player.name and buffactive['Composure'] then
       equip(sets.ja.Composure)
     end
+    -- if Saboteur is active we want to add Empyrean Hands in the the bonus to it
     if spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
       equip(sets.ja.Saboteur)
     end
