@@ -106,22 +106,11 @@ function midcast(spell)
     if type(spellGear) == 'string' then
       spellGear = sets.midcast[spell.skill].spells[spellGear]
     end
-    if spell.skill == 'Enhancing Magic' then
-      if spellGear.self ~= nil then
-        if spell.target.name == player.name then
-          spellGear = set_combine(spellGear, spellGear.self)
-        end
-      elseif spellGear.other ~= nil then
-        if spell.target.name ~= player.name then
-          spellGear = set_combine(spellGear, spellGear.other)
-        end
-      end
-    end
     if gear ~= nil then
-      if string.match(spell.name, '^Bar') then
-        equip(set_combine(gear, spellGear, sets.midcast[spell.skill].barspells))
-      else
+      if spell.name == 'Phalanx' and status == 'Idle' then
         equip(set_combine(gear, spellGear))
+      else
+        equip(set_combine(gear, spellGear, sets.midcast['SIRD']))
       end
     end
   end
