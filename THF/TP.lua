@@ -8,7 +8,7 @@ return {
     feet = 'Meg. Jambeaux',
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',
-    left_ear = 'Brutal Earring',
+    left_ear = 'Eabani Earring',
     right_ear = 'Suppanomimi',
     left_ring = 'Rajas Ring',
     right_ring = 'Petrov Ring',
