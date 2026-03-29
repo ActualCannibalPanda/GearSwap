@@ -11,7 +11,7 @@ return {
     left_ear = 'Loquac. Earring',
     right_ear = 'Brutal Earring',
     left_ring = 'Ayanmo Ring',
-    right_ring = 'Jhakri Ring',
+    right_ring = 'Gelatinous Ring',
     back = {
       name = "Sucellos's Cape",
       augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Dbl.Atk."+10', 'Damage taken-5%' },
@@ -29,7 +29,7 @@ return {
     left_ear = 'Loquac. Earring',
     right_ear = 'Brutal Earring',
     left_ring = 'Ayanmo Ring',
-    right_ring = 'Jhakri Ring',
+    right_ring = 'Gelatinous Ring',
     back = {
       name = "Sucellos's Cape",
       augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Dbl.Atk."+10', 'Damage taken-5%' },
