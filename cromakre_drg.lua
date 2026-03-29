@@ -16,7 +16,7 @@ local bindings = {
 local idle_mode = 1
 local idle_modes = {
   'default',
-  "default speed",
+  'default speed',
 }
 
 local tp_mode = 1
@@ -81,7 +81,7 @@ end
 function get_sets()
   sets = require('DRG.lua')(sets)
 
-  lockstyleset = 15
+  lockstyleset = 16
 
   macro_book = 14
   macro_page = 1
