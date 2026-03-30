@@ -81,7 +81,7 @@ end
 function get_sets()
   sets = require('DRG.lua')(sets)
 
-  lockstyleset = 16
+  lockstyleset = 17
 
   macro_book = 14
   macro_page = 1
