@@ -141,13 +141,17 @@ return {
   ['SIRD'] = {
     -- 15%
     head = { name = 'Souveran Schaller', augments = { 'HP+80', 'Enmity+7', 'Potency of "Cure" effect received +10%' } },
+    -- 15%
+    body = 'Chev. Cuirass +2',
     -- 20%
     legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' } },
+    -- 15%
+    feet = { name = 'Eschite Greaves', augments = { 'Mag. Evasion+15', 'Spell interruption rate down +15%', 'Enmity+7' } },
     -- 10%
     waist = 'Rumination Sash',
     -- 5%
     left_ear = 'Halasz Earring',
     -- 10% merits
-    -- total 60%
+    -- total 90%
   },
 }
