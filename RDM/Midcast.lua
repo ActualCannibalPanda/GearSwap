@@ -1,6 +1,8 @@
 return {
   ['Elemental Magic'] = {
     default = {
+      main = 'Marin Staff +1',
+      sub = "Elder's Grip +1",
       ammo = 'Ghastly Tathlum +1',
       head = 'Leth. Chappel +2',
       body = 'Lethargy Sayon +2',
@@ -19,6 +21,8 @@ return {
       },
     },
     burst = {
+      main = 'Marin Staff +1',
+      sub = "Elder's Grip +1",
       ammo = 'Ghastly Tathlum +1',
       head = 'Leth. Chappel +2',
       body = 'Lethargy Sayon +2',
