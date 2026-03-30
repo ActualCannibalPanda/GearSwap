@@ -116,7 +116,7 @@ end
 
 function precast(spell, position)
   if spell.type == 'WeaponSkill' then
-    equip(sets.ws)
+    equip(sets.ws[spell.name] or sets.ws)
   elseif spell.type == 'JobAbility' then
     if sets.ja[spell.name] ~= nil then
       equip(sets.ja[spell.name])
@@ -135,7 +135,7 @@ function midcast(spell)
   if spell.type == 'JobAbility' then
     equip(sets.ja[spell.name])
   elseif spell.type == 'WeaponSkill' then
-    equip(sets.ws)
+    equip(sets.ws[spell.name] or sets.ws)
   else
     if spell.skill == '(N/A)' then
       return
