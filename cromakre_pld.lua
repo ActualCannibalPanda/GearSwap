@@ -107,11 +107,7 @@ function midcast(spell)
       spellGear = sets.midcast[spell.skill].spells[spellGear]
     end
     if gear ~= nil then
-      if spell.name == 'Phalanx' and status == 'Idle' then
         equip(set_combine(gear, spellGear))
-      else
-        equip(set_combine(gear, spellGear, sets.midcast['SIRD']))
-      end
     end
   end
 end
