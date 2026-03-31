@@ -1,11 +1,11 @@
 return {
   default = {
     ammo = 'Ginsen',
-    head = { name = 'Souveran Schaller', augments = { 'HP+80', 'Enmity+7', 'Potency of "Cure" effect received +10%' } },
-    body = { name = 'Souveran Cuirass', augments = { 'HP+80', 'Enmity+7', 'Potency of "Cure" effect received +10%' } },
-    hands = 'Sulev. Gauntlets +1',
+    head = "Sakpata's Helm",
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
     legs = 'Chev. Cuisses +2',
-    feet = 'Sulev. Leggings +1',
+    feet = "Sakpata's Leggings",
     neck = 'Loricate Torque',
     waist = 'Creed Baudrier',
     left_ear = 'Brutal Earring',
