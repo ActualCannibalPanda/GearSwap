@@ -12,7 +12,7 @@ return {
     right_ear = 'Friomisi Earring',
     left_ring = "Naji's Loop",
     right_ring = 'Kishar Ring',
-    back = "Rudianos's Mantle",
+    back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' } },
   },
   spells = {},
   types = {},

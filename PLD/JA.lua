@@ -18,6 +18,7 @@ return {
     right_ear = 'Cryptic Earring',
     left_ring = 'Apeile Ring',
     right_ring = 'Supershear Ring',
+    back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' } },
   },
   ['Divine Emblem'] = {
     feet = 'Chev. Sabatons +1',

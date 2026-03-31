@@ -12,7 +12,7 @@ return {
     right_ear = 'Mache Earring',
     left_ring = 'Gelatinous Ring',
     right_ring = "Sulevia's Ring",
-    back = "Rudianos's Mantle",
+    back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' } },
   },
   ['default speed'] = {
     ammo = 'Ginsen',
@@ -27,6 +27,6 @@ return {
     right_ear = 'Mache Earring',
     left_ring = 'Gelatinous Ring',
     right_ring = "Sulevia's Ring",
-    back = "Rudianos's Mantle",
+    back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' } },
   },
 }
