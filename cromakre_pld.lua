@@ -107,7 +107,7 @@ function midcast(spell)
       spellGear = sets.midcast[spell.skill].spells[spellGear]
     end
     if gear ~= nil then
-        equip(set_combine(gear, spellGear))
+      equip(set_combine(gear, spellGear))
     end
   end
 end
@@ -137,7 +137,7 @@ end
 
 function self_command(command)
   if command == 'echodrops' then
-    send_command("/input item 'echo drops' <em>")
+    send_command("/input item 'echo drops' <me>")
   elseif command == 'toggle_main' then
     swap_main = not swap_main
     if swap_main then
