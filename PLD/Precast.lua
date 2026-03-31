@@ -5,7 +5,10 @@ return {
     body = 'Rev. Surcoat +3',
     hands = 'Sulev. Gauntlets +1',
     legs = 'Enif Cosciales',
-    feet = { name = 'Carmine Greaves', augments = { 'HP+60', 'MP+60', 'Phys. dmg. taken -3' } },
+    feet = {
+      name = 'Odyssean Greaves',
+      augments = { 'Blood Pact Dmg.+1', '"Fast Cast"+3', 'Phalanx +4', 'Mag. Acc.+4 "Mag.Atk.Bns."+4' },
+    },
     neck = 'Voltsurge Torque',
     waist = 'Creed Baudrier',
     left_ear = 'Loquac. Earring',
