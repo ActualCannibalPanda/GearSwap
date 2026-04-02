@@ -10,7 +10,7 @@ return {
     waist = 'Sailfi Belt +1',
     left_ear = 'Mache Earring',
     right_ear = 'Brutal Earring',
-    left_ring = 'Ayanmo Ring',
+    left_ring = 'Hetairoi Ring',
     right_ring = 'Petrov Ring',
     back = {
       name = "Sucellos's Cape",
