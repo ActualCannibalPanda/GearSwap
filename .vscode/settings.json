@@ -16,6 +16,7 @@
         "status_change",
         "sub_job_change",
         "self_command",
-        "windower"
+        "windower",
+        "buffactive"
     ]
 }
