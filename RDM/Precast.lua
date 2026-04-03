@@ -40,5 +40,8 @@ return {
     ['Enfeebling Magic'] = {
       head = 'Leth. Chappel +2',
     },
+    ['Enhancing Magic'] = {
+      waist = 'Siegel Sash',
+    },
   },
 }
