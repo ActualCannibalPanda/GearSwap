@@ -147,14 +147,10 @@ function midcast(spell)
     end
     -- you use different gear depending on who you are targetting
     if spell.skill == 'Enhancing Magic' then
-      if spellGear.self ~= nil then
-        if spell.target.name == player.name then
-          spellGear = set_combine(spellGear, spellGear.self)
-        end
-      elseif spellGear.other ~= nil then
-        if spell.target.name ~= player.name then
-          spellGear = set_combine(spellGear, spellGear.other)
-        end
+      if spell.target.name == player.name and spellGear.self ~= nil then
+        spellGear = set_combine(spellGear, spellGear.self)
+      elseif spell.target.name ~= player.name and spellGear.other ~= nil then
+        spellGear = set_combine(spellGear, spellGear.other)
       end
     end
     if spell.skill == 'Elemental Magic' then
@@ -163,20 +159,11 @@ function midcast(spell)
       end
     end
     if gear ~= nil then
-      -- equip barspell gear if caseting bar
-      if string.match(spell.name, '^Bar') then
-        equip(set_combine(gear, spellGear, sets.midcast[spell.skill].barspells))
-      else
-        equip(set_combine(gear, spellGear))
-      end
+      equip(set_combine(gear, spellGear))
     end
     -- just add refresh gear here
     if string.match(spell.name, '^Refresh') and spell.target.name == player.name then
       equip({ waist = 'Gishdubar Sash' })
-    end
-    -- Composure gear is only for targeting other players, don't need it if you are targetting yourself
-    if spell.skill == 'Enhancing Magic' and spell.target.name ~= player.name and buffactive['Composure'] then
-      equip(sets.ja.Composure)
     end
     -- if Saboteur is active we want to add Empyrean Hands in the the bonus to it
     if spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
