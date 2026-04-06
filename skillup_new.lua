@@ -21,7 +21,7 @@ user_settings = {
 } --change this to true if you wish to save the last position of your skillup window
 sets.brd = {
   wind_inst = {
-    range = 'Linos',
+    range = 'Cornette',
   }, --put your wind instrument here
   string_inst = {
     range = 'Maple Harp',
@@ -200,15 +200,15 @@ function precast(spell)
     return
   end
   if gs_skill.skillup_type == 'Singing' then
-    if
-      (gs_skillup.test_mode and gs_skillup.test_brd == 'String') or not gs_skillup.skill['Stringed Instrument Capped']
-    then
-      equip(sets.brd.string_inst)
-    elseif
-      (gs_skillup.test_mode and gs_skillup.test_brd == 'Wind') or not gs_skillup.skill['Wind Instrument Capped']
-    then
-      equip(sets.brd.wind_inst)
-    end
+    -- if
+    --   (gs_skillup.test_mode and gs_skillup.test_brd == 'String') or not gs_skillup.skill['Stringed Instrument Capped']
+    -- then
+    --   equip(sets.brd.string_inst)
+    -- elseif
+    --   (gs_skillup.test_mode and gs_skillup.test_brd == 'Wind') or not gs_skillup.skill['Wind Instrument Capped']
+    -- then
+    --   equip(sets.brd.wind_inst)
+    -- end
   end
   if spell.en == "Avatar's Favor" then
     if (windower.ffxi.get_ability_recasts()[spell.recast_id] > 0) or buffactive["Avatar's Favor"] then
