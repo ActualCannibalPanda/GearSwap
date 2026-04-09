@@ -7,7 +7,7 @@ return {
     legs = "Sakpata's Cuisses",
     feet = "Sakpata's Leggings",
     neck = 'Loricate Torque',
-    waist = 'Headlong Belt',
+    waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
     right_ear = 'Mache Earring',
     left_ring = "Sulevia's Ring",
