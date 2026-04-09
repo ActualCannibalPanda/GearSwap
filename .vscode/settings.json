@@ -18,5 +18,6 @@
         "self_command",
         "windower",
         "buffactive"
-    ]
+    ],
+    "stylua.targetReleaseVersion": "latest"
 }
