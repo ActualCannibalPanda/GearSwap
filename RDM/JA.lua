@@ -2,7 +2,7 @@ return {
   -- Red Mage
   ['Convert'] = {},
   ['Chain Spell'] = {
-    body = 'Viti. Tabard +1',
+    body = 'Viti. Tabard +2',
   },
   ['Composure'] = {
     head = 'Leth. Chappel +2',

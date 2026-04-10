@@ -1,7 +1,7 @@
 return {
   ['default'] = {
     ammo = 'Ginsen',
-    head = 'Sukeroku Hachi.',
+    head = 'Viti. Chapeau +2',
     body = 'Atrophy Tabard +3',
     hands = 'Atrophy Gloves +3',
     legs = 'Jhakri Slops +2',
@@ -19,8 +19,8 @@ return {
   },
   ['Savage Blade'] = {
     ammo = 'Ginsen',
-    head = 'Nyame Helm',
-    body = 'Nyame Mail',
+    head = 'Viti. Chapeau +2',
+    body = 'Viti. Tabard +2',
     hands = 'Atrophy Gloves +3',
     legs = 'Jhakri Slops +2',
     feet = 'Leth. Houseaux +2',
@@ -53,12 +53,15 @@ return {
     right_ear = 'Brutal Earring',
     left_ring = 'Hetairoi Ring',
     right_ring = 'Karieyh Ring',
-    back = { name = "Sucellos's Cape", augments = {
-      'MND+20',
-      'Mag. Acc+20 /Mag. Dmg.+20',
-      'Mag. Acc.+10',
-      '"Fast Cast"+10',
-    } },
+    back = {
+      name = "Sucellos's Cape",
+      augments = {
+        'MND+20',
+        'Mag. Acc+20 /Mag. Dmg.+20',
+        'Mag. Acc.+10',
+        '"Fast Cast"+10',
+      },
+    },
   },
   ['Chant du Cygne'] = {
     ammo = 'Ginsen',

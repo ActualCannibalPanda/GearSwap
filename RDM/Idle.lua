@@ -37,7 +37,7 @@ return {
   },
   ['refresh'] = {
     ammo = 'Ginsen',
-    head = 'Viti. Chapeau +1',
+    head = 'Viti. Chapeau +2',
     body = 'Atrophy Tabard +3',
     hands = 'Aya. Manopolas +2',
     legs = 'Leth. Fuseau +2',
@@ -55,7 +55,7 @@ return {
   },
   ['refresh speed'] = {
     ammo = 'Ginsen',
-    head = 'Viti. Chapeau +1',
+    head = 'Viti. Chapeau +2',
     body = 'Atrophy Tabard +3',
     hands = 'Aya. Manopolas +2',
     legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' } },

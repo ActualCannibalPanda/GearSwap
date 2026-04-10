@@ -2,7 +2,7 @@ return {
   default = {
     ammo = 'Kalboron Stone',
     head = 'Atrophy Chapeau +3',
-    body = 'Viti. Tabard +1',
+    body = 'Viti. Tabard +2',
     hands = 'Jhakri Cuffs +2',
     legs = 'Enif Cosciales',
     feet = { name = 'Carmine Greaves', augments = { 'HP+60', 'MP+60', 'Phys. dmg. taken -3' } },

@@ -184,7 +184,7 @@ return {
     default = {
       ammo = 'Kalboron Stone',
       head = 'Jhakri Coronal +2',
-      body = 'Viti. Tabard +1',
+      body = 'Viti. Tabard +2',
       hands = 'Atrophy Gloves +3',
       legs = 'Atrophy Tights +3',
       feet = 'Leth. Houseaux +1',
@@ -216,7 +216,7 @@ return {
     default = {
       ammo = 'Kalboron Stone',
       head = 'Jhakri Coronal +2',
-      body = 'Viti. Tabard +1',
+      body = 'Viti. Tabard +2',
       hands = 'Atrophy Gloves +3',
       legs = 'Atrophy Tights +3',
       feet = 'Leth. Houseaux +2',
@@ -276,7 +276,7 @@ return {
         self = {
           ammo = 'Kalboron Stone',
           head = 'Atrophy Chapeau +3',
-          body = 'Viti. Tabard +1',
+          body = 'Viti. Tabard +2',
           hands = 'Atrophy Gloves +3',
           legs = 'Atrophy Tights +3',
           feet = 'Leth. Houseaux +2',
