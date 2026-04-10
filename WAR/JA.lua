@@ -1,6 +1,6 @@
 return {
   ['Aggressor'] = {
-    head = "Pummeler's Mask",
+    head = 'Pumm. Mask +1',
   },
   ['Berserk'] = {
     body = "Pummeler's Lorica",
