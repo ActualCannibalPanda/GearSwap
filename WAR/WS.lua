@@ -14,6 +14,21 @@ return {
     right_ring = 'Petrov Ring',
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
   },
+  ["Ukko's  Fury"] = {
+    ammo = 'Knobkierrie',
+    head = 'Flam. Zucchetto +2',
+    body = "Sakpata's Plate",
+    hands = 'Flam. Manopolas +1',
+    legs = "Sakpata's Cuisses",
+    feet = "Sakpata's Leggings",
+    neck = 'Lissome Necklace',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Moonshade Earring',
+    left_ring = 'Hetairoi Ring',
+    right_ring = 'Karieyh Ring',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  },
   ['Upheaval'] = {
     ['Multi'] = {
       ammo = 'Ginsen',
