@@ -2,9 +2,9 @@ return {
   default = {
     ammo = 'Ginsen',
     head = 'Flam. Zucchetto +2',
-    body = "Sakpata's Plate",
-    hands = "Sakpata's Gauntlets",
-    legs = 'Sulevi. Cuisses +1',
+    body = 'Flamma Korazin +2',
+    hands = 'Sulev. Gauntlets +2',
+    legs = 'Sulev. Cuisses +2',
     feet = 'Flam. Gambieras +2',
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',

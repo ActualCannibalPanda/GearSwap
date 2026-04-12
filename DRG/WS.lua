@@ -8,8 +8,8 @@ return {
   ['Stardiver'] = {
     head = 'Flam. Zucchetto +2',
     body = 'Nyame Mail',
-    hands = 'Sulev. Gauntlets +1',
-    legs = 'Sulevi. Cuisses +1',
+    hands = 'Sulev. Gauntlets +2',
+    legs = 'Sulevi. Cuisses +2',
     feet = 'Sulev. Leggings +2',
     neck = 'Fotia Gorget',
     waist = 'Fotia Belt',

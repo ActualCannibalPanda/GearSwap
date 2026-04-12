@@ -20,9 +20,9 @@ return {
   ['Savage Blade'] = {
     ammo = 'Ginsen',
     head = 'Viti. Chapeau +2',
-    body = 'Viti. Tabard +2',
+    body = 'Nyame Mail',
     hands = 'Atrophy Gloves +3',
-    legs = 'Jhakri Slops +2',
+    legs = 'Nyame Flanchard',
     feet = 'Leth. Houseaux +2',
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',

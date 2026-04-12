@@ -2,7 +2,7 @@ return {
   ammo = 'Ginsen',
   head = 'Flam. Zucchetto +1',
   body = 'Agony Jerkin',
-  hands = 'Flam. Manopolas +1',
+  hands = 'Flam. Manopolas +2',
   legs = 'Hiza. Hizayoroi +1',
   feet = 'Flam. Gambieras +1',
   neck = "Samurai's Nodowa",
