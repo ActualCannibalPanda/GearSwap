@@ -11,7 +11,7 @@ return {
     left_ear = 'Mache Earring',
     right_ear = 'Brutal Earring',
     left_ring = "Sulevia's Ring",
-    right_ring = 'Gelatinous Ring',
+    right_ring = 'Gelatinous Ring +1',
     back = 'Grounded Mantle',
   },
   ['speed'] = {
@@ -26,7 +26,7 @@ return {
     left_ear = 'Mache Earring',
     right_ear = 'Brutal Earring',
     left_ring = "Sulevia's Ring",
-    right_ring = 'Gelatinous Ring',
+    right_ring = 'Gelatinous Ring +1',
     back = 'Grounded Mantle',
   },
 }

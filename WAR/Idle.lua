@@ -11,7 +11,7 @@ return {
     left_ear = 'Brutal Earring',
     right_ear = 'Mache Earring',
     left_ring = "Sulevia's Ring",
-    right_ring = 'Gelatinous Ring',
+    right_ring = 'Gelatinous Ring +1',
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
   },
 }
