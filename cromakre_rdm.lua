@@ -424,6 +424,67 @@ function get_sets()
       augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
     },
   }
+  sets.midcast['Composure'] = {
+    head = 'Leth. Chappel +2',
+    body = 'Lethargy Sayon +2',
+    hands = 'Leth. Ganth. +2',
+    legs = 'Leth. Fuseau +2',
+    feet = 'Leth. Houseaux +2',
+  }
+  sets.midcast.EnhancingDuration = {
+    self = {
+      ammo = 'Kalboron Stone',
+      head = 'Atrophy Chapeau +3',
+      body = 'Viti. Tabard +2',
+      hands = 'Atrophy Gloves +3',
+      legs = 'Atrophy Tights +3',
+      feet = 'Leth. Houseaux +2',
+      neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
+      waist = 'Embla Sash',
+      left_ear = 'Halasz Earring',
+      right_ear = {
+        name = 'Lethargy Earring',
+        augments = {
+          'System: 1 ID: 1676 Val: 0',
+          'Accuracy+7',
+          'Mag. Acc.+7',
+        },
+      },
+      left_ring = 'Metamor. Ring +1',
+      right_ring = 'Kishar Ring',
+      back = {
+        name = "Sucellos's Cape",
+        augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
+      },
+    },
+    other = {
+      ammo = 'Kalboron Stone',
+      head = 'Leth. Chappel +2',
+      body = 'Lethargy Sayon +2',
+      hands = 'Atrophy Gloves +3',
+      legs = 'Leth. Fuseau +2',
+      feet = 'Leth. Houseaux +2',
+      neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
+      waist = 'Embla Sash',
+      left_ear = 'Halasz Earring',
+      right_ear = {
+        name = 'Lethargy Earring',
+        augments = {
+          'System: 1 ID: 1676 Val: 0',
+          'Accuracy+7',
+          'Mag. Acc.+7',
+        },
+      },
+      left_ring = 'Metamor. Ring +1',
+      right_ring = 'Kishar Ring',
+      back = {
+        name = "Sucellos's Cape",
+        augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
+      },
+    },
+  }
+  sets.midcast['Haste'] = sets.midcast.EnhancingDuration
+  sets.midcast['Haste II'] = sets.midcast.EnhancingDuration
   sets.midcast.barspells = set_combine(sets.midcast['Enhancing Magic'], {
     legs = 'Shedir Seraweels',
   })
@@ -546,8 +607,15 @@ function midcast(spell)
     weathercheck(spell.element, {
       hands = 'Leth. Gantherots +2',
     })
-  elseif spell.skill then
-    weathercheck(spell.element, sets.midcast[spell.name])
+  else
+    local gear = sets.midcast[spell.name] or {}
+    if gear.self and spell.target.name == player.name then
+      weathercheck(spell.element, gear.self)
+    elseif gear.other and spell.target.name ~= player.name then
+      weathercheck(spell.element, gear.other)
+    else
+      weathercheck(spell.element, gear)
+    end
   end
 
   -- just add refresh gear here
@@ -557,7 +625,7 @@ function midcast(spell)
   set_priorities('mp', 'hp')
 end
 
-function aftercast(spell)
+function aftercast()
   if status == 'Idle' then
     equip_idle()
   elseif status == 'Engaged' then
@@ -566,7 +634,7 @@ function aftercast(spell)
   set_priorities('mp', 'hp')
 end
 
-function status_change(new, old)
+function status_change(new)
   status = new
   if new == 'Idle' then
     equip_idle()
@@ -578,7 +646,7 @@ function status_change(new, old)
   set_priorities('mp', 'hp')
 end
 
-function sub_job_change(new, old)
+function sub_job_change()
   set_macros()
   set_lockstyle()
   equip_idle()
