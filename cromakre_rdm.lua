@@ -54,9 +54,9 @@ local function set_lockstyle()
 end
 
 local function equip_idle()
-  equip(sets.idle[idle_modes[idle_mode]])
+  equip(sets.idle[idle_modes[idle_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
   if speed then
-    equip(sets.idle.speed, sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
+    equip(sets.idle.speed)
   end
 end
 
