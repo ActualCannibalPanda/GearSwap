@@ -604,9 +604,7 @@ function midcast(spell)
       weathercheck(spell.element, sets.midcast[spell.skill])
     end
   elseif spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
-    weathercheck(spell.element, {
-      hands = 'Leth. Gantherots +2',
-    })
+    weathercheck(spell.element, { hands = 'Leth. Gantherots +2' })
   else
     local gear = sets.midcast[spell.name] or {}
     if gear.self and spell.target.name == player.name then
