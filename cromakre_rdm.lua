@@ -185,8 +185,10 @@ function status_change(new, old)
   status = new
   if new == 'Idle' then
     equip_idle()
+    enable('main', 'sub')
   elseif new == 'Engaged' then
     equip_tp()
+    disable('main', 'sub')
   end
   equip_weapons()
 end
