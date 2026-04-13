@@ -239,7 +239,10 @@ function get_sets()
       augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
     },
   }
-  sets.midcast.magic_burst = set_combine(sets.midcast['Elemental Magic'], {})
+  sets.midcast.magic_burst = set_combine(sets.midcast['Elemental Magic'], {
+    head = 'Ea Hat',
+    feet = 'Jhakri Pigaches +2',
+  })
   -- ###############################################################
 
   -- ###############################################################
