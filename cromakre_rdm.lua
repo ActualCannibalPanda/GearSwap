@@ -578,7 +578,7 @@ function get_sets()
 end
 
 function file_unload()
-  destroy_bindings(bindings)
+  destroy_bindings()
 end
 
 function precast(spell)
@@ -659,7 +659,7 @@ function self_command(command)
     if jp_mode then
       send_command('@input /echo JP MODE Off')
       enable('back')
-      aftercast(nil)
+      aftercast()
     else
       send_command('@input /echo JP MODE On')
       equip({ back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } } })
@@ -672,7 +672,7 @@ function self_command(command)
     else
       send_command('@input /echo SPEED Off')
     end
-    aftercast(nil)
+    aftercast()
   elseif command == 'toggle_idle' then
     if idle_mode + 1 > #idle_modes then
       idle_mode = 1
