@@ -2,28 +2,27 @@ lockstyleset = nil
 macro_book = nil
 macro_page = nil
 
-local swap_main = true
-local swap_back = true
+local jp_mode = false
 
 local bindings = {
   ['^#'] = 'gs c echodrops',
-  ['^F4'] = 'gs c toggle_tp',
-  ['^F3'] = 'gs c toggle_main',
-  ['^F2'] = 'gs c toggle_back',
+  ['^R'] = 'gs c toggle_speed',
+  ['^F3'] = 'gs c toggle_tp',
+  ['^F2'] = 'gs c toggle_jp',
   ['^F1'] = 'gs c toggle_idle',
 }
 
+local speed = false
+
 local idle_mode = 1
 local idle_modes = {
-  'default',
-  'default speed',
+  'dt',
   'refresh',
-  'refresh speed',
 }
 
 local tp_mode = 1
 local tp_modes = {
-  'default',
+  'tp',
   'hybrid',
 }
 
@@ -61,6 +60,9 @@ end
 
 local function equip_idle()
   equip(sets.idle[idle_modes[idle_mode]])
+  if speed then
+    equip(sets.idle.speed)
+  end
 end
 
 local function equip_tp()
@@ -83,6 +85,49 @@ end
 ------------------------------
 function get_sets()
   sets = require('RDM.lua')(sets)
+
+  sets.idle = {}
+  sets.idle.dt = {
+    ammo = 'Kalboron Stone',
+    head = 'Leth. Chappel +2',
+    body = 'Lethargy Sayon +2',
+    hands = 'Leth. Ganth. +2',
+    legs = 'Nyame Flanchard',
+    feet = 'Nyame Sollerets',
+    neck = 'Loricate Torque',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Loquac. Earring',
+    right_ear = 'Brutal Earring',
+    left_ring = 'Ayanmo Ring',
+    right_ring = 'Gelatinous Ring +1',
+    back = {
+      name = "Sucellos's Cape",
+      augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Dbl.Atk."+10', 'Damage taken-5%' },
+    },
+  }
+
+  sets.idle.refresh = {
+    ammo = 'Ginsen',
+    head = 'Viti. Chapeau +2',
+    body = 'Atrophy Tabard +3',
+    hands = 'Aya. Manopolas +2',
+    legs = 'Leth. Fuseau +2',
+    feet = 'Aya. Gambieras +2',
+    neck = 'Sanctity Necklace',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Mache Earring',
+    right_ear = 'Brutal Earring',
+    left_ring = 'Ayanmo Ring',
+    right_ring = 'Karieyh Ring',
+    back = {
+      name = "Sucellos's Cape",
+      augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Dbl.Atk."+10', 'Damage taken-5%' },
+    },
+  }
+
+  sets.idle.speed = {
+    legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' } },
+  }
 
   lockstyleset = 6
 
@@ -202,30 +247,33 @@ end
 
 function self_command(command)
   if command == 'echodrops' then
-    send_command("/input item 'echo drops' <em>")
-  elseif command == 'toggle_main' then
-    swap_main = not swap_main
-    if swap_main then
-      send_command('gs enable main')
-      send_command('gs enable sub')
+    send_command("@input item 'echo drops' <me>")
+  elseif command == 'toggle_jp' then
+    jp_mode = not jp_mode
+    if jp_mode then
+      send_command('@input /echo JP MODE Off')
+      enable('back')
+      aftercast(nil)
     else
-      send_command('gs disable main')
-      send_command('gs disable sub')
+      send_command('@input /echo JP MODE On')
+      equip({ back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } } })
+      disable('back')
     end
-  elseif command == 'toggle_back' then
-    swap_back = not swap_back
-    if swap_back then
-      send_command('gs enable back')
+  elseif command == 'toggle_speed' then
+    speed = not speed
+    if speed then
+      send_command('@input /echo SPEED On')
     else
-      send_command('gs disable back')
+      send_command('@input /echo SPEED Off')
     end
+    aftercast(nil)
   elseif command == 'toggle_idle' then
     if idle_mode + 1 > #idle_modes then
       idle_mode = 1
     else
       idle_mode = idle_mode + 1
     end
-    print('Idle Mode:', idle_modes[idle_mode])
+    send_command('@input /echo Idle Mode: ' .. idle_modes[idle_mode])
     equip_idle()
   elseif command == 'toggle_tp' then
     if tp_mode + 1 > #tp_modes then
@@ -233,7 +281,7 @@ function self_command(command)
     else
       tp_mode = tp_mode + 1
     end
-    print('TP Mode: ', tp_modes[tp_mode])
+    send_command('@input /echo TP Mode: ' .. tp_modes[tp_mode])
     equip_tp()
   end
 end

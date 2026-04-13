@@ -1,5 +1,4 @@
 return function(sets)
-  sets.idle = require('RDM/Idle.lua')
   sets.tp = require('RDM/TP.lua')
   sets.precast = require('RDM/Precast.lua')
   sets.midcast = require('RDM/Midcast.lua')
