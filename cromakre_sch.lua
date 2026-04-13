@@ -17,7 +17,7 @@ local speed = false
 local idle_mode = 1
 local idle_modes = {
   'dt',
-  'refresh',
+  'sublimation',
 }
 
 local tp_mode = 1
