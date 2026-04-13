@@ -19,7 +19,9 @@
         "windower",
         "buffactive",
         "gearswap",
-        "world"
+        "world",
+        "enable",
+        "disable"
     ],
     "stylua.targetReleaseVersion": "latest"
 }
