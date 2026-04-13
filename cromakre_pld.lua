@@ -17,6 +17,7 @@ local speed = false
 local idle_mode = 1
 local idle_modes = {
   'dt',
+  'xp',
 }
 
 local tp_mode = 1
@@ -53,7 +54,11 @@ local function set_lockstyle()
 end
 
 local function equip_idle()
-  equip(sets.idle[idle_modes[idle_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
+  if idle_modes[idle_mode] == 'xp' then
+    equip(sets.idle[idle_modes[idle_mode]])
+  else
+    equip(sets.idle[idle_modes[idle_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
+  end
   if speed then
     equip(sets.idle.speed)
   end
@@ -132,6 +137,31 @@ function get_sets()
     },
     neck = { name = 'Loricate Torque' },
     ammo = { name = 'Staunch Tathlum' },
+  }
+  sets.idle.xp = {
+    main = { name = "Sakpata's Sword", hp = 100, mp = 40 },
+    sub = { name = 'Priwen', hp = 30 },
+    ammo = 'Staunch Tathlum',
+    head = { name = 'Chev. Armet +2', hp = 135, mp = 119 },
+    body = { name = 'Chev. Cuirass +2', hp = 141, mp = 134 },
+    hands = {
+      name = 'Souv. Handsch. +1',
+      augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
+      hp = 239,
+      mp = 14,
+    },
+    legs = { name = 'Chev. Cuisses +2', hp = 117, mp = 61 },
+    feet = { name = 'Chev. Sabatons +2', hp = 42, mp = 34 },
+    neck = 'Loricate Torque',
+    waist = { name = 'Creed Baudrier', hp = 40 },
+    left_ear = { name = 'Cryptic Earring', hp = 40 },
+    right_ear = {
+      name = 'Chev. Earring +1',
+      augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+15', 'Mag. Acc.+15', 'Damage taken-5%' },
+    },
+    left_ring = 'Apeile Ring',
+    right_ring = { name = "K'ayres Ring", hp = 70 },
+    back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' }, hp = 60 },
   }
 
   sets.idle.speed = {
@@ -271,7 +301,7 @@ function get_sets()
     right_ring = { name = 'Supershear Ring', hp = 30, mp = 30 },
     feet = {
       name = 'Odyssean Greaves',
-      augments = { 'Blood Pact Dmg.+1', '"Fast Cast"+3', 'Phalanx +4', 'Mag. Acc.+4 "Mag.Atk.Bns."+4' },
+      augments = { 'Attack+12', 'Enmity+6', 'VIT+6', 'Accuracy+3' },
       hp = 20,
       mp = 40,
     },
