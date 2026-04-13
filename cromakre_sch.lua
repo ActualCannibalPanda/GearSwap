@@ -166,7 +166,6 @@ function get_sets()
   }
 
   sets.precast = {}
-  sets.precast = {}
   sets.precast.spells = {}
   sets.precast.types = {}
   sets.precast.default = {

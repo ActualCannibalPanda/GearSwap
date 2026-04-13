@@ -181,7 +181,6 @@ function get_sets()
   sets.tp.subjob['DNC'] = sets.tp.subjob['NIN']
 
   sets.precast = {}
-  sets.precast = {}
   sets.precast.spells = {}
   sets.precast.types = {}
   sets.precast.default = {
