@@ -17,7 +17,9 @@
         "sub_job_change",
         "self_command",
         "windower",
-        "buffactive"
+        "buffactive",
+        "gearswap",
+        "world"
     ],
     "stylua.targetReleaseVersion": "latest"
 }
