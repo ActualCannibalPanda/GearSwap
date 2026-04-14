@@ -102,60 +102,6 @@ local function set_priorities(key1, key2)
   end
 end
 
-local skillchain_map = {
-  ['fusion'] = 'input /ja "Immanence" <me>;'
-    .. ' wait 2;'
-    .. 'input /p Opening Fusion (Fire/Light) Skillchain >>>>>>>>>;'
-    .. ' input /ma "Fire" <t>;'
-    .. ' wait 4;'
-    .. ' input /ja "Immanence" <me>;'
-    .. ' wait 2;'
-    .. ' input /ma "Ionohelix" <t>;'
-    .. ' wait 2;'
-    .. ' input /p <<<<<<<<< Closing Fusion (Fire/Light) Skillchain',
-}
-
-local function handle_strategems(commands)
-  if commands[1] == 'dark' then
-    if buffactive['dark arts'] then
-      if not buffactive['addendum: black'] then
-        send_command('input /ja "Addendum: Black" <me>')
-      else
-        send_to_chat(122, 'Error: Addendum: Black is already active')
-      end
-    else
-      send_command('input /ja "Dark Arts" <me>')
-    end
-  elseif commands[1] == 'light' then
-    if buffactive['light arts'] then
-      if not buffactive['addendum: white'] then
-        send_command('input /ja "Addendum: White" <me>')
-      else
-        send_to_chat(122, 'Error: Addendum: White is already active')
-      end
-    else
-      send_command('input /ja "Light Arts" <me>')
-    end
-  end
-
-  if buffactive['light arts'] or buffactive['addendum: white'] then
-    if commands[1] == 'skillchain' or commands[1] == 'sc' then
-      send_to_chat(122, 'Error: Light Arts does not have skillchains')
-    end
-  elseif buffactive['dark arts'] or buffactive['addendum: black'] then
-    if commands[1] == 'skillchain' or commands[1] == 'sc' then
-      local type = commands[2]
-      if player.target.type == 'MONSTER' then
-        send_command(skillchain_map[type])
-      else
-        send_to_chat(122, 'Error: Must target valid target')
-      end
-    else
-      send_to_chat(122, 'Error: Invalid command "' .. commands[1] .. '"')
-    end
-  end
-end
-
 -- custom functions
 ------------------------------
 function get_sets()
@@ -520,9 +466,6 @@ function self_command(command)
     end
     send_command('@input /echo TP Mode: ' .. tp_modes[tp_mode])
     equip_tp()
-  elseif #command:split(' ') >= 1 then
-    local commands = T(command:split(' '))
-    handle_strategems(commands)
   end
 end
 
