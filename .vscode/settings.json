@@ -21,7 +21,8 @@
         "gearswap",
         "world",
         "enable",
-        "disable"
+        "disable",
+        "send_to_chat"
     ],
     "stylua.targetReleaseVersion": "latest"
 }
