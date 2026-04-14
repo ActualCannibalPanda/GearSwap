@@ -22,7 +22,8 @@
         "world",
         "enable",
         "disable",
-        "send_to_chat"
+        "send_to_chat",
+        "T"
     ],
     "stylua.targetReleaseVersion": "latest"
 }
