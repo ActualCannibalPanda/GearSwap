@@ -10,6 +10,9 @@ local bindings = {
   ['^F3'] = 'gs c toggle_tp',
   ['^F2'] = 'gs c toggle_jp',
   ['^F1'] = 'gs c toggle_idle',
+  ['^N'] = 'keyboard_type //sch n',
+  ['^K'] = 'keyboard_type //sch sc',
+  ['^L'] = 'keyboard_type //sch',
 }
 
 local speed = false
@@ -213,8 +216,8 @@ function get_sets()
     neck = 'Saevus Pendant +1',
     waist = 'Oneiros Sash',
     left_ear = 'Barkaro. Earring',
-    right_ear = 'Novio Earring',
-    left_ring = 'Shiva Ring',
+    right_ear = 'Friomisi Earring',
+    left_ring = 'Jhakri Ring',
     right_ring = 'Metamor. Ring +1',
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
   }
