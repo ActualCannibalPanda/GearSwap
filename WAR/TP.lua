@@ -1,6 +1,6 @@
 return {
   default = {
-    ammo = 'Ginsen',
+    ammo = 'Coiste Bodhar',
     head = 'Flam. Zucchetto +2',
     body = 'Flamma Korazin +2',
     hands = 'Sulev. Gauntlets +2',
