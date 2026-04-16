@@ -10,9 +10,9 @@ local bindings = {
   ['^F3'] = 'gs c toggle_tp',
   ['^F2'] = 'gs c toggle_jp',
   ['^F1'] = 'gs c toggle_idle',
-  ['^N'] = 'keyboard_type //sch n',
-  ['^K'] = 'keyboard_type //sch sc',
-  ['^L'] = 'keyboard_type //sch',
+  ['^N'] = 'keyboard_type //sch n ',
+  ['^K'] = 'keyboard_type //sch sc ',
+  ['^L'] = 'keyboard_type //sch ',
 }
 
 local speed = false
@@ -131,12 +131,12 @@ function get_sets()
     body = 'Jhakri Robe +2',
     hands = 'Jhakri Cuffs +2',
     legs = 'Jhakri Slops +2',
-    feet = "Herald's Gaiters",
+    feet = 'Jhakri Pigaches +2',
     neck = 'Sanctity Necklace',
     waist = 'Embla Sash',
     left_ear = 'Friomisi Earring',
     right_ear = 'Novio Earring',
-    left_ring = 'Jhakri Ring',
+    left_ring = 'Gelatinous Ring +1',
     right_ring = 'Mallquis Ring',
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
   }
@@ -208,8 +208,8 @@ function get_sets()
     main = 'Marin Staff +1',
     sub = "Elder's Grip +1",
     ammo = 'Ghastly Tathlum +1',
-    head = 'Mallquis Chapeau +1',
-    body = 'Mallquis Saio +1',
+    head = 'Jhakri Coronal +2',
+    body = 'Jhakri Robe +2',
     hands = 'Arbatel Bracers +2',
     legs = 'Jhakri Slops +2',
     feet = 'Arbatel Loafers +2',
