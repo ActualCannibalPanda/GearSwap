@@ -23,6 +23,7 @@ local idle_modes = {
 local tp_mode = 1
 local tp_modes = {
   'default',
+  'hybrid',
 }
 
 local enspell_active = false
@@ -62,9 +63,11 @@ end
 
 local function equip_tp()
   if enspell_active then
-    equip(set_combine(sets.tp.default, sets.tp.subjob[player.sub_job] or sets.tp.subjob.default, sets.tp.enspell))
+    equip(
+      set_combine(sets.tp[tp_modes[tp_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default, sets.tp.enspell)
+    )
   else
-    equip(set_combine(sets.tp.default, sets.tp.subjob[player.sub_job] or sets.tp.subjob.default))
+    equip(set_combine(sets.tp[tp_modes[tp_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default))
   end
 end
 
@@ -115,7 +118,7 @@ function get_sets()
     feet = 'Nyame Sollerets',
     neck = 'Loricate Torque',
     waist = 'Sailfi Belt +1',
-    left_ear = 'Loquac. Earring',
+    left_ear = 'Alabaster Earring',
     right_ear = 'Brutal Earring',
     left_ring = 'Ayanmo Ring',
     right_ring = 'Gelatinous Ring +1',
@@ -134,7 +137,7 @@ function get_sets()
     feet = 'Aya. Gambieras +2',
     neck = 'Sanctity Necklace',
     waist = 'Sailfi Belt +1',
-    left_ear = 'Mache Earring',
+    left_ear = 'Alabaster Earring',
     right_ear = 'Brutal Earring',
     left_ring = 'Ayanmo Ring',
     right_ring = 'Karieyh Ring',
@@ -150,7 +153,7 @@ function get_sets()
 
   sets.tp = {}
   sets.tp.default = {
-    ammo = 'Ginsen',
+    ammo = 'Coiste Bodhar',
     head = 'Aya. Zucchetto +2',
     body = 'Ayanmo Corazza +2',
     hands = 'Aya. Manopolas +2',
@@ -166,6 +169,10 @@ function get_sets()
       name = "Sucellos's Cape",
       augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'Accuracy+10', '"Dbl.Atk."+10', 'Damage taken-5%' },
     },
+  }
+
+  sets.tp.hybrid = {
+    left_ear = 'Alabaster Earring',
   }
 
   sets.tp.subjob = {}
