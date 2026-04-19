@@ -279,9 +279,9 @@ function get_sets()
   -- ###############################################################
   sets.midcast['Enfeebling Magic'] = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +1',
+    head = 'Viti. Chapeau +2',
     body = 'Lethargy Sayon +2',
-    hands = 'Leth. Gantherots +2',
+    hands = 'Leth. Ganth. +2',
     legs = 'Jhakri Slops +2',
     feet = 'Vitiation Boots +1',
     neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
@@ -297,7 +297,7 @@ function get_sets()
   }
   sets.midcast.enfeebles.macc = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +1',
+    head = 'Viti. Chapeau +2',
     body = 'Atrophy Tabard +3',
     hands = 'Leth. Ganth. +2',
     legs = 'Leth. Fuseau +2',
@@ -318,7 +318,7 @@ function get_sets()
   }
   sets.midcast.enfeebles.skill = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +1',
+    head = 'Viti. Chapeau +2',
     body = 'Atrophy Tabard +3',
     hands = 'Leth. Ganth. +2',
     legs = 'Jhakri Slops +2',
@@ -336,7 +336,7 @@ function get_sets()
   }
   sets.midcast.enfeebles.macc_dur = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +1',
+    head = 'Viti. Chapeau +2',
     body = 'Lethargy Sayon +2',
     hands = 'Leth. Ganth. +2',
     legs = 'Leth. Fuseau +2',
@@ -396,7 +396,7 @@ function get_sets()
     body = 'Viti. Tabard +2',
     hands = 'Atrophy Gloves +3',
     legs = 'Atrophy Tights +3',
-    feet = 'Leth. Houseaux +1',
+    feet = 'Leth. Houseaux +2',
     neck = 'Sanctity Necklace',
     waist = 'Witful Belt',
     left_ear = 'Mache Earring',
@@ -610,7 +610,7 @@ function midcast(spell)
       weathercheck(spell.element, sets.midcast[spell.skill])
     end
   elseif spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
-    weathercheck(spell.element, { hands = 'Leth. Gantherots +2' })
+    weathercheck(spell.element, { hands = 'Leth. Ganth. +2' })
   else
     local gear = sets.midcast[spell.name] or {}
     if gear.self and spell.target.name == player.name then
