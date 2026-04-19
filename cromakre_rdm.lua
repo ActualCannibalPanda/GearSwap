@@ -501,7 +501,7 @@ function get_sets()
   sets.midcast['Aquaveil'] = sets.midcast.barspells
 
   sets.midcast['Savage Blade'] = {
-    ammo = 'Ginsen',
+    ammo = 'Coiste Bodhar',
     head = 'Viti. Chapeau +2',
     body = 'Nyame Mail',
     hands = 'Atrophy Gloves +3',
@@ -524,7 +524,7 @@ function get_sets()
     },
   }
   sets.midcast['Requiescat'] = {
-    ammo = 'Ginsen',
+    ammo = 'Coiste Bodhar',
     head = 'Jhakri Coronal +2',
     body = 'Jhakri Robe +2',
     hands = 'Atrophy Gloves +3',
@@ -547,7 +547,7 @@ function get_sets()
     },
   }
   sets.midcast['Chant du Cygne'] = {
-    ammo = 'Ginsen',
+    ammo = 'Coiste Bodhar',
     head = 'Atrophy Chapeau +3',
     body = 'Ayanmo Corazza +2',
     hands = 'Atrophy Gloves +3',
