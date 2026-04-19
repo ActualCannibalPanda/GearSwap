@@ -493,8 +493,11 @@ function get_sets()
   sets.midcast['Haste II'] = sets.midcast.EnhancingDuration
   sets.midcast.barspells = set_combine(sets.midcast['Enhancing Magic'], {
     legs = 'Shedir Seraweels',
+    waist = 'Olympus Sash',
   })
-  sets.midcast['Stoneskin'] = sets.midcast.barspells
+  sets.midcast['Stoneskin'] = set_combine(sets.midcast.barspells, {
+    waist = 'Siegel Sash',
+  })
   sets.midcast['Aquaveil'] = sets.midcast.barspells
 
   sets.midcast['Savage Blade'] = {
