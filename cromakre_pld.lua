@@ -222,12 +222,7 @@ function get_sets()
       hp = 60,
     },
     waist = { name = 'Creed Baudrier', hp = 40 },
-    feet = {
-      name = 'Odyssean Greaves',
-      augments = { 'Blood Pact Dmg.+1', '"Fast Cast"+3', 'Phalanx +4', 'Mag. Acc.+4 "Mag.Atk.Bns."+4' },
-      hp = 20,
-      mp = 14,
-    },
+    feet = { name = 'Odyssean Greaves', augments = { 'Attack+12', 'Enmity+6', 'VIT+6', 'Accuracy+3' } },
     neck = { name = 'Voltsurge Torque', mp = 20 },
     left_ear = { name = 'Loquac. Earring', mp = 30 },
     right_ear = {
@@ -277,7 +272,7 @@ function get_sets()
     },
     left_ring = { name = 'Apeile Ring', priority = 4 },
     left_ear = { name = 'Friomisi Earring', priority = 3 },
-    neck = { name = 'Unmoving Collar', priority = 2 },
+    neck = { name = 'Moonbeam Necklace', priority = 2 },
     ammo = { name = 'Staunch Tathlum', priority = 1 },
   }
   sets.midcast.sird = {
@@ -294,21 +289,16 @@ function get_sets()
       mp = 109,
     },
     body = { name = 'Chev. Cuirass +2', hp = 141, mp = 134 },
-    left_ring = { name = "K'ayres Ring", hp = 70 },
+    left_ring = { name = 'Apeile Ring' },
     back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' }, hp = 60 },
     legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' }, hp = 50 },
     right_ear = { name = 'Cryptic Earring', hp = 40 },
     right_ring = { name = 'Supershear Ring', hp = 30, mp = 30 },
-    feet = {
-      name = 'Odyssean Greaves',
-      augments = { 'Attack+12', 'Enmity+6', 'VIT+6', 'Accuracy+3' },
-      hp = 20,
-      mp = 40,
-    },
-    neck = { name = 'Unmoving Collar', priority = 4 },
-    waist = { name = 'Rumination Sash', priority = 3 },
-    left_ear = { name = 'Knightly Earring', priority = 2 },
-    ammo = { name = 'Staunch Tathlum', priority = 1 },
+    feet = { name = 'Odyssean Greaves', augments = { 'Attack+12', 'Enmity+6', 'VIT+6', 'Accuracy+3' } },
+    neck = { name = 'Moonbeam Necklace' },
+    waist = { name = 'Creed Baudrier', hp = 40 },
+    left_ear = { name = 'Knightly Earring' },
+    ammo = { name = 'Staunch Tathlum' },
   }
   -- ###############################################################
 
