@@ -1,5 +1,0 @@
-return {
-  default = {},
-  spells = {},
-  types = {},
-}
