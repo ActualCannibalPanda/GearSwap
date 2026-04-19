@@ -241,6 +241,7 @@ function get_sets()
   sets.midcast.magic_burst = set_combine(sets.midcast['Elemental Magic'], {
     body = 'Acad. Gown +2',
     legs = 'Mallquis Trews +1',
+    neck = 'Argute Stole +1',
     left_ring = 'Jhakri Ring',
   })
   -- ###############################################################
