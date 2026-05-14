@@ -24,13 +24,9 @@ local tp_modes = {
   'hybrid',
 }
 
-local enspell_active = false
-
 local status = 'Idle'
 
 send_command('bind ^a gs c nothing')
-
-local can_burst = require('magic.lua')
 
 local function setup_bindings()
   for key, command in pairs(bindings) do
@@ -52,30 +48,20 @@ local function set_lockstyle()
   send_command('wait 10; input /lockstyleset ' .. lockstyleset)
 end
 
-local function equip_idle()
-  equip(sets.idle[idle_modes[idle_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
-  if speed then
-    equip(sets.idle.speed)
-  end
-end
-
 local function equip_tp()
   equip(
     set_combine(sets.tp.default, sets.tp[tp_modes[tp_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
   )
 end
 
-local function weathercheck(spell_element, set)
-  if not set then
+local function equip_idle()
+  if player.status == 'Engaged' then
+    equip_tp()
     return
   end
-  if spell_element == world.weather_element or spell_element == world.day_element then
-    equip(set, sets.obis[spell_element])
-  else
-    equip(set)
-  end
-  if set[spell_element] then
-    equip(set[spell_element])
+  equip(sets.idle[idle_modes[idle_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
+  if speed then
+    equip(sets.idle.speed)
   end
 end
 
@@ -152,10 +138,75 @@ function get_sets()
     sub = 'Utu Grip',
   }
 
+  sets.ws = {}
+  sets.ws.default = {
+    ammo = 'Knobkierrie',
+    head = 'Nyame Helm',
+    body = 'Nyame Mail',
+    hands = 'Nyame Gauntlets',
+    legs = 'Nyame Flanchard',
+    feet = 'Sulev. Leggings +2',
+    neck = 'Fotia Gorget',
+    waist = 'Fotia Belt',
+    left_ear = 'Moonshade Earring',
+    right_ear = 'Thrud Earring',
+    left_ring = 'Hetairoi Ring',
+    right_ring = 'Petrov Ring',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  }
+
+  sets.ws["Ukko's Fury"] = {
+    ammo = 'Yetshila',
+    head = 'Flam. Zucchetto +2',
+    body = "Sakpata's Plate",
+    hands = 'Flam. Manopolas +2',
+    legs = "Sakpata's Cuisses",
+    feet = "Sakpata's Leggings",
+    neck = 'Lissome Necklace',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Moonshade Earring',
+    left_ring = 'Hetairoi Ring',
+    right_ring = 'Karieyh Ring',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  }
+
+  sets.ws.Upheaval = {}
+  sets.ws.Upheaval.multi = {
+    ammo = 'Coiste Bodhar',
+    head = 'Flam. Zucchetto +2',
+    body = "Sakpata's Plate",
+    hands = 'Sulev. Gauntlets +2',
+    legs = 'Sulev. Cuisses +2',
+    feet = 'Flam. Gambieras +2',
+    neck = 'Lissome Necklace',
+    waist = 'Fotia Belt',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Mache Earring',
+    left_ring = 'Hetairoi Ring',
+    right_ring = 'Petrov Ring',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  }
+  sets.ws.Upheaval.wsd = {
+    ammo = 'Knobkierrie',
+    head = 'Nyame Helm',
+    body = 'Nyame Mail',
+    hands = 'Nyame Gauntlets',
+    legs = 'Nyame Flanchard',
+    feet = 'Sulev. Leggings +2',
+    neck = 'Lissome Necklace',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Moonshade Earring',
+    right_ear = 'Thrud Earring',
+    left_ring = 'Karieyh Ring',
+    right_ring = 'Petrov Ring',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  }
+
   sets.precast = {}
   sets.precast.default = {}
 
-  sets.midcast = {
+  sets.ja = {
     ['Aggressor'] = {
       head = 'Pumm. Mask +1',
     },
@@ -183,52 +234,30 @@ function file_unload()
 end
 
 function precast(spell)
-  if sets.precast.spells[spell.name] then
-    equip(sets.precast.spells[spell.name])
-  elseif string.find(spell.name, 'Cur') and spell.name ~= 'Cursna' then
-    equip(sets.precast.spells['Cure'])
-  elseif spell.action_type == 'Magic' then
-    if sets.precast.types[spell.skill] then
-      equip(sets.precast.types[spell.skill])
+  if spell.type == 'WeaponSkill' then
+    if spell.name == 'Upheaval' then
+      if player.tp < 1749 then
+        equip(sets.ws[spell.name].multi)
+      else
+        equip(sets.ws[spell.name].wsd)
+      end
     else
-      equip(sets.precast.default)
+      if sets.ws[spell.name] then
+        equip(sets.ws[spell.name])
+      else
+        equip(sets.ws.default)
+      end
+    end
+  elseif spell.type == 'JobAbility' then
+    if sets.ja[spell.name] then
+      equip(sets.ja[spell.name])
     end
   end
+
   set_priorities('mp', 'hp')
 end
 
 function midcast(spell)
-  if spell.skill == 'Elemental Magic' then
-    if can_burst(spell) then
-      weathercheck(spell.element, sets.midcast.magic_burst)
-    else
-      weathercheck(spell.element, sets.midcast[spell.skill])
-    end
-  elseif spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
-    weathercheck(spell.element, { hands = 'Leth. Gantherots +2' })
-  else
-    local gear = sets.midcast[spell.name] or {}
-    if gear.self and spell.target.name == player.name then
-      weathercheck(spell.element, gear.self)
-    elseif gear.other and spell.target.name ~= player.name then
-      weathercheck(spell.element, gear.other)
-    else
-      weathercheck(spell.element, gear)
-    end
-  end
-
-  if buffactive['Light Arts'] then
-    if buffactive['Perpetuance'] then
-      equip(sets.midcast['Perpetuance'])
-    end
-  end
-
-  if buffactive['Dark Arts'] then
-    if spell.skill == 'Elemental Magic' and buffactive['Immanence'] then
-      equip(sets.midcast['Immanence'])
-    end
-  end
-
   set_priorities('mp', 'hp')
 end
 
@@ -300,5 +329,3 @@ function self_command(command)
     equip_tp()
   end
 end
-
-send_command('wait 1; gs equip idle')
