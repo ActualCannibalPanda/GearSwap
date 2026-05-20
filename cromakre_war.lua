@@ -20,7 +20,7 @@ local idle_modes = {
 
 local tp_mode = 1
 local tp_modes = {
-  'default',
+  '',
   'hybrid',
 }
 
@@ -49,9 +49,15 @@ local function set_lockstyle()
 end
 
 local function equip_tp()
-  equip(
-    set_combine(sets.tp.default, sets.tp[tp_modes[tp_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
-  )
+  local gear = {}
+
+  if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+    gear = sets.tp.dw
+  else
+    gear = sets.tp.default
+  end
+
+  equip(gear, sets.tp[tp_modes[tp_mode]] or {})
 end
 
 local function equip_idle()
@@ -59,7 +65,7 @@ local function equip_idle()
     equip_tp()
     return
   end
-  equip(sets.idle[idle_modes[idle_mode]], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
+  equip(sets.idle[idle_modes[idle_mode]])
   if speed then
     equip(sets.idle.speed)
   end
@@ -91,18 +97,18 @@ function get_sets()
   sets.idle = {}
   sets.idle.dt = {
     ammo = 'Staunch Tathlum',
-    head = "Sakpata's Helm",
-    body = "Sakpata's Plate",
-    hands = "Sakpata's Gauntlets",
-    legs = "Sakpata's Cuisses",
-    feet = "Sakpata's Leggings",
+    head = { name = "Sakpata's Helm", hp = 91 },
+    body = { name = "Sakpata's Plate", hp = 136 },
+    hands = { name = "Sakpata's Gauntlets", hp = 91 },
+    legs = { name = "Sakpata's Cuisses", hp = 114 },
+    feet = { name = "Sakpata's Leggings", hp = 68 },
     neck = 'Loricate Torque',
     waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
     right_ear = 'Mache Earring',
     left_ring = "Sulevia's Ring",
     right_ring = 'Gelatinous Ring +1',
-    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+    back = "Cichol's Mantle",
   }
 
   sets.idle.speed = {}
@@ -111,8 +117,8 @@ function get_sets()
   sets.tp.default = {
     ammo = 'Coiste Bodhar',
     head = 'Flam. Zucchetto +2',
-    body = 'Flamma Korazin +2',
-    hands = 'Sulev. Gauntlets +2',
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
     legs = 'Sulev. Cuisses +2',
     feet = 'Flam. Gambieras +2',
     neck = 'Lissome Necklace',
@@ -121,7 +127,23 @@ function get_sets()
     right_ear = 'Mache Earring',
     left_ring = 'Flamma Ring',
     right_ring = 'Petrov Ring',
-    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+    back = "Cichol's Mantle",
+  }
+
+  sets.tp.dw = {
+    ammo = 'Coiste Bodhar',
+    head = 'Flam. Zucchetto +2',
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
+    legs = 'Sulev. Cuisses +2',
+    feet = 'Flam. Gambieras +2',
+    neck = 'Lissome Necklace',
+    waist = 'Ioskeha Belt',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Eabani Earring',
+    left_ring = 'Flamma Ring',
+    right_ring = 'Petrov Ring',
+    back = "Cichol's Mantle",
   }
 
   sets.tp.hybrid = {
@@ -133,10 +155,7 @@ function get_sets()
   }
 
   sets.tp.subjob = {}
-  sets.tp.subjob.default = {
-    main = { name = 'Kaja Chopper' },
-    sub = 'Utu Grip',
-  }
+  sets.tp.subjob.default = {}
 
   sets.ws = {}
   sets.ws.default = {
@@ -152,7 +171,7 @@ function get_sets()
     right_ear = 'Thrud Earring',
     left_ring = 'Hetairoi Ring',
     right_ring = 'Petrov Ring',
-    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+    back = "Cichol's Mantle",
   }
 
   sets.ws["Ukko's Fury"] = {
@@ -168,7 +187,7 @@ function get_sets()
     right_ear = 'Moonshade Earring',
     left_ring = 'Hetairoi Ring',
     right_ring = 'Karieyh Ring',
-    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+    back = "Cichol's Mantle",
   }
 
   sets.ws.Upheaval = {}
@@ -185,7 +204,7 @@ function get_sets()
     right_ear = 'Mache Earring',
     left_ring = 'Hetairoi Ring',
     right_ring = 'Petrov Ring',
-    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+    back = "Cichol's Mantle",
   }
   sets.ws.Upheaval.wsd = {
     ammo = 'Knobkierrie',
@@ -200,7 +219,7 @@ function get_sets()
     right_ear = 'Thrud Earring',
     left_ring = 'Karieyh Ring',
     right_ring = 'Petrov Ring',
-    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+    back = "Cichol's Mantle",
   }
 
   sets.precast = {}
@@ -212,6 +231,7 @@ function get_sets()
     },
     ['Berserk'] = {
       body = "Pummeler's Lorica",
+      back = "Cichol's Mantle",
     },
     ['Retaliation'] = {
       hands = 'Pumm. Mufflers +2',
@@ -254,11 +274,11 @@ function precast(spell)
     end
   end
 
-  set_priorities('mp', 'hp')
+  set_priorities('hp', 'mp')
 end
 
 function midcast(spell)
-  set_priorities('mp', 'hp')
+  set_priorities('hp', 'mp')
 end
 
 function aftercast()
@@ -267,7 +287,7 @@ function aftercast()
   elseif status == 'Engaged' then
     equip_tp()
   end
-  set_priorities('mp', 'hp')
+  set_priorities('hp', 'mp')
 end
 
 function status_change(new)
@@ -279,14 +299,14 @@ function status_change(new)
     equip_tp()
     disable('main', 'sub')
   end
-  set_priorities('mp', 'hp')
+  set_priorities('hp', 'mp')
 end
 
 function sub_job_change()
   set_macros()
   set_lockstyle()
   equip_idle()
-  set_priorities('mp', 'hp')
+  set_priorities('hp', 'mp')
 end
 
 function self_command(command)
