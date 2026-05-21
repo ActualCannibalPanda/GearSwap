@@ -1,28 +1,35 @@
+include('Modes')
+
+local res = require('resources')
+
 local lockstyleset = nil
 local macro_book = nil
 local macro_page = nil
 
-local jp_mode = false
-
 local bindings = {
   ['^R'] = 'gs c toggle_speed',
-  ['^F3'] = 'gs c toggle_tp',
+  ['^F5'] = 'gs c toggle_dualwield',
+  ['^F4'] = 'gs c cycle_weapon',
+  ['^F3'] = 'gs c cycle_tp',
   ['^F2'] = 'gs c toggle_jp',
-  ['^F1'] = 'gs c toggle_idle',
+  ['^F1'] = 'gs c cycle_idle',
 }
 
-local speed = false
-
-local idle_mode = 1
-local idle_modes = {
-  'dt',
-}
-
-local tp_mode = 1
-local tp_modes = {
-  '',
-  'hybrid',
-}
+local speed = M(false, 'Whether to use speed equipment')
+local idle_mode = M({ ['description'] = 'What mode to idle in', 'dt' })
+local dual_wield = M(false, 'Whether to use dual wield')
+local weapon_mode = M({
+  ['description'] = 'What weapon mode to use',
+  'Great Axe',
+  'Great Sword',
+  'Polearm',
+  'Axe',
+  'Dagger',
+  'Sword',
+  'Club',
+})
+local tp_mode = M({ ['description'] = 'What TP Mode to use', 'two_handed', 'single', ' dual_wielc' })
+local jp_mode = M(false, 'Whether to use JP Cape')
 
 local status = 'Idle'
 
@@ -49,23 +56,36 @@ local function set_lockstyle()
 end
 
 local function equip_tp()
-  local gear = {}
+  local weapon = sets.tp.weapons[weapon_mode.value]
 
-  if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
-    gear = sets.tp.dw
-  else
-    gear = sets.tp.default
+  if not string.match(weapon_mode.current, 'Great') and weapon_mode.current ~= 'Polearm' then
+    if dual_wield.value then
+      weapon = weapon.dual
+    else
+      weapon = weapon.single
+    end
   end
 
-  equip(gear, sets.tp[tp_modes[tp_mode]] or {})
+  equip(sets.tp[tp_mode.value], weapon)
 end
 
-local function equip_idle()
+local function equip_gear()
   if player.status == 'Engaged' then
     equip_tp()
     return
   end
-  equip(sets.idle[idle_modes[idle_mode]])
+  local weapon = sets.tp.weapons[weapon_mode.current]
+
+  if not string.match(weapon_mode.current, 'Great') and weapon_mode.current ~= 'Polearm' then
+    if dual_wield.value then
+      weapon = weapon.dual
+    else
+      weapon = weapon.single
+    end
+  end
+
+  equip(sets.idle[idle_mode.current], weapon)
+
   if speed then
     equip(sets.idle.speed)
   end
@@ -114,7 +134,8 @@ function get_sets()
   sets.idle.speed = {}
 
   sets.tp = {}
-  sets.tp.default = {
+  sets.tp.two_handed = {}
+  sets.tp.two_handed.normal = {
     ammo = 'Coiste Bodhar',
     head = 'Flam. Zucchetto +2',
     body = "Sakpata's Plate",
@@ -130,7 +151,67 @@ function get_sets()
     back = "Cichol's Mantle",
   }
 
-  sets.tp.dw = {
+  sets.tp.two_handed.hyrbid = set_combine(sets.tp.two_handed, {
+    head = "Sakpata's Helm",
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
+    legs = "Sakpata's Cuisses",
+    feet = "Sakpata's Leggings",
+  })
+
+  sets.tp.weapons = {
+    ['Great Axe'] = {
+      main = 'Kaja Chopper',
+      sub = 'Utu Grip',
+    },
+    ['Great Sword'] = {
+      main = 'Montante +1',
+      sub = 'Utu Grip',
+    },
+    ['Polearm'] = {
+      main = 'Kaja Lance',
+      sub = 'Utu Grip',
+    },
+    ['Axe'] = {
+      single = {
+        main = { name = 'Purgation', augments = { 'Attack+4' } },
+      },
+      dual = {
+        main = { name = 'Purgation', augments = { 'Attack+4' } },
+        sub = 'Sangarius',
+      },
+    },
+    ['Dagger'] = {
+      single = {
+        main = { name = 'Malevolence', augments = { 'INT+3', 'Mag. Acc.+5', '"Mag.Atk.Bns."+7' } },
+      },
+      dual = {
+        main = { name = 'Malevolence', augments = { 'INT+3', 'Mag. Acc.+5', '"Mag.Atk.Bns."+7' } },
+        sub = 'Sangarius',
+      },
+    },
+    ['Sword'] = {
+      single = {
+        main = 'Naegling',
+      },
+      dual = {
+        main = 'Naegling',
+        sub = 'Sangarius',
+      },
+    },
+    ['Club'] = {
+      single = {
+        main = 'Mafic Cudgel',
+      },
+      dual = {
+        main = 'Mafic Cudgel',
+        sub = 'Sangarius',
+      },
+    },
+  }
+
+  sets.tp.dw = {}
+  sets.tp.dw.normal = {
     ammo = 'Coiste Bodhar',
     head = 'Flam. Zucchetto +2',
     body = "Sakpata's Plate",
@@ -145,14 +226,13 @@ function get_sets()
     right_ring = 'Petrov Ring',
     back = "Cichol's Mantle",
   }
-
-  sets.tp.hybrid = {
+  sets.tp.dw.hyrbid = set_combine(sets.tp.dw, {
     head = "Sakpata's Helm",
     body = "Sakpata's Plate",
     hands = "Sakpata's Gauntlets",
     legs = "Sakpata's Cuisses",
     feet = "Sakpata's Leggings",
-  }
+  })
 
   sets.tp.subjob = {}
   sets.tp.subjob.default = {}
@@ -246,7 +326,7 @@ function get_sets()
   setup_bindings()
   set_macros()
   set_lockstyle()
-  equip_idle()
+  equip_gear()
 end
 
 function file_unload()
@@ -283,7 +363,7 @@ end
 
 function aftercast()
   if status == 'Idle' then
-    equip_idle()
+    equip_gear()
   elseif status == 'Engaged' then
     equip_tp()
   end
@@ -293,7 +373,7 @@ end
 function status_change(new)
   status = new
   if new == 'Idle' then
-    equip_idle()
+    equip_gear()
     enable('main', 'sub')
   elseif new == 'Engaged' then
     equip_tp()
@@ -305,16 +385,24 @@ end
 function sub_job_change()
   set_macros()
   set_lockstyle()
-  equip_idle()
+  equip_gear()
   set_priorities('hp', 'mp')
 end
 
 function self_command(command)
-  if command == 'echodrops' then
+  if command == 'warp' then
+    equip({ left_ring = 'Warp Ring' })
+    local item_table = res.items:with('en', 'Warp Ring')
+    send_command('@input /echo Equipping Warp Ring')
+    coroutine.schedule(function()
+      send_command('@input /echo /item "Warp Ring"')
+      send_command('@input /item "Warp Ring" ' .. player.id)
+    end, item_table.cast_delay + 3)
+  elseif command == 'echodrops' then
     send_command("@input item 'echo drops' <me>")
   elseif command == 'toggle_jp' then
-    jp_mode = not jp_mode
-    if jp_mode then
+    jp_mode:toggle()
+    if jp_mode.value then
       send_command('@input /echo JP MODE Off')
       enable('back')
       aftercast()
@@ -331,21 +419,20 @@ function self_command(command)
       send_command('@input /echo SPEED Off')
     end
     aftercast()
-  elseif command == 'toggle_idle' then
-    if idle_mode + 1 > #idle_modes then
-      idle_mode = 1
-    else
-      idle_mode = idle_mode + 1
-    end
-    send_command('@input /echo Idle Mode: ' .. idle_modes[idle_mode])
-    equip_idle()
-  elseif command == 'toggle_tp' then
-    if tp_mode + 1 > #tp_modes then
-      tp_mode = 1
-    else
-      tp_mode = tp_mode + 1
-    end
-    send_command('@input /echo TP Mode: ' .. tp_modes[tp_mode])
-    equip_tp()
+  elseif command == 'cycle_idle' then
+    idle_mode:cycle()
+    send_command('@input /echo Idle Mode: ' .. idle_mode.value)
+    equip_gear()
+  elseif command == 'cycle_weapon' then
+    weapon_mode:cycle()
+    send_command('@input /echo Weapon Mode: ' .. weapon_mode.value)
+    equip_gear()
+  elseif command == 'cycle_tp' then
+    tp_mode:cycle()
+    send_command('@input /echo TP Mode: ' .. tp_mode.value)
+    equip_gear()
+  elseif command == 'toggle_dualwield' then
+    dual_wield:toggle()
+    equip_gear()
   end
 end
