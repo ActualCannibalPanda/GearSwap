@@ -28,7 +28,7 @@ local weapon_mode = M({
   'Sword',
   'Club',
 })
-local tp_mode = M({ ['description'] = 'What TP Mode to use', 'two_handed', 'single', ' dual_wielc' })
+local tp_mode = M({ ['description'] = 'What TP Mode to use', 'two_handed', 'dual_wield' })
 local jp_mode = M(false, 'Whether to use JP Cape')
 
 local status = 'Idle'
@@ -66,7 +66,7 @@ local function equip_tp()
     end
   end
 
-  equip(sets.tp[tp_mode.value], weapon)
+  equip(sets.tp[tp_mode.value].normal, weapon)
 end
 
 local function equip_gear()
@@ -151,7 +151,7 @@ function get_sets()
     back = "Cichol's Mantle",
   }
 
-  sets.tp.two_handed.hyrbid = set_combine(sets.tp.two_handed, {
+  sets.tp.two_handed.hyrbid = set_combine(sets.tp.two_handed.normal, {
     head = "Sakpata's Helm",
     body = "Sakpata's Plate",
     hands = "Sakpata's Gauntlets",
@@ -210,8 +210,8 @@ function get_sets()
     },
   }
 
-  sets.tp.dw = {}
-  sets.tp.dw.normal = {
+  sets.tp.dual_wield = {}
+  sets.tp.dual_wield.normal = {
     ammo = 'Coiste Bodhar',
     head = 'Flam. Zucchetto +2',
     body = "Sakpata's Plate",
@@ -226,7 +226,7 @@ function get_sets()
     right_ring = 'Petrov Ring',
     back = "Cichol's Mantle",
   }
-  sets.tp.dw.hyrbid = set_combine(sets.tp.dw, {
+  sets.tp.dual_wield.hyrbid = set_combine(sets.tp.dual_wield.normal, {
     head = "Sakpata's Helm",
     body = "Sakpata's Plate",
     hands = "Sakpata's Gauntlets",
