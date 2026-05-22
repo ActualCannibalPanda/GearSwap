@@ -16,7 +16,7 @@ local bindings = {
 }
 
 local speed = M(false, 'Whether to use speed equipment')
-local idle_mode = M({ ['description'] = 'What mode to idle in', 'dt' })
+local idle_mode = M({ ['description'] = 'What mode to idle in', 'dt', 'regain' })
 local dual_wield = M(false, 'Whether to use dual wield')
 local weapon_mode = M({
   ['description'] = 'What weapon mode to use',
@@ -28,7 +28,7 @@ local weapon_mode = M({
   'Sword',
   'Club',
 })
-local tp_mode = M({ ['description'] = 'What TP Mode to use', 'two_handed', 'dual_wield' })
+local tp_mode = M({ ['description'] = 'What TP Mode to use', 'normal', 'hybrid' })
 local jp_mode = M(false, 'Whether to use JP Cape')
 
 local status = 'Idle'
@@ -56,17 +56,21 @@ local function set_lockstyle()
 end
 
 local function equip_tp()
-  local weapon = sets.tp.weapons[weapon_mode.value]
+  local weapon = sets.tp.weapons[weapon_mode.current]
 
   if not string.match(weapon_mode.current, 'Great') and weapon_mode.current ~= 'Polearm' then
-    if dual_wield.value then
+    if dual_wield.value and (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
       weapon = weapon.dual
     else
       weapon = weapon.single
     end
   end
 
-  equip(sets.tp[tp_mode.value].normal, weapon)
+  if dual_wield.value and (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
+    equip(sets.tp.dual_wield[tp_mode.current], weapon)
+  else
+    equip(sets.tp.default[tp_mode.current], weapon)
+  end
 end
 
 local function equip_gear()
@@ -77,7 +81,7 @@ local function equip_gear()
   local weapon = sets.tp.weapons[weapon_mode.current]
 
   if not string.match(weapon_mode.current, 'Great') and weapon_mode.current ~= 'Polearm' then
-    if dual_wield.value then
+    if dual_wield.value and (player.sub_job == 'NIN' or player.sub_job == 'DNC') then
       weapon = weapon.dual
     else
       weapon = weapon.single
@@ -126,16 +130,20 @@ function get_sets()
     waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
     right_ear = 'Mache Earring',
-    left_ring = "Sulevia's Ring",
+    left_ring = 'Defending Ring',
     right_ring = 'Gelatinous Ring +1',
     back = "Cichol's Mantle",
   }
 
+  sets.idle.regain = set_combine(sets.idle.dt, {
+    left_ring = 'Karieyh Ring',
+  })
+
   sets.idle.speed = {}
 
   sets.tp = {}
-  sets.tp.two_handed = {}
-  sets.tp.two_handed.normal = {
+  sets.tp.default = {}
+  sets.tp.default.normal = {
     ammo = 'Coiste Bodhar',
     head = 'Flam. Zucchetto +2',
     body = "Sakpata's Plate",
@@ -151,7 +159,31 @@ function get_sets()
     back = "Cichol's Mantle",
   }
 
-  sets.tp.two_handed.hyrbid = set_combine(sets.tp.two_handed.normal, {
+  sets.tp.default.hybrid = set_combine(sets.tp.default.normal, {
+    head = "Sakpata's Helm",
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
+    legs = "Sakpata's Cuisses",
+    feet = "Sakpata's Leggings",
+  })
+
+  sets.tp.dual_wield = {}
+  sets.tp.dual_wield.normal = {
+    ammo = 'Coiste Bodhar',
+    head = 'Flam. Zucchetto +2',
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
+    legs = 'Sulev. Cuisses +2',
+    feet = 'Flam. Gambieras +2',
+    neck = 'Lissome Necklace',
+    waist = 'Ioskeha Belt',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Eabani Earring',
+    left_ring = 'Flamma Ring',
+    right_ring = 'Petrov Ring',
+    back = "Cichol's Mantle",
+  }
+  sets.tp.dual_wield.hybrid = set_combine(sets.tp.dual_wield.normal, {
     head = "Sakpata's Helm",
     body = "Sakpata's Plate",
     hands = "Sakpata's Gauntlets",
@@ -210,43 +242,16 @@ function get_sets()
     },
   }
 
-  sets.tp.dual_wield = {}
-  sets.tp.dual_wield.normal = {
-    ammo = 'Coiste Bodhar',
-    head = 'Flam. Zucchetto +2',
-    body = "Sakpata's Plate",
-    hands = "Sakpata's Gauntlets",
-    legs = 'Sulev. Cuisses +2',
-    feet = 'Flam. Gambieras +2',
-    neck = 'Lissome Necklace',
-    waist = 'Ioskeha Belt',
-    left_ear = 'Brutal Earring',
-    right_ear = 'Eabani Earring',
-    left_ring = 'Flamma Ring',
-    right_ring = 'Petrov Ring',
-    back = "Cichol's Mantle",
-  }
-  sets.tp.dual_wield.hyrbid = set_combine(sets.tp.dual_wield.normal, {
-    head = "Sakpata's Helm",
-    body = "Sakpata's Plate",
-    hands = "Sakpata's Gauntlets",
-    legs = "Sakpata's Cuisses",
-    feet = "Sakpata's Leggings",
-  })
-
-  sets.tp.subjob = {}
-  sets.tp.subjob.default = {}
-
   sets.ws = {}
   sets.ws.default = {
     ammo = 'Knobkierrie',
-    head = 'Nyame Helm',
+    head = 'Agoge Mask +3',
     body = 'Nyame Mail',
     hands = 'Nyame Gauntlets',
     legs = 'Nyame Flanchard',
     feet = 'Sulev. Leggings +2',
-    neck = 'Fotia Gorget',
-    waist = 'Fotia Belt',
+    neck = 'Lissome Necklace',
+    waist = 'Sailfi Belt +1',
     left_ear = 'Moonshade Earring',
     right_ear = 'Thrud Earring',
     left_ring = 'Hetairoi Ring',
@@ -256,7 +261,7 @@ function get_sets()
 
   sets.ws["Ukko's Fury"] = {
     ammo = 'Yetshila',
-    head = 'Flam. Zucchetto +2',
+    head = 'Agoge Mask +3',
     body = "Sakpata's Plate",
     hands = 'Flam. Manopolas +2',
     legs = "Sakpata's Cuisses",
@@ -273,13 +278,13 @@ function get_sets()
   sets.ws.Upheaval = {}
   sets.ws.Upheaval.multi = {
     ammo = 'Coiste Bodhar',
-    head = 'Flam. Zucchetto +2',
+    head = 'Agoge Mask +3',
     body = "Sakpata's Plate",
     hands = 'Sulev. Gauntlets +2',
     legs = 'Sulev. Cuisses +2',
     feet = 'Flam. Gambieras +2',
     neck = 'Lissome Necklace',
-    waist = 'Fotia Belt',
+    waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
     right_ear = 'Mache Earring',
     left_ring = 'Hetairoi Ring',
@@ -288,7 +293,7 @@ function get_sets()
   }
   sets.ws.Upheaval.wsd = {
     ammo = 'Knobkierrie',
-    head = 'Nyame Helm',
+    head = 'Agoge Mask +3',
     body = 'Nyame Mail',
     hands = 'Nyame Gauntlets',
     legs = 'Nyame Flanchard',
@@ -302,8 +307,21 @@ function get_sets()
     back = "Cichol's Mantle",
   }
 
-  sets.precast = {}
-  sets.precast.default = {}
+  sets.ws['Resolution'] = {
+    ammo = 'Coiste Bodhar',
+    head = 'Agoge Mask +3',
+    body = "Sakpata's Plate",
+    hands = "Sakpata's Gauntlets",
+    legs = "Sakpata's Cuisses",
+    feet = "Sakpata's Leggings",
+    neck = 'Fotia Gorget',
+    waist = 'Fotia Belt',
+    left_ear = 'Moonshade Earring',
+    right_ear = 'Brutal Earring',
+    left_ring = 'Petrov Ring',
+    right_ring = 'Hetairoi Ring',
+    back = "Cichol's Mantle",
+  }
 
   sets.ja = {
     ['Aggressor'] = {
@@ -336,7 +354,7 @@ end
 function precast(spell)
   if spell.type == 'WeaponSkill' then
     if spell.name == 'Upheaval' then
-      if player.tp < 1749 then
+      if player.tp < 1750 then
         equip(sets.ws[spell.name].multi)
       else
         equip(sets.ws[spell.name].wsd)
@@ -362,11 +380,7 @@ function midcast(spell)
 end
 
 function aftercast()
-  if status == 'Idle' then
-    equip_gear()
-  elseif status == 'Engaged' then
-    equip_tp()
-  end
+  equip_gear()
   set_priorities('hp', 'mp')
 end
 
@@ -374,10 +388,8 @@ function status_change(new)
   status = new
   if new == 'Idle' then
     equip_gear()
-    enable('main', 'sub')
   elseif new == 'Engaged' then
     equip_tp()
-    disable('main', 'sub')
   end
   set_priorities('hp', 'mp')
 end
@@ -433,6 +445,7 @@ function self_command(command)
     equip_gear()
   elseif command == 'toggle_dualwield' then
     dual_wield:toggle()
+    send_command('@input /echo Dual Wield: ' .. dual_wield.current)
     equip_gear()
   end
 end
