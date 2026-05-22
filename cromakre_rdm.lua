@@ -130,7 +130,7 @@ function get_sets()
 
   sets.idle.refresh = {
     ammo = 'Ginsen',
-    head = 'Viti. Chapeau +2',
+    head = 'Viti. Chapeau +3',
     body = 'Atrophy Tabard +3',
     hands = 'Aya. Manopolas +2',
     legs = 'Leth. Fuseau +2',
@@ -182,7 +182,7 @@ function get_sets()
   }
   sets.tp.subjob['NIN'] = {
     main = 'Naegling',
-    sub = 'Colada',
+    sub = 'Machaera +2',
     left_ear = 'Suppanomimi',
   }
   sets.tp.subjob['DNC'] = sets.tp.subjob['NIN']
@@ -279,7 +279,7 @@ function get_sets()
   -- ###############################################################
   sets.midcast['Enfeebling Magic'] = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +2',
+    head = 'Viti. Chapeau +3',
     body = 'Lethargy Sayon +2',
     hands = 'Leth. Ganth. +2',
     legs = 'Jhakri Slops +2',
@@ -297,7 +297,7 @@ function get_sets()
   }
   sets.midcast.enfeebles.macc = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +2',
+    head = 'Viti. Chapeau +3',
     body = 'Atrophy Tabard +3',
     hands = 'Leth. Ganth. +2',
     legs = 'Leth. Fuseau +2',
@@ -318,7 +318,7 @@ function get_sets()
   }
   sets.midcast.enfeebles.skill = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +2',
+    head = 'Viti. Chapeau +3',
     body = 'Atrophy Tabard +3',
     hands = 'Leth. Ganth. +2',
     legs = 'Jhakri Slops +2',
@@ -336,7 +336,7 @@ function get_sets()
   }
   sets.midcast.enfeebles.macc_dur = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +2',
+    head = 'Viti. Chapeau +3',
     body = 'Lethargy Sayon +2',
     hands = 'Leth. Ganth. +2',
     legs = 'Leth. Fuseau +2',
@@ -354,7 +354,7 @@ function get_sets()
   }
   sets.midcast.enfeebles.macc_pot = {
     ammo = 'Kalboron Stone',
-    head = 'Viti. Chapeau +2',
+    head = 'Viti. Chapeau +3',
     body = 'Lethargy Sayon +2',
     hands = 'Leth. Ganth. +2',
     legs = 'Leth. Fuseau +2',
@@ -500,18 +500,19 @@ function get_sets()
   })
   sets.midcast['Aquaveil'] = sets.midcast.barspells
 
-  sets.midcast['Savage Blade'] = {
+  sets.ws = {}
+  sets.ws['Savage Blade'] = {
     ammo = 'Coiste Bodhar',
-    head = 'Viti. Chapeau +2',
-    body = 'Nyame Mail',
+    head = 'Viti. Chapeau +3',
+    body = 'Viti. Tabard +2',
     hands = 'Atrophy Gloves +3',
-    legs = 'Nyame Flanchard',
+    legs = 'Jhakri Slops +2',
     feet = 'Leth. Houseaux +2',
-    neck = 'Lissome Necklace',
+    neck = 'Loricate Torque',
     waist = 'Sailfi Belt +1',
-    left_ear = 'Brutal Earring',
-    right_ear = 'Moonshade Earring',
-    left_ring = 'Petrov Ring',
+    left_ear = 'Moonshade Earring',
+    right_ear = 'Alabaster Earring',
+    left_ring = 'Ayanmo Ring',
     right_ring = 'Karieyh Ring',
     back = {
       name = "Sucellos's Cape",
@@ -523,7 +524,7 @@ function get_sets()
       },
     },
   }
-  sets.midcast['Requiescat'] = {
+  sets.ws['Requiescat'] = {
     ammo = 'Coiste Bodhar',
     head = 'Jhakri Coronal +2',
     body = 'Jhakri Robe +2',
@@ -546,7 +547,7 @@ function get_sets()
       },
     },
   }
-  sets.midcast['Chant du Cygne'] = {
+  sets.ws['Chant du Cygne'] = {
     ammo = 'Coiste Bodhar',
     head = 'Atrophy Chapeau +3',
     body = 'Ayanmo Corazza +2',
@@ -602,6 +603,10 @@ function precast(spell)
       equip(sets.precast.default)
     end
   end
+
+  if spell.type == 'WeaponSkill' then
+    equip(sets.ws[spell.name] or sets.ws['Savage Blade'])
+  end
   set_priorities('mp', 'hp')
 end
 
@@ -645,10 +650,8 @@ function status_change(new)
   status = new
   if new == 'Idle' then
     equip_idle()
-    enable('main', 'sub')
   elseif new == 'Engaged' then
     equip_tp()
-    disable('main', 'sub')
   end
   set_priorities('mp', 'hp')
 end
