@@ -200,8 +200,8 @@ function get_sets()
 
   sets.tp.subjob = {}
   sets.tp.subjob.default = {
-    main = 'Brilliance',
-    sub = { name = 'Priwen', hp = 30 },
+    -- main = 'Brilliance',
+    -- sub = { name = 'Priwen', hp = 30 },
   }
 
   sets.precast = {}
