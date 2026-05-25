@@ -191,7 +191,6 @@ function precast(spell)
       equip(sets.ws.default)
     end
   elseif spell.type == 'JobAbility' then
-    print(spell.name)
     if sets.ja[spell.name] then
       equip(sets.ja[spell.name])
     end
