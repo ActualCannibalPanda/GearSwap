@@ -353,7 +353,7 @@ function get_sets()
 
   lockstyleset = 17
 
-  macro_book = 3
+  macro_book = 12
   macro_page = 1
 
   setup_bindings()
