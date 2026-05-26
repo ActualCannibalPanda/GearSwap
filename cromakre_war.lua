@@ -207,7 +207,7 @@ function get_sets()
       sub = 'Utu Grip',
     },
     ['Polearm'] = {
-      main = 'Kaja Lance',
+      main = 'Shining One',
       sub = 'Utu Grip',
     },
     ['Axe'] = {

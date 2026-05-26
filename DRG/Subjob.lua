@@ -1,6 +1,6 @@
 return {
   default = {
-    main = "Kaja Lance",
-    sub = "Utu Grip",
+    main = 'Shining One',
+    sub = 'Utu Grip',
   },
 }
