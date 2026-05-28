@@ -129,7 +129,7 @@ function get_sets()
     neck = 'Loricate Torque',
     waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
-    right_ear = 'Mache Earring',
+    right_ear = 'Alabaster Earring',
     left_ring = 'Defending Ring',
     right_ring = 'Gelatinous Ring +1',
     back = "Cichol's Mantle",
@@ -283,6 +283,8 @@ function get_sets()
     right_ring = 'Karieyh Ring',
     back = "Cichol's Mantle",
   }
+
+  -- sets.ws['Impulse Drive'] = sets.ws["Ukko's Fury"]
 
   sets.ws.Upheaval = {}
   sets.ws.Upheaval.multi = {
