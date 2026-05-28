@@ -99,7 +99,7 @@ function get_sets()
   sets.idle.dt = {
     head = 'Meghanada Visor',
     body = 'Meghanada Cuirie',
-    hands = 'Meghanada Gloves',
+    hands = 'Meg. Gloves +2',
     legs = 'Meg. Chausses',
     feet = 'Meg. Jambeaux',
     neck = 'Loricate Torque',
@@ -124,7 +124,7 @@ function get_sets()
   sets.tp.default.normal = {
     head = 'Meghanada Visor',
     body = 'Meghanada Cuirie',
-    hands = 'Meghanada Gloves',
+    hands = 'Meg. Gloves +2',
     legs = 'Meg. Chausses',
     feet = 'Meg. Jambeaux',
     neck = 'Lissome Necklace',
@@ -145,7 +145,7 @@ function get_sets()
   sets.ws.default = {
     head = 'Meghanada Visor',
     body = 'Meghanada Cuirie',
-    hands = 'Meghanada Gloves',
+    hands = 'Meg. Gloves +2',
     legs = 'Meg. Chausses',
     feet = 'Meg. Jambeaux',
     neck = 'Lissome Necklace',
@@ -160,8 +160,27 @@ function get_sets()
     back = { name = "Camulus's Mantle", augments = { '"Dual Wield"+10', 'Phys. dmg. taken-10%' } },
   }
 
+  sets.ws['Last Stand'] = {
+    head = 'Meghanada Visor',
+    body = 'Meghanada Cuirie',
+    hands = 'Meg. Gloves +2',
+    legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' } },
+    feet = 'Meg. Jambeaux',
+    neck = 'Fotia Gorget',
+    waist = 'Fotia Belt',
+    left_ear = 'Moonshade Earring',
+    right_ear = {
+      name = 'Chas. Earring +1',
+      augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+12', 'Mag. Acc.+12', 'Crit.hit rate+4' },
+    },
+    left_ring = 'Karieyh Ring',
+    right_ring = 'Meghanada Ring',
+    back = { name = "Camulus's Mantle", augments = { '"Dual Wield"+10', 'Phys. dmg. taken-10%' } },
+  }
+
   sets.ja = {
     ['Phantom Roll'] = {
+      range = { name = 'Compensator', augments = { 'DMG:+15', 'AGI+15', 'Rng.Acc.+15' } },
       neck = 'Regal Necklace',
     },
   }
