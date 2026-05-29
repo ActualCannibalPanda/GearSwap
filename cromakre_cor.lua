@@ -73,8 +73,8 @@ function get_sets()
 
   sets.Weapons['Aeolian Edge'] = {
     ammo = Ammo.Bullet.MAG_WS,
-    main = { name = "Gleti's Knife" },
-    sub = 'Kaja Knife',
+    main = 'Kaja Knife',
+    sub = { name = "Gleti's Knife" },
     -- range = { name = 'Anarchy +2', augments = { 'Delay:+60', 'TP Bonus +1000' } },
   }
 
