@@ -1,29 +1,35 @@
-lockstyleset = nil
-macro_book = nil
-macro_page = nil
+include('Modes')
 
-local swap_main = true
-local swap_back = true
+local res = require('resources')
+
+local lockstyleset = nil
+local macro_book = nil
+local macro_page = nil
 
 local bindings = {
-  ['^F4'] = 'gs c toggle_tp',
-  ['^F3'] = 'gs c toggle_main',
-  ['^F2'] = 'gs c toggle_back',
-  ['^F1'] = 'gs c toggle_idle',
+  ['^R'] = 'gs c toggle_speed',
+  ['^F5'] = 'gs c toggle_dualwield',
+  ['^F4'] = 'gs c cycle_weapon',
+  ['^F3'] = 'gs c cycle_tp',
+  ['^F2'] = 'gs c toggle_jp',
+  ['^F1'] = 'gs c cycle_idle',
 }
 
-local idle_mode = 1
-local idle_modes = {
-  'default',
-  'refresh',
-  'refresh speed',
-}
-
-local tp_mode = 1
-local tp_modes = {
-  'default',
-  'hybrid',
-}
+local speed = M(false, 'Whether to use speed equipment')
+local idle_mode = M({ ['description'] = 'What mode to idle in', 'dt', 'refresh' })
+local dual_wield = M(false, 'Whether to use dual wield')
+local weapon_mode = M({
+  ['description'] = 'What weapon mode to use',
+  'Great Axe',
+  'Great Sword',
+  'Polearm',
+  'Axe',
+  'Dagger',
+  'Sword',
+  'Club',
+})
+local tp_mode = M({ ['description'] = 'What TP Mode to use', 'normal', 'hybrid' })
+local jp_mode = M(false, 'Whether to use JP Cape')
 
 local enspell_active = false
 
@@ -31,8 +37,6 @@ local status = 'Idle'
 
 send_command('bind ^a gs c nothing')
 
-------------------------------
--- custom functions
 local function setup_bindings()
   for key, command in pairs(bindings) do
     send_command('bind ' .. key .. ' ' .. command)
@@ -50,35 +54,173 @@ local function set_macros()
 end
 
 local function set_lockstyle()
-  if lockstyleset ~= nil then
-    send_command('wait 10; input /lockstyleset ' .. lockstyleset)
-  end
-end
-
-local function equip_idle()
-  equip(sets.idle[idle_modes[idle_mode]])
+  send_command('wait 10; input /lockstyleset ' .. lockstyleset)
 end
 
 local function equip_tp()
   if enspell_active then
-    equip(set_combine(sets.tp.default, sets.tp.subjob[player.sub_job] or {}, sets.tp.enspell))
+    equip(
+      set_combine(sets.tp[tp_mode.value], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default, sets.tp.enspell)
+    )
   else
-    equip(set_combine(sets.tp.default, sets.tp.subjob[player.sub_job] or {}))
-  end
-  if tp_mode > 1 then
-    equip(sets.tp[tp_modes[tp_mode]])
+    equip(set_combine(sets.tp[tp_mode.value], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default))
   end
 end
 
-local function equip_weapons()
-  local subjob = sets.subjob[player.sub_job] or {}
-  equip(set_combine(sets.subjob.default, subjob))
+local function equip_gear()
+  if player.status == 'Engaged' then
+    equip_tp()
+    return
+  end
+  equip(sets.idle[idle_mode.current], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
+
+  if speed then
+    equip(sets.idle.speed)
+  end
+end
+
+local function weathercheck(spell_element, set)
+  if not set then
+    return
+  end
+  if spell_element == world.weather_element or spell_element == world.day_element then
+    equip(set, sets.obis[spell_element])
+  else
+    equip(set)
+  end
+  if set[spell_element] then
+    equip(set[spell_element])
+  end
+end
+
+local function set_priorities(key1, key2)
+  local future, current = gearswap.equip_list, gearswap.equip_list_history
+  local function get_val(piece, key)
+    if piece and type(piece) == 'table' and piece[key] and type(piece[key]) == 'number' then
+      return piece[key]
+    end
+    return 0
+  end
+  for i, v in pairs(future) do
+    local priority = get_val(future[i], key1)
+      - get_val(current[i], key1)
+      + (get_val(future[i], key2) - get_val(current[i], key2))
+    if type(v) == 'table' then
+      future[i].priority = priority
+    else
+      future[i] = { name = v, priority = priority }
+    end
+  end
 end
 
 -- custom functions
 ------------------------------
 function get_sets()
-  sets = require('BRD.lua')(sets)
+  sets.idle = {}
+  sets.idle.dt = {
+    ammo = 'Staunch Tathlum',
+    head = 'Aya. Zucchetto +2',
+    body = 'Ayanmo Corazza +2',
+    hands = 'Aya. Manopolas +2',
+    legs = 'Aya. Cosciales +2',
+    feet = 'Aya. Gambieras +2',
+    neck = 'Loricate Torque',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Alabaster Earring',
+    left_ring = 'Defending Ring',
+    right_ring = 'Gelatinous Ring +1',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  }
+
+  sets.idle.refresh = {}
+
+  sets.idle.speed = {
+    feet = "Aoidos' Cothrn. +1",
+  }
+
+  sets.tp = {}
+  sets.tp.default = {
+    ammo = 'Coiste Bodhar',
+    head = 'Aya. Zucchetto +2',
+    body = 'Ayanmo Corazza +2',
+    hands = 'Aya. Manopolas +2',
+    legs = 'Aya. Cosciales +2',
+    feet = 'Aya. Gambieras +2',
+    neck = 'Lissome Necklace',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Alabaster Earring',
+    left_ring = 'Hetairoi Ring',
+    right_ring = 'Petrov Ring',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  }
+
+  sets.tp.hybrid = {
+    left_ring = 'Defending Ring',
+    right_ring = 'Gelatinous Ring +1',
+    left_ear = 'Alabaster Earring',
+  }
+
+  sets.tp.subjob = {}
+  sets.tp.subjob.default = {
+    main = 'Naegling',
+    sub = "Genbu's Shield",
+  }
+  sets.tp.subjob['NIN'] = {
+    -- main = 'Naegling',
+    -- sub = 'Machaera +2',
+    -- left_ear = 'Suppanomimi',
+  }
+  sets.tp.subjob['DNC'] = sets.tp.subjob['NIN']
+
+  sets.precast = {}
+  sets.precast.spells = {}
+  sets.precast.types = {}
+  sets.precast.default = {}
+  sets.precast.types['BardSong'] = {
+    ammo = 'Staunch Tathlum',
+    head = 'Aya. Zucchetto +2',
+    body = 'Ayanmo Corazza +2',
+    hands = 'Aya. Manopolas +2',
+    legs = 'Aya. Cosciales +2',
+    feet = 'Aya. Gambieras +2',
+    neck = "Aoidos' Matinee",
+    waist = 'Embla Sash',
+    left_ear = 'Alabaster Earring',
+    right_ear = "Aoidos' Earring",
+    left_ring = 'Kishar Ring',
+    right_ring = 'Petrov Ring',
+    back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
+  }
+  sets.precast.spells['Utsusemi: Ichi'] = set_combine(sets.precast.default, {
+    neck = 'Magoraga Beads',
+  })
+  sets.precast.spells['Utsusemi: Ni'] = sets.precast.spells['Utsusemi: Ichi']
+
+  sets.midcast = {}
+
+  -- ###############################################################
+
+  -- ###############################################################
+  sets.midcast['Healing Magic'] = {}
+
+  sets.midcast['Enhancing Magic'] = {}
+
+  sets.ws = {}
+  sets.ws['Savage Blade'] = {}
+  sets.ws['Requiescat'] = {}
+  sets.ws['Chant du Cygne'] = {}
+
+  sets.obis = {}
+  sets.obis.Fire = { waist = 'Hachirin-no-Obi' }
+  sets.obis.Earth = { waist = 'Hachirin-no-Obi' }
+  sets.obis.Water = { waist = 'Hachirin-no-Obi' }
+  sets.obis.Wind = { waist = 'Hachirin-no-Obi' }
+  sets.obis.Ice = { waist = 'Hachirin-no-Obi' }
+  sets.obis.Lightning = { waist = 'Hachirin-no-Obi' }
+  sets.obis.Light = { waist = 'Hachirin-no-Obi' }
+  sets.obis.Dark = { waist = 'Hachirin-no-Obi' }
 
   lockstyleset = 12
 
@@ -88,121 +230,131 @@ function get_sets()
   setup_bindings()
   set_macros()
   set_lockstyle()
-  equip_idle()
-  equip_weapons()
+  equip_gear()
 end
 
 function file_unload()
   destroy_bindings()
 end
 
-function buff_change(name, value, buff_details) end
-
-function precast(spell, position)
-  if spell.type == 'WeaponSkill' then
-    equip(sets.ws)
-  elseif spell.type == 'JobAbility' then
-    if sets.ja[spell.name] ~= nil then
-      equip(sets.ja[spell.name])
+function precast(spell)
+  if sets.precast.spells[spell.name] then
+    equip(sets.precast.spells[spell.name])
+  elseif string.find(spell.name, 'Cur') and spell.name ~= 'Cursna' then
+    equip(sets.precast.spells['Cure'])
+  elseif spell.action_type == 'Magic' then
+    if sets.precast.types[spell.skill] then
+      equip(sets.precast.types[spell.skill])
+    else
+      equip(sets.precast.default)
     end
-  else
-    local skill = sets.precast.types[spell.skill] or {}
-    local spell = sets.precast.spells[spell.name] or {}
-    if type(spell) == 'string' then
-      spell = sets.precast.spells[spell]
-    end
-    equip(set_combine(sets.precast.default, spell, skill))
   end
+
+  if spell.type == 'WeaponSkill' then
+    equip(sets.ws[spell.name] or sets.ws['Savage Blade'])
+  end
+  set_priorities('mp', 'hp')
 end
 
 function midcast(spell)
-  if spell.type == 'JobAbility' then
-    equip(sets.ja[spell.name])
-  elseif spell.type == 'WeaponSkill' then
+  if spell.skill == 'Elemental Magic' then
+    if can_burst(spell) then
+      weathercheck(spell.element, sets.midcast.magic_burst)
+    else
+      weathercheck(spell.element, sets.midcast[spell.skill])
+    end
+  elseif spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
+    weathercheck(spell.element, { hands = 'Leth. Ganth. +2' })
   else
-    if spell.skill == '(N/A)' then
-      return
-    end
-    local gear = sets.midcast[spell.skill].default
-    local spellGear = sets.midcast[spell.skill].spells[spell.name] or {}
-    if type(spellGear) == 'string' then
-      spellGear = sets.midcast[spell.skill].spells[spellGear]
-    end
-    if gear ~= nil then
-      if string.match(spell.name, '^Bar') then
-        equip(set_combine(gear, spellGear, sets.midcast[spell.skill].barspells))
-      else
-        equip(set_combine(gear, spellGear))
-      end
-    end
-    if spell.skill == 'Enhancing Magic' and spell.target ~= 'player' then
-      equip(sets.ja.Composure)
-    end
-    if spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
-      equip(sets.ja.Saboteur)
+    local gear = sets.midcast[spell.name] or {}
+    if gear.self and spell.target.name == player.name then
+      weathercheck(spell.element, gear.self)
+    elseif gear.other and spell.target.name ~= player.name then
+      weathercheck(spell.element, gear.other)
+    else
+      weathercheck(spell.element, gear)
     end
   end
+
+  -- just add refresh gear here
+  if string.match(spell.name, '^Refresh') and spell.target.name == player.name then
+    equip({ waist = 'Gishdubar Sash' })
+  end
+  set_priorities('mp', 'hp')
 end
 
-function aftercast(spell)
+function aftercast()
   if status == 'Idle' then
-    equip_idle()
+    equip_gear()
   elseif status == 'Engaged' then
     equip_tp()
   end
-  equip_weapons()
+  set_priorities('mp', 'hp')
 end
 
-function status_change(new, old)
+function status_change(new)
   status = new
   if new == 'Idle' then
-    equip_idle()
+    equip_gear()
   elseif new == 'Engaged' then
     equip_tp()
   end
-  equip_weapons()
+  set_priorities('mp', 'hp')
 end
 
-function sub_job_change(new, old)
+function sub_job_change()
   set_macros()
   set_lockstyle()
-  equip_idle()
-  equip_weapons()
+  equip_gear()
+  set_priorities('mp', 'hp')
 end
 
 function self_command(command)
-  if command == 'toggle_main' then
-    swap_main = not swap_main
-    if swap_main then
-      send_command('gs enable main')
-      send_command('gs enable sub')
+  if command == 'warp' then
+    equip({ left_ring = 'Warp Ring' })
+    local item_table = res.items:with('en', 'Warp Ring')
+    send_command('@input /echo Equipping Warp Ring')
+    coroutine.schedule(function()
+      send_command('@input /echo /item "Warp Ring"')
+      send_command('@input /item "Warp Ring" ' .. player.id)
+    end, item_table.cast_delay + 3)
+  elseif command == 'echodrops' then
+    send_command("@input item 'echo drops' <me>")
+  elseif command == 'toggle_jp' then
+    jp_mode:toggle()
+    if jp_mode.value then
+      send_command('@input /echo JP MODE Off')
+      enable('back')
+      aftercast()
     else
-      send_command('gs disable main')
-      send_command('gs disable sub')
+      send_command('@input /echo JP MODE On')
+      equip({ back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } } })
+      disable('back')
     end
-  elseif command == 'toggle_back' then
-    swap_back = not swap_back
-    if swap_back then
-      send_command('gs enable back')
+  elseif command == 'toggle_speed' then
+    speed = not speed
+    if speed then
+      send_command('@input /echo SPEED On')
     else
-      send_command('gs disable back')
+      send_command('@input /echo SPEED Off')
     end
-  elseif command == 'toggle_idle' then
-    if idle_mode + 1 > #idle_modes then
-      idle_mode = 1
-    else
-      idle_mode = idle_mode + 1
-    end
-    print('Idle Mode:', idle_modes[idle_mode])
-    equip_idle()
-  elseif command == 'toggle_tp' then
-    if tp_mode + 1 > #tp_modes then
-      tp_mode = 1
-    else
-      tp_mode = tp_mode + 1
-    end
-    print('TP Mode: ', tp_modes[tp_mode])
-    equip_tp()
+    aftercast()
+  elseif command == 'cycle_idle' then
+    idle_mode:cycle()
+    send_command('@input /echo Idle Mode: ' .. idle_mode.value)
+    equip_gear()
+  elseif command == 'cycle_weapon' then
+    weapon_mode:cycle()
+    send_command('@input /echo Weapon Mode: ' .. weapon_mode.value)
+    equip_gear()
+  elseif command == 'cycle_tp' then
+    tp_mode:cycle()
+    send_command('@input /echo TP Mode: ' .. tp_mode.value)
+    equip_gear()
+  elseif command == 'toggle_dualwield' then
+    dual_wield:toggle()
+    send_command('@input /echo Dual Wield: ' .. dual_wield.current)
+    equip_gear()
   end
 end
 
