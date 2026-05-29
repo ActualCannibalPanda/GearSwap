@@ -258,13 +258,7 @@ end
 
 function midcast(spell)
   if spell.skill == 'Elemental Magic' then
-    if can_burst(spell) then
-      weathercheck(spell.element, sets.midcast.magic_burst)
-    else
-      weathercheck(spell.element, sets.midcast[spell.skill])
-    end
-  elseif spell.skill == 'Enfeebling Magic' and buffactive['Saboteur'] then
-    weathercheck(spell.element, { hands = 'Leth. Ganth. +2' })
+    weathercheck(spell.element, sets.midcast[spell.skill])
   else
     local gear = sets.midcast[spell.name] or {}
     if gear.self and spell.target.name == player.name then
@@ -276,10 +270,6 @@ function midcast(spell)
     end
   end
 
-  -- just add refresh gear here
-  if string.match(spell.name, '^Refresh') and spell.target.name == player.name then
-    equip({ waist = 'Gishdubar Sash' })
-  end
   set_priorities('mp', 'hp')
 end
 
