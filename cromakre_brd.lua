@@ -45,7 +45,7 @@ function get_sets()
   sets.Weapons['Aeolian Edge'] = {
     -- main = { name = 'Carnwenhan', augments = { 'Path: A' } },
     -- sub = { name = "Gleti's Knife", augments = { 'Path: A' } },
-    main = 'Eletta Knife',
+    main = 'Kaja Knife',
     sub = { name = "Gleti's Knife" },
   }
 
@@ -70,7 +70,7 @@ function get_sets()
   -- }
 
   sets.Weapons['Evisceration'] = {
-    main = 'Eletta Knife',
+    main = 'Kaja Knife',
     sub = { name = "Gleti's Knife" },
   }
 
@@ -80,7 +80,7 @@ function get_sets()
   -- }
 
   sets.Weapons.Songs = {
-    main = { name = 'Eletta Knife' },
+    main = { name = 'Kaja Knife' },
     -- sub = { name = 'Kali', augments = { 'Mag. Acc.+15', 'String instrument skill +10', 'Wind instrument skill +10' } },
   }
 
