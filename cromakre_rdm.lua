@@ -193,7 +193,7 @@ function get_sets()
   sets.precast.default = {
     ammo = 'Kalboron Stone',
     head = 'Atrophy Chapeau +3',
-    body = 'Viti. Tabard +2',
+    body = 'Viti. Tabard +3',
     hands = 'Jhakri Cuffs +2',
     legs = 'Enif Cosciales',
     feet = { name = 'Carmine Greaves', augments = { 'HP+60', 'MP+60', 'Phys. dmg. taken -3' } },
@@ -393,7 +393,7 @@ function get_sets()
     main = { name = 'Serenity', augments = { 'MP+35', 'Enha.mag. skill +8', '"Cure" spellcasting time -6%' } },
     ammo = 'Kalboron Stone',
     head = 'Jhakri Coronal +2',
-    body = 'Viti. Tabard +2',
+    body = 'Viti. Tabard +3',
     hands = 'Atrophy Gloves +3',
     legs = 'Atrophy Tights +3',
     feet = 'Leth. Houseaux +2',
@@ -412,7 +412,7 @@ function get_sets()
   sets.midcast['Enhancing Magic'] = {
     ammo = 'Kalboron Stone',
     head = 'Jhakri Coronal +2',
-    body = 'Viti. Tabard +2',
+    body = 'Viti. Tabard +3',
     hands = 'Atrophy Gloves +3',
     legs = 'Atrophy Tights +3',
     feet = 'Leth. Houseaux +2',
@@ -441,7 +441,7 @@ function get_sets()
     self = {
       ammo = 'Kalboron Stone',
       head = 'Atrophy Chapeau +3',
-      body = 'Viti. Tabard +2',
+      body = 'Viti. Tabard +3',
       hands = 'Atrophy Gloves +3',
       legs = 'Atrophy Tights +3',
       feet = 'Leth. Houseaux +2',
@@ -467,7 +467,7 @@ function get_sets()
       ammo = 'Kalboron Stone',
       head = 'Leth. Chappel +2',
       body = 'Lethargy Sayon +2',
-      hands = 'Atrophy Gloves +3',
+      hands = 'Leth. Ganth. +2',
       legs = 'Leth. Fuseau +2',
       feet = 'Leth. Houseaux +2',
       neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
@@ -504,7 +504,7 @@ function get_sets()
   sets.ws['Savage Blade'] = {
     ammo = 'Coiste Bodhar',
     head = 'Viti. Chapeau +3',
-    body = 'Viti. Tabard +2',
+    body = 'Viti. Tabard +3',
     hands = 'Atrophy Gloves +3',
     legs = 'Jhakri Slops +2',
     feet = 'Leth. Houseaux +2',
