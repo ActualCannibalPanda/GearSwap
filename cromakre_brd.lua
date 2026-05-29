@@ -17,8 +17,8 @@ state.WeaponMode:options(
   'Aeolian Edge',
   -- 'Shining Strike',
   -- 'Shining Blade',
-  'Savage Blade'
-  -- 'Evisceration'
+  'Savage Blade',
+  'Evisceration'
   -- "Rudra's Storm",
   -- 'Staff'
 )
@@ -45,6 +45,8 @@ function get_sets()
   sets.Weapons['Aeolian Edge'] = {
     -- main = { name = 'Carnwenhan', augments = { 'Path: A' } },
     -- sub = { name = "Gleti's Knife", augments = { 'Path: A' } },
+    main = 'Eletta Knife',
+    sub = { name = "Gleti's Knife" },
   }
 
   -- sets.Weapons['Shining Strike'] = {
@@ -68,7 +70,7 @@ function get_sets()
   -- }
 
   sets.Weapons['Evisceration'] = {
-    main = 'Legato Dagger',
+    main = 'Eletta Knife',
     sub = { name = "Gleti's Knife" },
   }
 
@@ -78,7 +80,7 @@ function get_sets()
   -- }
 
   sets.Weapons.Songs = {
-    main = { name = 'Legato Dagger' },
+    main = { name = 'Eletta Knife' },
     -- sub = { name = 'Kali', augments = { 'Mag. Acc.+15', 'String instrument skill +10', 'Wind instrument skill +10' } },
   }
 
@@ -91,16 +93,16 @@ function get_sets()
 
   -- Instruments to use
   Instrument = {}
-  Instrument.Count = {}
-  Instrument.Potency = {}
-  Instrument.Enfeebling = {}
-  Instrument.Pianissimo = {}
+  Instrument.Count = { name = 'Miracle  Cheer' }
+  Instrument.Potency = { name = 'Miracle Cheer' }
+  Instrument.Enfeebling = { name = 'Miracle Cheer' }
+  Instrument.Pianissimo = { name = 'Miracle Cheer' }
 
   -- Note all song types that can be Pianissimo'd can be defined
   Instrument.Pianissimo.Ballad = {} -- Possible swap to Miracle Cheer
   Instrument.AOE_Sleep = {}
 
-  -- Instrument.Idle = { name = 'Linos', augments = { 'Mag. Evasion+15', '"Waltz" potency +4%', 'HP+20' } }
+  Instrument.Idle = { name = 'Flute' }
   -- Instrument.TP = { name = 'Linos', augments = { 'Accuracy+20', '"Store TP"+4', 'Quadruple Attack +3' } }
   -- Instrument.Mordant = { name = 'Linos', augments = { 'Accuracy+15 Attack+15', 'Weapon skill damage +3%', 'CHR+8' } }
   -- Instrument.QuickMagic =
@@ -111,7 +113,8 @@ function get_sets()
 
   -- Standard Idle set
   sets.Idle = {
-    ammo = 'Staunch Tathlum',
+    range = Instrument.Idle,
+    -- ammo = 'Staunch Tathlum',
     head = 'Aya. Zucchetto +2',
     body = 'Ayanmo Corazza +2',
     hands = 'Aya. Manopolas +2',
@@ -160,7 +163,7 @@ function get_sets()
   --Base TP set to build off
   sets.OffenseMode.TP = {
     -- range = Instrument.TP,
-    ammo = 'Coiste Bodhar',
+    -- ammo = 'Coiste Bodhar',
     head = 'Aya. Zucchetto +2',
     body = 'Ayanmo Corazza +2',
     hands = 'Aya. Manopolas +2',
@@ -212,23 +215,26 @@ function get_sets()
 
   -- Used for Magic Spells
   sets.Precast.FastCast = {
-    ammo = 'Staunch Tathlum',
+    -- ammo = 'Staunch Tathlum',
     head = 'Aya. Zucchetto +2',
     body = 'Ayanmo Corazza +2',
     hands = 'Aya. Manopolas +2',
     legs = 'Aya. Cosciales +2',
     feet = 'Aya. Gambieras +2',
-    neck = "Aoidos' Matinee",
+    neck = 'Voltsurge Torque',
     waist = 'Embla Sash',
     left_ear = 'Alabaster Earring',
-    right_ear = "Aoidos' Earring",
+    right_ear = 'Loquac. Earring',
     left_ring = 'Kishar Ring',
-    right_ring = 'Petrov Ring',
+    right_ring = "Naji's Loop",
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
   } -- 81 FC and 10 Quick Magic
 
   -- Used for Songs (now easy to max Fast Cast so not needed)
-  sets.Precast.Songs = {}
+  sets.Precast.Songs = {
+    neck = "Aoidos' Matinee",
+    right_ear = "Aoidos' Earring",
+  }
   -- Used for "-Cure casting time"
   sets.Precast.Cure = {}
   -- Used for "-Enhancing casting time"
@@ -258,7 +264,9 @@ function get_sets()
   })
 
   -- Reduce Durations for Dummy songs (Ballad is lowest duration)
-  sets.Midcast.DummySongs = set_combine(sets.Idle, {})
+  sets.Midcast.DummySongs = set_combine(sets.Idle, {
+    range = 'Flute',
+  })
 
   -- Cure Set
   sets.Midcast.Cure = {
@@ -340,7 +348,7 @@ function get_sets()
   sets.Midcast.Enfeebling = {
     -- sub = 'Ammurapi Shield',
     -- range = Instrument.Potency,
-    -- head = 'Brioso Roundlet +4',
+    head = 'Brioso Roundlet +2',
     -- body = 'Brioso Just. +4',
     -- hands = 'Brioso Cuffs +4',
     -- legs = 'Fili Rhingrave +3',
@@ -367,7 +375,7 @@ function get_sets()
   sets.Midcast.Lullaby = set_combine(sets.Midcast.Enfeebling, {
     -- range = Instrument.Honor,
     -- body = 'Fili Hongreline +3',
-    -- legs = 'Inyanga Shalwar +2',
+    legs = 'Inyanga Shalwar',
   })
 
   -- sets.Midcast.Finale = {}
@@ -380,7 +388,7 @@ function get_sets()
   -- sets.Midcast.Ballad = { legs = 'Fili Rhingrave +3' }
   -- sets.Midcast.Scherzo = { feet = 'Fili Cothurnes +3' }
   -- sets.Midcast.Mazurka = {}
-  -- sets.Midcast.Paeon = { head = 'Brioso Roundlet +4' }
+  sets.Midcast.Paeon = { head = 'Brioso Roundlet +2' }
   -- sets.Midcast.Threnody = { body = 'Mou. Manteel +1' }
   -- sets.Midcast.Minne = { legs = 'Mou. Seraweels +1' }
   -- sets.Midcast.Mambo = {}
@@ -396,14 +404,14 @@ function get_sets()
   }
 
   -- Job Abilities
-  -- sets.JA = {}
-  -- sets.JA['Nightingale'] = { feet = { name = 'Bihu Slippers +4', augments = { 'Enhances "Nightingale" effect' } } }
-  -- sets.JA['Troubadour'] = { body = { name = 'Bihu Just. +4', augments = { 'Enhances "Troubadour" effect' } } }
-  -- sets.JA['Soul Voice'] = { legs = { name = 'Bihu Cannions +4', augments = { 'Enhances "Soul Voice" effect' } } }
-  -- sets.JA['Tenuto'] = {}
-  -- sets.JA['Marcato'] = {}
-  -- sets.JA['Clarion'] = {}
-  -- sets.JA['Pianissimo'] = {}
+  sets.JA = {}
+  sets.JA['Nightingale'] = {}
+  sets.JA['Troubadour'] = {}
+  sets.JA['Soul Voice'] = {}
+  sets.JA['Tenuto'] = {}
+  sets.JA['Marcato'] = {}
+  sets.JA['Clarion'] = {}
+  sets.JA['Pianissimo'] = {}
 
   -- Dancer JA Section
 
@@ -423,14 +431,15 @@ function get_sets()
   --Default WS set base
   sets.WS = {
     -- range = Instrument.WS,
-    -- head = 'Nyame Helm',
+    head = 'Nyame Helm',
     -- body = 'Bihu Just. +4',
-    -- hands = 'Nyame Gauntlets',
-    -- legs = 'Nyame Flanchard',
-    -- feet = 'Nyame Sollerets',
+    hands = 'Nyame Gauntlets',
+    legs = 'Nyame Flanchard',
+    feet = 'Nyame Sollerets',
     -- neck = 'Rep. Plat. Medal',
-    -- waist = 'Sailfi Belt +1',
-    -- left_ear = 'Moonshade Earring',
+    waist = 'Sailfi Belt +1',
+    left_ear = { name = 'Moonshade Earring', augments = { 'Attack+4', 'TP Bonus +250' } },
+
     -- right_ear = 'Regal Earring',
     -- left_ring = 'Sroda Ring',
     -- right_ring = "Epaminondas's Ring",
@@ -453,8 +462,8 @@ function get_sets()
     -- range = Instrument.MAB,
     -- neck = 'Sibyl Scarf',
     -- waist = "Orpheus's Sash",
-    -- body = 'Nyame Mail',
-    -- left_ring = 'Metamor. Ring +1',
+    body = 'Nyame Mail',
+    left_ring = 'Metamor. Ring +1',
     -- back = {
     --   name = "Intarabus's Cape",
     --   augments = { 'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', 'Weapon skill damage +10%', 'Damage taken-5%' },
@@ -469,10 +478,10 @@ function get_sets()
   })
 
   sets.WS.CRIT = set_combine(sets.WS, {
-    -- neck = 'Fotia Gorget',
-    -- waist = 'Fotia Belt',
-    -- right_ear = { name = 'Moonshade Earring', augments = { 'Accuracy+4', 'TP Bonus +250' } },
-    -- left_ring = 'Hetairoi Ring',
+    neck = 'Fotia Gorget',
+    waist = 'Fotia Belt',
+    right_ear = { name = 'Moonshade Earring', augments = { 'Attack+4', 'TP Bonus +250' } },
+    left_ring = 'Hetairoi Ring',
     -- right_ring = 'Ilabrat Ring',
     -- back = {
     --   name = "Intarabus's Cape",
@@ -492,7 +501,7 @@ function get_sets()
     -- neck = { name = "Bard's Charm +2", augments = { 'Path: A' } },
     -- waist = 'Grunfeld Rope',
     -- left_ear = 'Ishvara Earring',
-    -- left_ring = 'Metamor. Ring +1',
+    left_ring = 'Metamor. Ring +1',
     -- back = {
     --   name = "Intarabus's Cape",
     --   augments = { 'CHR+20', 'Accuracy+20 Attack+20', 'CHR+10', 'Weapon skill damage +10%', 'Damage taken-5%' },
