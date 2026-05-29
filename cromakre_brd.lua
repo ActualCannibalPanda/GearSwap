@@ -1,123 +1,116 @@
-include('Modes')
+--Luthien
 
-local res = require('resources')
+-- Load and initialize the include file.
+include('Mirdain-Include')
 
-local lockstyleset = nil
-local macro_book = nil
-local macro_page = nil
+--Set to ingame lockstyle and Macro Book/Set
+LockStylePallet = '12'
+MacroBook = '10'
+MacroSet = '1'
 
-local bindings = {
-  ['^R'] = 'gs c toggle_speed',
-  ['^F5'] = 'gs c toggle_dualwield',
-  ['^F4'] = 'gs c cycle_weapon',
-  ['^F3'] = 'gs c cycle_tp',
-  ['^F2'] = 'gs c toggle_jp',
-  ['^F1'] = 'gs c cycle_idle',
-}
+-- Use "gs c food" to use the specified food item
+Food = 'Tropical Crepe'
 
-local speed = M(false, 'Whether to use speed equipment')
-local idle_mode = M({ ['description'] = 'What mode to idle in', 'dt', 'refresh' })
-local dual_wield = M(false, 'Whether to use dual wield')
-local weapon_mode = M({
-  ['description'] = 'What weapon mode to use',
-  'Great Axe',
-  'Great Sword',
-  'Polearm',
-  'Axe',
-  'Dagger',
-  'Sword',
-  'Club',
-})
-local tp_mode = M({ ['description'] = 'What TP Mode to use', 'normal', 'hybrid' })
-local jp_mode = M(false, 'Whether to use JP Cape')
+--Modes for specific to bard
+state.WeaponMode:options(
+  -- 'Mordant Rime',
+  'Aeolian Edge',
+  -- 'Shining Strike',
+  -- 'Shining Blade',
+  'Savage Blade'
+  -- 'Evisceration'
+  -- "Rudra's Storm",
+  -- 'Staff'
+)
+state.WeaponMode:set('Savage Blade')
 
-local enspell_active = false
+--Default to DT Mode
+state.OffenseMode:set('TP')
 
-local status = 'Idle'
+-- 'TP','ACC','DT' are standard Default modes.  You may add more and assigne equipsets for them ( Idle.X and OffenseMode.X )
+state.OffenseMode:options('TP', 'ACC', 'DT', 'PDL', 'SB', 'MEVA', 'CRIT') -- ACC effects WS and TP modes
 
-send_command('bind ^a gs c nothing')
+--Command to Lock Style and Set the correct macros
+jobsetup(LockStylePallet, MacroBook, MacroSet)
 
-local function setup_bindings()
-  for key, command in pairs(bindings) do
-    send_command('bind ' .. key .. ' ' .. command)
-  end
-end
-
-local function destroy_bindings()
-  for _, key in pairs(bindings) do
-    send_command('unbind ' .. key)
-  end
-end
-
-local function set_macros()
-  send_command('@input /macro book ' .. macro_book .. '; wait 1; @input /macro set ' .. macro_page)
-end
-
-local function set_lockstyle()
-  send_command('wait 10; input /lockstyleset ' .. lockstyleset)
-end
-
-local function equip_tp()
-  if enspell_active then
-    equip(
-      set_combine(sets.tp[tp_mode.value], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default, sets.tp.enspell)
-    )
-  else
-    equip(set_combine(sets.tp[tp_mode.value], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default))
-  end
-end
-
-local function equip_gear()
-  if player.status == 'Engaged' then
-    equip_tp()
-    return
-  end
-  equip(sets.idle[idle_mode.current], sets.tp.subjob[player.sub_job] or sets.tp.subjob.default)
-
-  if speed then
-    equip(sets.idle.speed)
-  end
-end
-
-local function weathercheck(spell_element, set)
-  if not set then
-    return
-  end
-  if spell_element == world.weather_element or spell_element == world.day_element then
-    equip(set, sets.obis[spell_element])
-  else
-    equip(set)
-  end
-  if set[spell_element] then
-    equip(set[spell_element])
-  end
-end
-
-local function set_priorities(key1, key2)
-  local future, current = gearswap.equip_list, gearswap.equip_list_history
-  local function get_val(piece, key)
-    if piece and type(piece) == 'table' and piece[key] and type(piece[key]) == 'number' then
-      return piece[key]
-    end
-    return 0
-  end
-  for i, v in pairs(future) do
-    local priority = get_val(future[i], key1)
-      - get_val(current[i], key1)
-      + (get_val(future[i], key2) - get_val(current[i], key2))
-    if type(v) == 'table' then
-      future[i].priority = priority
-    else
-      future[i] = { name = v, priority = priority }
-    end
-  end
-end
-
--- custom functions
-------------------------------
 function get_sets()
-  sets.idle = {}
-  sets.idle.dt = {
+  --Set the weapon options.  This is set below in job customization section
+  sets.Weapons = {}
+
+  -- sets.Weapons['Mordant Rime'] = {
+  --   main = { name = 'Carnwenhan', augments = { 'Path: A' } },
+  --   sub = 'Crepuscular Knife',
+  -- }
+
+  sets.Weapons['Aeolian Edge'] = {
+    -- main = { name = 'Carnwenhan', augments = { 'Path: A' } },
+    -- sub = { name = "Gleti's Knife", augments = { 'Path: A' } },
+  }
+
+  -- sets.Weapons['Shining Strike'] = {
+  --   main = 'Daybreak',
+  --   sub = { name = "Gleti's Knife", augments = { 'Path: A' } },
+  -- }
+
+  -- sets.Weapons['Shining Blade'] = {
+  --   main = 'Naegling',
+  --   sub = 'Daybreak',
+  -- }
+
+  sets.Weapons['Savage Blade'] = {
+    main = 'Naegling',
+    -- sub = { name = 'Fusetto +2', augments = { 'TP Bonus +1000' } },
+  }
+
+  -- sets.Weapons['Staff'] = {
+  --   main = 'Xoanon',
+  --   sub = 'Alber Strap',
+  -- }
+
+  sets.Weapons['Evisceration'] = {
+    main = 'Legato Dagger',
+    sub = { name = "Gleti's Knife" },
+  }
+
+  -- sets.Weapons["Rudra's Storm"] = {
+  --   main = { name = 'Carnwenhan', augments = { 'Path: A' } },
+  --   sub = { name = "Gleti's Knife", augments = { 'Path: A' } },
+  -- }
+
+  sets.Weapons.Songs = {
+    main = { name = 'Legato Dagger' },
+    -- sub = { name = 'Kali', augments = { 'Mag. Acc.+15', 'String instrument skill +10', 'Wind instrument skill +10' } },
+  }
+
+  sets.Weapons.Shield = {}
+
+  sets.Weapons.Sleep = {}
+
+  sets.Weapons.Songs.Precast = {}
+  sets.Weapons.Songs.Midcast = {}
+
+  -- Instruments to use
+  Instrument = {}
+  Instrument.Count = {}
+  Instrument.Potency = {}
+  Instrument.Enfeebling = {}
+  Instrument.Pianissimo = {}
+
+  -- Note all song types that can be Pianissimo'd can be defined
+  Instrument.Pianissimo.Ballad = {} -- Possible swap to Miracle Cheer
+  Instrument.AOE_Sleep = {}
+
+  -- Instrument.Idle = { name = 'Linos', augments = { 'Mag. Evasion+15', '"Waltz" potency +4%', 'HP+20' } }
+  -- Instrument.TP = { name = 'Linos', augments = { 'Accuracy+20', '"Store TP"+4', 'Quadruple Attack +3' } }
+  -- Instrument.Mordant = { name = 'Linos', augments = { 'Accuracy+15 Attack+15', 'Weapon skill damage +3%', 'CHR+8' } }
+  -- Instrument.QuickMagic =
+  --   { name = 'Linos', augments = { 'Mag. Evasion+15', 'Occ. quickens spellcasting +4%', 'HP+20' } }
+  -- Instrument.FastCast = { name = 'Linos', augments = { 'Mag. Evasion+15', '"Fast Cast"+6', 'HP+20' } }
+  -- Instrument.WS = { name = 'Linos', augments = { 'Accuracy+15 Attack+15', 'Weapon skill damage +3%', 'STR+8' } }
+  -- Instrument.MAB = { name = 'Linos', augments = { 'Mag.Atk.Bns."+15', 'Weapon skill damage +3%', 'INT+8' } }
+
+  -- Standard Idle set
+  sets.Idle = {
     ammo = 'Staunch Tathlum',
     head = 'Aya. Zucchetto +2',
     body = 'Ayanmo Corazza +2',
@@ -133,14 +126,40 @@ function get_sets()
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
   }
 
-  sets.idle.refresh = {}
+  sets.Idle.Resting = set_combine(sets.Idle, {})
 
-  sets.idle.speed = {
-    feet = "Aoidos' Cothrn. +1",
+  -- These are used based off your OffenseMode
+  sets.Idle.TP = set_combine(sets.Idle, {})
+  sets.Idle.ACC = set_combine(sets.Idle, {})
+  sets.Idle.DT = set_combine(sets.Idle, {})
+  sets.Idle.SB = set_combine(sets.Idle, {})
+  sets.Idle.PDL = set_combine(sets.Idle, {})
+  sets.Idle.MEVA = set_combine(sets.Idle, {})
+  sets.Idle.CRIT = set_combine(sets.Idle, {})
+
+  --Used to swap into movement gear when the player is detected movement when not engaged
+  sets.Movement = { feet = "Aoidos' Cothrn. +1" }
+
+  -- Set to be used if you get cursna casted on you
+  sets.Cursna_Received = {
+    -- neck = "Nicander's Necklace",
+    -- left_ring = { name = "Eshmun's Ring", bag = 'wardrobe1', priority = 2 },
+    -- right_ring = { name = "Eshmun's Ring", bag = 'wardrobe2', priority = 1 },
+    waist = 'Gishdubar Sash',
   }
 
-  sets.tp = {}
-  sets.tp.default = {
+  --The following sets augment the base TP set
+  --Only 9 is needed with haste samba and /DNC.  /NIN needs 11 without samba and none with samba
+  sets.DualWield = {
+    -- waist = 'Reiki Yotai',
+    left_ear = 'Eabani Earring',
+  }
+
+  sets.OffenseMode = {}
+
+  --Base TP set to build off
+  sets.OffenseMode.TP = {
+    -- range = Instrument.TP,
     ammo = 'Coiste Bodhar',
     head = 'Aya. Zucchetto +2',
     body = 'Ayanmo Corazza +2',
@@ -156,29 +175,43 @@ function get_sets()
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
   }
 
-  sets.tp.hybrid = {
+  --This set is used when OffenseMode is DT and Enaged (Augments the TP base set)
+  sets.OffenseMode.DT = set_combine(sets.OffenseMode.TP, {
     left_ring = 'Defending Ring',
     right_ring = 'Gelatinous Ring +1',
     left_ear = 'Alabaster Earring',
-  }
+    -- legs = 'Fili Rhingrave +3',
+    -- right_ring = { name = 'Moonlight Ring', bag = 'wardrobe2', priority = 1 },
+  })
 
-  sets.tp.subjob = {}
-  sets.tp.subjob.default = {
-    main = 'Naegling',
-    sub = "Genbu's Shield",
-  }
-  sets.tp.subjob['NIN'] = {
-    -- main = 'Naegling',
-    -- sub = 'Machaera +2',
-    -- left_ear = 'Suppanomimi',
-  }
-  sets.tp.subjob['DNC'] = sets.tp.subjob['NIN']
+  --This set is used when OffenseMode is ACC and Enaged (Augments the TP base set)
+  sets.OffenseMode.ACC = set_combine(sets.OffenseMode.TP, {})
 
-  sets.precast = {}
-  sets.precast.spells = {}
-  sets.precast.types = {}
-  sets.precast.default = {}
-  sets.precast.types['BardSong'] = {
+  --This set is used when OffenseMode is PDL and Enaged
+  sets.OffenseMode.PDL = set_combine(sets.OffenseMode.TP, {
+    -- left_ring = 'Sroda Ring',
+  })
+
+  --This set is used when OffenseMode is PDL and Enaged
+  sets.OffenseMode.MEVA = set_combine(sets.OffenseMode.DT, {
+    -- waist = "Carrier's Sash",
+  })
+
+  --This set is used when OffenseMode is SB and Enaged (Augments the TP base set)
+  sets.OffenseMode.SB = set_combine(sets.OffenseMode, {
+    -- left_ring = { name = 'Chirich Ring +1', bag = 'wardrobe1', priority = 1 },
+    -- right_ring = { name = 'Chirich Ring +1', bag = 'wardrobe2', priority = 2 },
+  })
+
+  sets.OffenseMode.CRIT = set_combine(sets.OffenseMode, {
+    -- body = 'Adamantite Armor',
+    -- right_ring = 'Moonlight Ring',
+  })
+
+  sets.Precast = {}
+
+  -- Used for Magic Spells
+  sets.Precast.FastCast = {
     ammo = 'Staunch Tathlum',
     head = 'Aya. Zucchetto +2',
     body = 'Ayanmo Corazza +2',
@@ -192,160 +225,382 @@ function get_sets()
     left_ring = 'Kishar Ring',
     right_ring = 'Petrov Ring',
     back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } },
-  }
-  sets.precast.spells['Utsusemi: Ichi'] = set_combine(sets.precast.default, {
-    neck = 'Magoraga Beads',
+  } -- 81 FC and 10 Quick Magic
+
+  -- Used for Songs (now easy to max Fast Cast so not needed)
+  sets.Precast.Songs = {}
+  -- Used for "-Cure casting time"
+  sets.Precast.Cure = {}
+  -- Used for "-Enhancing casting time"
+  sets.Precast.Enhancing = {}
+  -- Used for "Utsusemi casting time"
+  sets.Precast.Utsusemi = {}
+  -- Used for "Blue Magic casting time"
+  sets.Precast.Blue_Magic = {}
+
+  -- Default song duration / strength
+  sets.Midcast = set_combine(sets.Idle, {
+    -- head = 'Fili Calot +3', -- 11
+    -- body = 'Fili Hongreline +3',
+    -- hands = 'Fili Manchettes +3', -- 11
+    -- legs = 'Inyanga Shalwar +2',
+    -- feet = 'Brioso Slippers +4',
+    -- neck = 'Mnbw. Whistle +1',
+    -- waist = "Carrier's Sash",
+    -- left_ear = { name = 'Odnowa Earring +1', augments = { 'Path: A' }, priority = 3 },
+    -- right_ear = { name = 'Alabaster Earring', priority = 1 },
+    -- left_ring = 'Murky Ring',
+    -- right_ring = 'Defending Ring',
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'CHR+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', 'Phys. dmg. taken-10%' },
+    -- },
   })
-  sets.precast.spells['Utsusemi: Ni'] = sets.precast.spells['Utsusemi: Ichi']
 
-  sets.midcast = {}
+  -- Reduce Durations for Dummy songs (Ballad is lowest duration)
+  sets.Midcast.DummySongs = set_combine(sets.Idle, {})
 
-  -- ###############################################################
+  -- Cure Set
+  sets.Midcast.Cure = {
+    -- range = { name = 'Linos', augments = { 'Mag. Evasion+15', '"Fast Cast"+6', 'HP+20' } },
+    -- head = { name = 'Kaykaus Mitra +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    -- body = { name = 'Kaykaus Bliaut +1', augments = { 'MP+80', '"Cure" potency +6%', '"Conserve MP"+7' } },
+    -- hands = { name = 'Kaykaus Cuffs +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    -- legs = { name = 'Kaykaus Tights +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    -- feet = { name = 'Kaykaus Boots +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    -- neck = 'Loricate Torque +1',
+    -- waist = 'Plat. Mog. Belt',
+    -- left_ear = 'Odnowa Earring +1',
+    -- right_ear = 'Alabaster Earring',
+    -- left_ring = 'Murky Ring',
+    -- right_ring = 'Defending Ring',
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'CHR+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', 'Phys. dmg. taken-10%' },
+    -- },
+  } -- 50% Cure Potency / 15% Cure Potency II
 
-  -- ###############################################################
-  sets.midcast['Healing Magic'] = {}
+  sets.Midcast.Regen = {}
+  sets.Midcast.Refresh = {}
 
-  sets.midcast['Enhancing Magic'] = {}
+  -- Base set for duration
+  sets.Midcast.Enhancing = {
+    -- sub = 'Ammurapi Shield',
+    -- range = { name = 'Linos', augments = { 'Mag. Evasion+15', '"Fast Cast"+6', 'HP+20' } },
+    -- head = { name = 'Telchine Cap', augments = { 'Enh. Mag. eff. dur. +10' } },
+    -- body = { name = 'Telchine Chas.', augments = { 'Enh. Mag. eff. dur. +10' } },
+    -- hands = { name = 'Telchine Gloves', augments = { 'Enh. Mag. eff. dur. +10' } },
+    -- legs = { name = 'Telchine Braconi', augments = { 'Enh. Mag. eff. dur. +10' } },
+    -- feet = { name = 'Telchine Pigaches', augments = { 'Enh. Mag. eff. dur. +10' } },
+    -- neck = "Incanter's Torque",
+    -- waist = 'Embla Sash',
+    -- left_ear = 'Odnowa Earring +1',
+    -- right_ear = 'Alabaster Earring',
+    -- left_ring = 'Murky Ring',
+    -- right_ring = 'Moonlight Ring',
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'CHR+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', 'Phys. dmg. taken-10%' },
+    -- },
+  }
 
-  sets.ws = {}
-  sets.ws['Savage Blade'] = {}
-  sets.ws['Requiescat'] = {}
-  sets.ws['Chant du Cygne'] = {}
+  --Used for elemental Bar Magic Spells
+  sets.Midcast.Enhancing.Elemental = {}
+  sets.Midcast.Enhancing.Status = {}
+  sets.Midcast.Enhancing.Skill = {}
+  sets.Midcast.Enhancing.Gain = {}
 
-  sets.obis = {}
-  sets.obis.Fire = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Earth = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Water = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Wind = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Ice = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Lightning = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Light = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Dark = { waist = 'Hachirin-no-Obi' }
+  -- Curaga Set (different rules than cure)
+  sets.Midcast.Curaga = sets.Midcast.Cure
 
-  lockstyleset = 12
+  -- Cursna Set
+  sets.Midcast.Cursna = set_combine(sets.Midcast.Cure, {
+    -- range = { name = 'Linos', augments = { 'Mag. Evasion+15', '"Fast Cast"+6', 'HP+20' } },
+    -- head = { name = 'Kaykaus Mitra +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    -- body = 'Adamantite Armor',
+    -- hands = 'Inyan. Dastanas +2',
+    -- legs = { name = 'Kaykaus Tights +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    -- feet = 'Gende. Galosh. +1',
+    -- neck = 'Loricate Torque +1',
+    -- waist = 'Witful Belt',
+    -- left_ear = 'Odnowa Earring +1',
+    -- right_ear = 'Alabaster Earring',
+    -- left_ring = "Menelaus's Ring",
+    -- right_ring = "Haoma's Ring",
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'CHR+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', 'Phys. dmg. taken-10%' },
+    -- },
+  })
 
-  macro_book = 10
-  macro_page = 1
+  sets.Midcast.Divine = {}
+  sets.Midcast.Phalanx = {}
 
-  setup_bindings()
-  set_macros()
-  set_lockstyle()
-  equip_gear()
+  -- High MACC for landing spells
+  sets.Midcast.Enfeebling = {
+    -- sub = 'Ammurapi Shield',
+    -- range = Instrument.Potency,
+    -- head = 'Brioso Roundlet +4',
+    -- body = 'Brioso Just. +4',
+    -- hands = 'Brioso Cuffs +4',
+    -- legs = 'Fili Rhingrave +3',
+    -- feet = 'Brioso Slippers +4',
+    -- neck = 'Mnbw. Whistle +1',
+    -- waist = 'Null Belt',
+    -- left_ear = 'Regal Earring',
+    -- right_ear = 'Crep. Earring',
+    -- left_ring = 'Stikini Ring +1',
+    -- right_ring = 'Stikini Ring +1',
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'CHR+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', 'Phys. dmg. taken-10%' },
+    -- },
+  }
+
+  sets.Midcast.Enfeebling.MACC = {}
+  sets.Midcast.Enfeebling.Potency = {}
+  sets.Midcast.Enfeebling.Duration = {}
+
+  -- Bard Specific Sets
+
+  -- Max duration
+  sets.Midcast.Lullaby = set_combine(sets.Midcast.Enfeebling, {
+    -- range = Instrument.Honor,
+    -- body = 'Fili Hongreline +3',
+    -- legs = 'Inyanga Shalwar +2',
+  })
+
+  -- sets.Midcast.Finale = {}
+  -- sets.Midcast.Requiem = {}
+  -- sets.Midcast.Elegy = {}
+  -- sets.Midcast.Prelude = {}
+  -- sets.Midcast.Madrigal = { head = 'Fili Calot +3' }
+  -- sets.Midcast.Minuet = { body = 'Fili Hongreline +3' }
+  -- sets.Midcast.March = { hands = 'Fili Manchettes +3' }
+  -- sets.Midcast.Ballad = { legs = 'Fili Rhingrave +3' }
+  -- sets.Midcast.Scherzo = { feet = 'Fili Cothurnes +3' }
+  -- sets.Midcast.Mazurka = {}
+  -- sets.Midcast.Paeon = { head = 'Brioso Roundlet +4' }
+  -- sets.Midcast.Threnody = { body = 'Mou. Manteel +1' }
+  -- sets.Midcast.Minne = { legs = 'Mou. Seraweels +1' }
+  -- sets.Midcast.Mambo = {}
+  -- sets.Midcast.Carol = { hands = 'Mousai Gages +1' }
+  -- sets.Midcast.Etude = { head = 'Mousai Turban +1' }
+  -- sets.Midcast.Dirge = {}
+  -- sets.Midcast.Sirvente = {}
+  -- sets.Midcast.Aria = {}
+
+  -- Specific gear for spells
+  sets.Midcast['Stoneskin'] = {
+    waist = 'Siegel Sash',
+  }
+
+  -- Job Abilities
+  -- sets.JA = {}
+  -- sets.JA['Nightingale'] = { feet = { name = 'Bihu Slippers +4', augments = { 'Enhances "Nightingale" effect' } } }
+  -- sets.JA['Troubadour'] = { body = { name = 'Bihu Just. +4', augments = { 'Enhances "Troubadour" effect' } } }
+  -- sets.JA['Soul Voice'] = { legs = { name = 'Bihu Cannions +4', augments = { 'Enhances "Soul Voice" effect' } } }
+  -- sets.JA['Tenuto'] = {}
+  -- sets.JA['Marcato'] = {}
+  -- sets.JA['Clarion'] = {}
+  -- sets.JA['Pianissimo'] = {}
+
+  -- Dancer JA Section
+
+  sets.Flourish = set_combine(sets.Idle.DT, {})
+  sets.Jig = set_combine(sets.Idle.DT, {})
+  sets.Step = set_combine(sets.Idle.DT, {})
+  sets.Samba = set_combine(sets.Idle.DT, {})
+  sets.Waltz = set_combine(sets.Idle.DT, {
+    -- range = Instrument.Idle, -- 4
+    -- legs = 'Dashing Subligar', -- 10
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'MND+20', 'Eva.+20 /Mag. Eva.+20', 'Mag. Evasion+10', '"Waltz" potency +10%', 'Mag. Evasion+15' },
+    -- }, --10
+  }) -- 24% Potency
+
+  --Default WS set base
+  sets.WS = {
+    -- range = Instrument.WS,
+    -- head = 'Nyame Helm',
+    -- body = 'Bihu Just. +4',
+    -- hands = 'Nyame Gauntlets',
+    -- legs = 'Nyame Flanchard',
+    -- feet = 'Nyame Sollerets',
+    -- neck = 'Rep. Plat. Medal',
+    -- waist = 'Sailfi Belt +1',
+    -- left_ear = 'Moonshade Earring',
+    -- right_ear = 'Regal Earring',
+    -- left_ring = 'Sroda Ring',
+    -- right_ring = "Epaminondas's Ring",
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Damage taken-5%' },
+    -- },
+  }
+
+  -- Equipment to augment the Melee WS for Physical Damage Limit (Capped Attack)
+  sets.WS.PDL = set_combine(sets.WS, {
+    -- body = "Bunzi's Robe",
+    -- right_ring = 'Sroda Ring',
+  })
+
+  --The following sets augment the WS base set
+  sets.WS.WSD = set_combine(sets.WS, {})
+
+  sets.WS.MAB = set_combine(sets.WS, {
+    -- range = Instrument.MAB,
+    -- neck = 'Sibyl Scarf',
+    -- waist = "Orpheus's Sash",
+    -- body = 'Nyame Mail',
+    -- left_ring = 'Metamor. Ring +1',
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'INT+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'INT+10', 'Weapon skill damage +10%', 'Damage taken-5%' },
+    -- },
+  })
+
+  sets.WS.ACC = set_combine(sets.WS, {})
+
+  sets.WS.MEVA = set_combine(sets.WS, {
+    -- neck = "Warder's Charm +1",
+    -- waist = "Carrier's Sash",
+  })
+
+  sets.WS.CRIT = set_combine(sets.WS, {
+    -- neck = 'Fotia Gorget',
+    -- waist = 'Fotia Belt',
+    -- right_ear = { name = 'Moonshade Earring', augments = { 'Accuracy+4', 'TP Bonus +250' } },
+    -- left_ring = 'Hetairoi Ring',
+    -- right_ring = 'Ilabrat Ring',
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Damage taken-5%' },
+    -- },
+  })
+
+  sets.WS.SB = {
+    -- left_ring = { name = 'Chirich Ring +1', bag = 'wardrobe1', priority = 1 },
+    -- right_ring = { name = 'Chirich Ring +1', bag = 'wardrobe2', priority = 2 },
+  }
+
+  sets.WS['Savage Blade'] = set_combine(sets.WS.WSD, {})
+
+  sets.WS['Mordant Rime'] = set_combine(sets.WS, {
+    -- range = Instrument.Mordant,
+    -- neck = { name = "Bard's Charm +2", augments = { 'Path: A' } },
+    -- waist = 'Grunfeld Rope',
+    -- left_ear = 'Ishvara Earring',
+    -- left_ring = 'Metamor. Ring +1',
+    -- back = {
+    --   name = "Intarabus's Cape",
+    --   augments = { 'CHR+20', 'Accuracy+20 Attack+20', 'CHR+10', 'Weapon skill damage +10%', 'Damage taken-5%' },
+    -- },
+  })
+
+  sets.WS['Eviceration'] = sets.WS.CRIT
+
+  sets.WS['Aeolian Edge'] = set_combine(sets.WS.MAB, {})
+
+  sets.WS['Burning Blade'] = sets.WS.MAB
+  sets.WS['Shining Blade'] = set_combine(sets.WS.MAB, {
+    -- right_ring = 'Weather. Ring',
+  })
+  sets.WS['Shining Strike'] = set_combine(sets.WS.MAB, {
+    -- right_ring = 'Weather. Ring',
+  })
+
+  sets.WS['Shell Crusher'] = set_combine(sets.WS.WSD, {
+    -- right_ring = 'Sroda Ring',
+  })
+
+  sets.TreasureHunter = {
+    -- body = 'Volte Jupon',
+    -- legs = 'Volte Hose',
+    -- waist = 'Chaac Belt',
+  }
 end
 
-function file_unload()
-  destroy_bindings()
+-------------------------------------------------------------------------------------------------------------------
+-- DO NOT EDIT BELOW THIS LINE UNLESS YOU NEED TO MAKE JOB SPECIFIC RULES
+-------------------------------------------------------------------------------------------------------------------
+
+-- Called when the player's subjob changes.
+function sub_job_change_custom(new, old)
+  -- Typically used for Macro pallet changing
 end
 
-function precast(spell)
-  if sets.precast.spells[spell.name] then
-    equip(sets.precast.spells[spell.name])
-  elseif string.find(spell.name, 'Cur') and spell.name ~= 'Cursna' then
-    equip(sets.precast.spells['Cure'])
-  elseif spell.action_type == 'Magic' then
-    if sets.precast.types[spell.skill] then
-      equip(sets.precast.types[spell.skill])
-    else
-      equip(sets.precast.default)
-    end
-  end
+--Adjust custom precast actions
+function pretarget_custom(spell, action) end
+-- Augment basic equipment sets
+function precast_custom(spell)
+  equipSet = {}
 
-  if spell.type == 'WeaponSkill' then
-    equip(sets.ws[spell.name] or sets.ws['Savage Blade'])
-  end
-  set_priorities('mp', 'hp')
+  return equipSet
+end
+-- Augment basic equipment sets
+function midcast_custom(spell)
+  equipSet = {}
+
+  return equipSet
+end
+-- Augment basic equipment sets
+function aftercast_custom(spell)
+  equipSet = {}
+
+  return equipSet
+end
+--Function is called when the player gains or loses a buff
+function buff_change_custom(name, gain)
+  equipSet = {}
+
+  return equipSet
+end
+--This function is called when a update request the correct equipment set
+function choose_set_custom()
+  equipSet = {}
+
+  return equipSet
+end
+--Function is called when the player changes states
+function status_change_custom(new, old)
+  equipSet = {}
+
+  return equipSet
+end
+--Function is called when a self command is issued
+function self_command_custom(command) end
+
+function check_buff_SP()
+  buff = 'None'
+  --local sp_recasts = windower.ffxi.get_spell_recasts()
+  return buff
 end
 
-function midcast(spell)
-  if spell.skill == 'Elemental Magic' then
-    weathercheck(spell.element, sets.midcast[spell.skill])
-  else
-    local gear = sets.midcast[spell.name] or {}
-    if gear.self and spell.target.name == player.name then
-      weathercheck(spell.element, gear.self)
-    elseif gear.other and spell.target.name ~= player.name then
-      weathercheck(spell.element, gear.other)
-    else
-      weathercheck(spell.element, gear)
-    end
-  end
-
-  set_priorities('mp', 'hp')
+function check_buff_JA()
+  buff = 'None'
+  --local ja_recasts = windower.ffxi.get_ability_recasts()
+  return buff
 end
 
-function aftercast()
-  if status == 'Idle' then
-    equip_gear()
-  elseif status == 'Engaged' then
-    equip_tp()
-  end
-  set_priorities('mp', 'hp')
+-- Function is called when the job lua is unloaded
+function user_file_unload() end
+
+function pet_change_custom(pet, gain)
+  equipSet = {}
+
+  return equipSet
 end
 
-function status_change(new)
-  status = new
-  if new == 'Idle' then
-    equip_gear()
-  elseif new == 'Engaged' then
-    equip_tp()
-  end
-  set_priorities('mp', 'hp')
+function pet_aftercast_custom(spell)
+  equipSet = {}
+
+  return equipSet
 end
 
-function sub_job_change()
-  set_macros()
-  set_lockstyle()
-  equip_gear()
-  set_priorities('mp', 'hp')
-end
+function pet_midcast_custom(spell)
+  equipSet = {}
 
-function self_command(command)
-  if command == 'warp' then
-    equip({ left_ring = 'Warp Ring' })
-    local item_table = res.items:with('en', 'Warp Ring')
-    send_command('@input /echo Equipping Warp Ring')
-    coroutine.schedule(function()
-      send_command('@input /echo /item "Warp Ring"')
-      send_command('@input /item "Warp Ring" ' .. player.id)
-    end, item_table.cast_delay + 3)
-  elseif command == 'echodrops' then
-    send_command("@input item 'echo drops' <me>")
-  elseif command == 'toggle_jp' then
-    jp_mode:toggle()
-    if jp_mode.value then
-      send_command('@input /echo JP MODE Off')
-      enable('back')
-      aftercast()
-    else
-      send_command('@input /echo JP MODE On')
-      equip({ back = { name = 'Mecisto. Mantle', augments = { 'Cap. Point+49%', 'MND+1', 'Rng.Acc.+5', 'DEF+6' } } })
-      disable('back')
-    end
-  elseif command == 'toggle_speed' then
-    speed = not speed
-    if speed then
-      send_command('@input /echo SPEED On')
-    else
-      send_command('@input /echo SPEED Off')
-    end
-    aftercast()
-  elseif command == 'cycle_idle' then
-    idle_mode:cycle()
-    send_command('@input /echo Idle Mode: ' .. idle_mode.value)
-    equip_gear()
-  elseif command == 'cycle_weapon' then
-    weapon_mode:cycle()
-    send_command('@input /echo Weapon Mode: ' .. weapon_mode.value)
-    equip_gear()
-  elseif command == 'cycle_tp' then
-    tp_mode:cycle()
-    send_command('@input /echo TP Mode: ' .. tp_mode.value)
-    equip_gear()
-  elseif command == 'toggle_dualwield' then
-    dual_wield:toggle()
-    send_command('@input /echo Dual Wield: ' .. dual_wield.current)
-    equip_gear()
-  end
+  return equipSet
 end
-
-send_command('wait 1; gs equip idle')
