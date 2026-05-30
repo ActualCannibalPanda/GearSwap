@@ -158,7 +158,9 @@ function get_sets()
 
   sets.Precast.Enhancing = set_combine(sets.Precast.FastCast, {})
 
-  sets.Precast.Cure = set_combine(sets.Precast.FastCast, {})
+  sets.Precast.Cure = set_combine(sets.Precast.FastCast, {
+    head = { name = 'Kaykaus Mitra', augments = { 'MP+60', '"Cure" spellcasting time -5%', 'Enmity-5' } },
+  })
 
   sets.Precast.Healing = set_combine(sets.Precast.FastCast, {})
 
@@ -204,7 +206,7 @@ function get_sets()
   sets.Midcast.Cure = {
     main = { name = 'Serenity', augments = { 'MP+35', 'Enha.mag. skill +8', '"Cure" spellcasting time -6%' } },
     ammo = 'Kalboron Stone',
-    head = 'Jhakri Coronal +2',
+    head = { name = 'Kaykaus Mitra', augments = { 'MP+60', '"Cure" spellcasting time -5%', 'Enmity-5' } },
     body = 'Jhakri Robe +2',
     hands = 'Jhakri Cuffs +2',
     legs = 'Gyve Trousers',
