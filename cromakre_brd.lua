@@ -550,31 +550,31 @@ function precast_custom(spell)
 end
 -- Augment basic equipment sets
 function midcast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end
 -- Augment basic equipment sets
 function aftercast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end
 --Function is called when the player gains or loses a buff
 function buff_change_custom(name, gain)
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end
 --This function is called when a update request the correct equipment set
 function choose_set_custom()
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end
 --Function is called when the player changes states
 function status_change_custom(new, old)
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end
@@ -582,13 +582,13 @@ end
 function self_command_custom(command) end
 
 function check_buff_SP()
-  buff = 'None'
+  local buff = 'None'
   --local sp_recasts = windower.ffxi.get_spell_recasts()
   return buff
 end
 
 function check_buff_JA()
-  buff = 'None'
+  local buff = 'None'
   --local ja_recasts = windower.ffxi.get_ability_recasts()
   return buff
 end
@@ -597,19 +597,19 @@ end
 function user_file_unload() end
 
 function pet_change_custom(pet, gain)
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end
 
 function pet_aftercast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end
 
 function pet_midcast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
 
   return equipSet
 end

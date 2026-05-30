@@ -25,8 +25,9 @@ state.OffenseMode:options('TP', 'ACC', 'DT', 'PDL', 'CRIT', 'MEVA', 'SB')
 state.OffenseMode:set('TP')
 
 --Modes for specific to Corsair
-state.WeaponMode:options('Fomalhaut', 'Death Penalty', 'Savage Blade', 'Aeolian Edge', 'Evisceration')
-state.WeaponMode:set('Death Penalty')
+-- state.WeaponMode:options('Fomalhaut', 'Death Penalty', 'Savage Blade', 'Aeolian Edge', 'Evisceration')
+state.WeaponMode:options('Savage Blade', 'Aeolian Edge', 'Evisceration')
+state.WeaponMode:set('Savage Blade')
 
 --Enable JobMode for UI.
 UI_Name = 'TP Mode'
@@ -50,12 +51,14 @@ function get_sets()
   sets.Weapons['Savage Blade'] = {
     main = 'Naegling',
     sub = { name = "Gleti's Knife" },
+    range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
     -- range = { name = 'Anarchy +2', augments = { 'Delay:+60', 'TP Bonus +1000' } },
   }
 
   sets.Weapons['Evisceration'] = {
     main = 'Kaja Knife',
     sub = { name = "Gleti's Knife" },
+    range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
     -- range = { name = 'Fomalhaut', augments = { 'Path: A' } },
   }
 
@@ -72,6 +75,7 @@ function get_sets()
   }
 
   sets.Weapons['Aeolian Edge'] = {
+    range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
     ammo = Ammo.Bullet.MAG_WS,
     main = 'Kaja Knife',
     sub = { name = "Gleti's Knife" },
@@ -84,6 +88,7 @@ function get_sets()
 
   sets.Weapons['Subtle Blow'] = {
     sub = { name = "Gleti's Knife" }, -- Used for SB II
+    range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
   }
 
   sets.Weapons.Ranged = {
@@ -707,7 +712,7 @@ function pretarget_custom(spell, action) end
 
 -- Augment basic equipment sets
 function precast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
   if spell.english == 'Fold' and buffactive['Bust'] == 2 then
     equipSet = set_combine(equipSet, sets.Fold)
   end
@@ -716,7 +721,7 @@ function precast_custom(spell)
 end
 -- Augment basic equipment sets
 function midcast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
   if spell.english == 'Fold' and buffactive['Bust'] == 2 then
     equipSet = set_combine(equipSet, sets.Fold)
   end
@@ -725,22 +730,22 @@ function midcast_custom(spell)
 end
 -- Augment basic equipment sets
 function aftercast_custom(spell)
-  equipSet = Job_Mode_Check(equipSet)
+  local equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
 --Function is called when the player gains or loses a buff
 function buff_change_custom(name, gain)
-  equipSet = Job_Mode_Check(equipSet)
+  local equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
 --This function is called when a update request the correct equipment set
 function choose_set_custom()
-  equipSet = Job_Mode_Check(equipSet)
+  local equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
 --Function is called when the player changes states
 function status_change_custom(new, old)
-  equipSet = Job_Mode_Check(equipSet)
+  local equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
 
@@ -752,7 +757,7 @@ function user_file_unload()
 end
 
 function check_buff_JA()
-  buff = 'None'
+  local buff = 'None'
   local ja_recasts = windower.ffxi.get_ability_recasts()
   if player.sub_job == 'WAR' then
     if not buffactive['Berserk'] and ja_recasts[1] == 0 then
@@ -767,7 +772,7 @@ function check_buff_JA()
 end
 
 function check_buff_SP()
-  buff = 'None'
+  local buff = 'None'
   return buff
 end
 
@@ -788,16 +793,16 @@ function Job_Mode_Check(equipSet)
 end
 
 function pet_change_custom(pet, gain)
-  equipSet = {}
+  local equipSet = {}
   return equipSet
 end
 
 function pet_aftercast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
   return equipSet
 end
 
 function pet_midcast_custom(spell)
-  equipSet = {}
+  local equipSet = {}
   return equipSet
 end
