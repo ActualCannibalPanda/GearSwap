@@ -132,7 +132,7 @@ function get_sets()
     body = 'Meghanada Cuirie',
     hands = 'Meg. Gloves +2',
     legs = 'Meg. Chausses',
-    feet = 'Meg. Jambeaux',
+    feet = 'Meg. Jam. +1',
     neck = 'Loricate Torque',
     waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
@@ -183,7 +183,7 @@ function get_sets()
     body = 'Meghanada Cuirie',
     hands = 'Meg. Gloves +2',
     legs = 'Meg. Chausses',
-    feet = 'Meg. Jambeaux',
+    feet = 'Meg. Jam. +1',
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
@@ -275,6 +275,7 @@ function get_sets()
   --No flurry - 60 Snapshot needed
   sets.Precast.RA = {
     ammo = Ammo.Bullet.RA,
+    feet = 'Meg. Jam. +1',
     -- head = 'Chass. Tricorne +3', -- 0/14
     -- body = 'Oshosi Vest +1', -- 14/0
     -- hands = { name = 'Carmine Fin. Ga. +1', augments = { 'Rng.Atk.+20', '"Mag.Atk.Bns."+12', '"Store TP"+6' } }, -- 8/11
