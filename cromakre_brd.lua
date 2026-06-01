@@ -254,9 +254,9 @@ function get_sets()
     -- neck = 'Mnbw. Whistle +1',
     -- waist = "Carrier's Sash",
     -- left_ear = { name = 'Odnowa Earring +1', augments = { 'Path: A' }, priority = 3 },
-    -- right_ear = { name = 'Alabaster Earring', priority = 1 },
+    right_ear = { name = 'Alabaster Earring', priority = 1 },
     -- left_ring = 'Murky Ring',
-    -- right_ring = 'Defending Ring',
+    right_ring = 'Defending Ring',
     -- back = {
     --   name = "Intarabus's Cape",
     --   augments = { 'CHR+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10', 'Phys. dmg. taken-10%' },
@@ -271,15 +271,16 @@ function get_sets()
   -- Cure Set
   sets.Midcast.Cure = {
     -- range = { name = 'Linos', augments = { 'Mag. Evasion+15', '"Fast Cast"+6', 'HP+20' } },
-    -- head = { name = 'Kaykaus Mitra +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    head = { name = 'Kaykaus Mitra', augments = { 'MP+60', '"Cure" spellcasting time -5%', 'Enmity-5' } },
     -- body = { name = 'Kaykaus Bliaut +1', augments = { 'MP+80', '"Cure" potency +6%', '"Conserve MP"+7' } },
     -- hands = { name = 'Kaykaus Cuffs +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
+    legs = { name = 'Gyve Trousers' },
     -- legs = { name = 'Kaykaus Tights +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
     -- feet = { name = 'Kaykaus Boots +1', augments = { 'MP+80', '"Cure" spellcasting time -7%', 'Enmity-6' } },
-    -- neck = 'Loricate Torque +1',
+    neck = 'Loricate Torque',
     -- waist = 'Plat. Mog. Belt',
     -- left_ear = 'Odnowa Earring +1',
-    -- right_ear = 'Alabaster Earring',
+    right_ear = 'Alabaster Earring',
     -- left_ring = 'Murky Ring',
     -- right_ring = 'Defending Ring',
     -- back = {
@@ -303,7 +304,7 @@ function get_sets()
     -- neck = "Incanter's Torque",
     -- waist = 'Embla Sash',
     -- left_ear = 'Odnowa Earring +1',
-    -- right_ear = 'Alabaster Earring',
+    right_ear = 'Alabaster Earring',
     -- left_ring = 'Murky Ring',
     -- right_ring = 'Moonlight Ring',
     -- back = {
