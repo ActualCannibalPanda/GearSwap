@@ -428,7 +428,7 @@ function get_sets()
     -- body = { name = 'Lanun Frac +3', augments = { 'Enhances "Loaded Deck" effect' } },
     hands = 'Nyame Gauntlets',
     legs = 'Nyame Flanchard',
-    -- feet = 'Chass. Bottes +3',
+    feet = 'Chass. Bottes',
     -- neck = { name = 'Comm. Charm +2', augments = { 'Path: A' } },
     -- waist = "Orpheus's Sash",
     left_ear = 'Friomisi Earring',
@@ -516,7 +516,7 @@ function get_sets()
     -- sub = { name = 'Nusku Shield', priority = 2 },
     range = 'Compensator', -- 20 sec Duration
     -- head = { name = 'Lanun Tricorne +4', augments = { 'Enhances "Winning Streak" effect' } }, -- 50% Job ability Bonus
-    -- hands = "Chasseur's Gants +3", --60 sec Duration
+    hands = "Chasseur's Gants +2", --60 sec Duration
     neck = 'Regal Necklace', -- 20 sec Duration
     -- right_ring = "Luzaf's Ring", -- 16 yalm range
     back = {
@@ -546,22 +546,22 @@ function get_sets()
   sets.PhantomRoll["Dancer's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Scholar's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Bolter's Roll"] = sets.PhantomRoll
-  sets.PhantomRoll["Caster's Roll"] = set_combine(sets.PhantomRoll)
-  sets.PhantomRoll["Tactician's Roll"] = set_combine(sets.PhantomRoll)
-  sets.PhantomRoll["Allies' Roll"] = set_combine(sets.PhantomRoll)
+  sets.PhantomRoll["Caster's Roll"] = set_combine(sets.PhantomRoll, { legs = 'Nvrch. Culottes +1' })
+  sets.PhantomRoll["Tactician's Roll"] = set_combine(sets.PhantomRoll, { body = "Navarch's Frac +1" })
+  sets.PhantomRoll["Allies' Roll"] = set_combine(sets.PhantomRoll, { hands = "Chasseur's Gants +2" })
   sets.PhantomRoll["Miser's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Companion's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Avenger's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Naturalist's Roll"] = sets.PhantomRoll
-  sets.PhantomRoll["Courser's Roll"] = set_combine(sets.PhantomRoll)
-  sets.PhantomRoll["Blitzer's Roll"] = set_combine(sets.PhantomRoll)
+  sets.PhantomRoll["Courser's Roll"] = set_combine(sets.PhantomRoll, { feet = 'Chass. Bottes' })
+  sets.PhantomRoll["Blitzer's Roll"] = set_combine(sets.PhantomRoll, { head = 'Chass. Tricorne +1' })
 
   -- Melee Base set
   sets.WS = {
     ammo = Ammo.Bullet.WS,
     head = { name = 'Nyame Helm', augments = { 'Path: B' } },
     body = { name = 'Nyame Mail', augments = { 'Path: B' } },
-    -- hands = "Chasseur's Gants +3",
+    hands = "Chasseur's Gants +2",
     legs = { name = 'Nyame Flanchard', augments = { 'Path: B' } },
     feet = { name = 'Nyame Sollerets', augments = { 'Path: B' } },
     -- neck = { name = 'Comm. Charm +2', augments = { 'Path: A' } },
@@ -610,7 +610,7 @@ function get_sets()
   sets.WS.RA = {
     -- head = { name = 'Lanun Tricorne +4', augments = { 'Enhances "Winning Streak" effect' } },
     -- body = { name = "Ikenga's Vest", augments = { 'Path: A' } },
-    -- hands = "Chasseur's Gants +3",
+    hands = "Chasseur's Gants +2",
     -- legs = { name = "Ikenga's Trousers", augments = { 'Path: A' } },
     -- feet = { name = "Ikenga's Clogs", augments = { 'Path: A' } },
     neck = 'Fotia Gorget',
@@ -673,7 +673,7 @@ function get_sets()
   sets.WS['Sniper Shot'] = set_combine(sets.WS, sets.WS.RA, { -- MAX ACC for skillchaining
     -- head = 'Chass. Tricorne +3',
     -- body = "Chasseur's Frac +3",
-    -- hands = "Chasseur's Gants +3",
+    hands = "Chasseur's Gants +2",
     -- legs = 'Chas. Culottes +3',
     -- feet = { name = "Ikenga's Clogs", augments = { 'Path: A' } },
     -- neck = 'Iskur Gorget',
