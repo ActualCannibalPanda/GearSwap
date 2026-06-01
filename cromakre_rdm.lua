@@ -491,12 +491,14 @@ function get_sets()
 
   -- Specific gear for spells
   sets.Midcast['Stoneskin'] = set_combine(sets.Midcast.Enhancing, {
-    -- neck = 'Nodens Gorget',
     waist = 'Siegel Sash',
+    legs = 'Shedir Serawells',
+    -- neck = 'Nodens Gorget',
     -- left_ear = 'Earthcry Earring',
   })
 
   sets.Midcast['Aquaveil'] = set_combine(sets.Midcast.Enhancing, {
+    legs = 'Shedir Serawells',
     -- hands = 'Regal Cuffs',
     -- head = 'Amalric Coif +1',
   })
