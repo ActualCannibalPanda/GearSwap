@@ -187,10 +187,10 @@ function get_sets()
   sets.OffenseMode = {
     ammo = Ammo.Bullet.RA,
     head = 'Meghanada Visor',
-    body = 'Meghanada Cuirie',
+    body = { name = 'Adhemar Jacket', augments = { 'DEX+10', 'AGI+10', 'Accuracy+15' } },
     hands = 'Meg. Gloves +2',
     legs = 'Meg. Chausses',
-    feet = 'Meg. Jam. +1',
+    feet = { name = 'Herculean Boots', augments = { 'Accuracy+1 Attack+1', '"Triple Atk."+1', 'DEX+9', 'Attack+9' } },
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
@@ -198,7 +198,7 @@ function get_sets()
       name = 'Chas. Earring +1',
       augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+12', 'Mag. Acc.+12', 'Crit.hit rate+4' },
     },
-    left_ring = "K'ayres Ring",
+    left_ring = 'Hetairoi Ring',
     right_ring = 'Petrov Ring',
     back = {
       name = "Camulus's Mantle",
@@ -313,7 +313,7 @@ function get_sets()
     -- body = { name = 'Taeon Tabard', augments = { '"Fast Cast"+5', 'HP+44' } }, -- 9
     hands = { name = 'Leyline Gloves', augments = { 'Accuracy+10', 'Mag. Acc.+7', '"Fast Cast"+1' } },
     -- legs = { name = 'Herculean Trousers', augments = { 'Mag. Acc.+7', '"Fast Cast"+6' } }, -- 6
-    feet = { name = 'Carmine Greaves +1', augments = { 'HP+80', 'MP+80', 'Phys. dmg. taken -4' } }, -- 8
+    feet = { name = 'Carmine Greaves', augments = { 'HP+60', 'MP+60', 'Phys. dmg. taken -3' } },
     neck = 'Voltsurge Torque', -- 4
     -- waist = 'Plat. Mog. Belt',
     left_ear = 'Loquac. Earring', -- 2
@@ -428,7 +428,7 @@ function get_sets()
     -- body = { name = 'Lanun Frac +3', augments = { 'Enhances "Loaded Deck" effect' } },
     hands = 'Nyame Gauntlets',
     legs = 'Nyame Flanchard',
-    feet = 'Chass. Bottes',
+    feet = "Chasseur's Bottes",
     -- neck = { name = 'Comm. Charm +2', augments = { 'Path: A' } },
     -- waist = "Orpheus's Sash",
     left_ear = 'Friomisi Earring',
@@ -553,8 +553,8 @@ function get_sets()
   sets.PhantomRoll["Companion's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Avenger's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Naturalist's Roll"] = sets.PhantomRoll
-  sets.PhantomRoll["Courser's Roll"] = set_combine(sets.PhantomRoll, { feet = 'Chass. Bottes' })
-  sets.PhantomRoll["Blitzer's Roll"] = set_combine(sets.PhantomRoll, { head = 'Chass. Tricorne +1' })
+  sets.PhantomRoll["Courser's Roll"] = set_combine(sets.PhantomRoll, { feet = "Chasseur's Bottes" })
+  sets.PhantomRoll["Blitzer's Roll"] = set_combine(sets.PhantomRoll, { head = 'Chass. Tricorne +2' })
 
   -- Melee Base set
   sets.WS = {
