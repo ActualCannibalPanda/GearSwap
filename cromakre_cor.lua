@@ -224,7 +224,7 @@ function get_sets()
   sets.OffenseMode.CRIT = set_combine(sets.OffenseMode, {
     -- head = 'Null Masque',
     -- body = { name = "Ikenga's Vest", augments = { 'Path: A' } },
-    -- hands = "Chasseur's Gants +3",
+    hands = "Chasseur's Gants +2",
     -- legs = 'Malignance Tights',
     -- feet = 'Osh. Leggings +1',
     -- neck = 'Null Loop',
@@ -283,7 +283,7 @@ function get_sets()
   sets.Precast.RA = {
     ammo = Ammo.Bullet.RA,
     feet = 'Meg. Jam. +1',
-    -- head = 'Chass. Tricorne +3', -- 0/14
+    head = 'Chass. Tricorne +2', -- 0/14
     -- body = 'Oshosi Vest +1', -- 14/0
     -- hands = { name = 'Carmine Fin. Ga. +1', augments = { 'Rng.Atk.+20', '"Mag.Atk.Bns."+12', '"Store TP"+6' } }, -- 8/11
     -- legs = { name = 'Adhemar Kecks +1', augments = { 'AGI+12', '"Rapid Shot"+13', 'Enmity-6' } }, -- 10/13
@@ -313,7 +313,7 @@ function get_sets()
     -- body = { name = 'Taeon Tabard', augments = { '"Fast Cast"+5', 'HP+44' } }, -- 9
     hands = { name = 'Leyline Gloves', augments = { 'Accuracy+10', 'Mag. Acc.+7', '"Fast Cast"+1' } },
     -- legs = { name = 'Herculean Trousers', augments = { 'Mag. Acc.+7', '"Fast Cast"+6' } }, -- 6
-    -- feet = { name = 'Carmine Greaves +1', augments = { 'HP+80', 'MP+80', 'Phys. dmg. taken -4' } }, -- 8
+    feet = { name = 'Carmine Greaves +1', augments = { 'HP+80', 'MP+80', 'Phys. dmg. taken -4' } }, -- 8
     neck = 'Voltsurge Torque', -- 4
     -- waist = 'Plat. Mog. Belt',
     left_ear = 'Loquac. Earring', -- 2
