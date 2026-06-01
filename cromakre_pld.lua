@@ -334,6 +334,8 @@ function get_sets()
     ammo = { name = 'Ginsen' },
   }
 
+  sets.Precast.BlueMagic = set_combine(sets.Precast.FastCast, {})
+
   -- Augments the base Fast Cast set when a cure spell is used
   sets.Precast.Cure = {
     -- left_ring = 'Rahab Ring',
@@ -372,28 +374,31 @@ function get_sets()
   } -- 96 +10 merits = 106
 
   -- Cure Set (special SIRD set)
-  sets.Midcast.Cure = {
-    ammo = 'Staunch Tathlum', -- 11 SIRD / 3 DT
-    head = { name = "Sakpata's Helm" }, -- 7 DT / 5 Cure
-    body = { name = "Sakpata's Plate" },
-    hands = { name = "Sakpata's Gauntlets" }, -- 8 DT
-    legs = {
-      name = 'Souv. Diechlings +1',
-      augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
-    },
-    feet = {
-      name = 'Eschite Greaves',
-      augments = { 'Mag. Evasion+15', 'Spell interruption rate down +15%', 'Enmity+7' },
-      hp = 18,
-    },
-    neck = 'Moonbeam Necklace', -- 15 SIRD
-    waist = { name = 'Creed Baudrier', hp = 40 },
-    left_ear = { name = 'Friomisi Earring', priority = 3 },
-    right_ear = 'Chev. Earring +1', -- 3 DT / 11 Cure
-    left_ring = { name = 'Apeile Ring', priority = 4 },
+  sets.Midcast.Cure = set_combine(sets.Midcast.SIRD, {
     right_ring = 'Defending Ring', -- 10 DT
-    back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' }, hp = 60 },
-  } -- 91 + 10 Merits = 101 SIRD / 49 DT / 56 Cure
+  })
+  -- sets.Midcast.Cure = {
+  --   ammo = 'Staunch Tathlum', -- 11 SIRD / 3 DT
+  --   head = { name = "Sakpata's Helm" }, -- 7 DT / 5 Cure
+  --   body = { name = "Sakpata's Plate" },
+  --   hands = { name = "Sakpata's Gauntlets" }, -- 8 DT
+  --   legs = {
+  --     name = 'Souv. Diechlings +1',
+  --     augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
+  --   },
+  --   feet = {
+  --     name = 'Eschite Greaves',
+  --     augments = { 'Mag. Evasion+15', 'Spell interruption rate down +15%', 'Enmity+7' },
+  --     hp = 18,
+  --   },
+  --   neck = 'Moonbeam Necklace', -- 15 SIRD
+  --   waist = { name = 'Creed Baudrier', hp = 40 },
+  --   left_ear = { name = 'Friomisi Earring', priority = 3 },
+  --   right_ear = 'Chev. Earring +1', -- 3 DT / 11 Cure
+  --   left_ring = { name = 'Apeile Ring', priority = 4 },
+  --   right_ring = 'Defending Ring', -- 10 DT
+  --   back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' }, hp = 60 },
+  -- } -- 91 + 10 Merits = 101 SIRD / 49 DT / 56 Cure
 
   -- Enhancing Skill
   sets.Midcast.Enhancing = {
@@ -419,6 +424,7 @@ function get_sets()
   }
 
   sets.Midcast.Divine = set_combine(sets.Idle, sets.Enmity, sets.Midcast.SIRD, {})
+  sets.Midcast.BlueMagic = set_combine(sets.Idle, sets.Enmity, sets.Midcast.SIRD, {})
 
   -- High MACC for landing spells
   sets.Midcast.Enfeebling = {}
