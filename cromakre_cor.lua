@@ -26,7 +26,7 @@ state.OffenseMode:set('TP')
 
 --Modes for specific to Corsair
 -- state.WeaponMode:options('Fomalhaut', 'Death Penalty', 'Savage Blade', 'Aeolian Edge', 'Evisceration')
-state.WeaponMode:options('Savage Blade', 'Aeolian Edge', 'Evisceration')
+state.WeaponMode:options('Savage Blade', 'Aeolian Edge', 'Evisceration', 'Anarchy')
 state.WeaponMode:set('Savage Blade')
 
 --Enable JobMode for UI.
@@ -75,11 +75,18 @@ function get_sets()
   }
 
   sets.Weapons['Aeolian Edge'] = {
-    range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
-    ammo = Ammo.Bullet.MAG_WS,
     main = 'Kaja Knife',
     sub = { name = "Gleti's Knife" },
+    range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
+    ammo = Ammo.Bullet.MAG_WS,
     -- range = { name = 'Anarchy +2', augments = { 'Delay:+60', 'TP Bonus +1000' } },
+  }
+
+  sets.Weapons['Anarchy'] = {
+    main = 'Twinned Blade',
+    sub = nil,
+    range = 'Anarchy',
+    ammo = 'Bronze Bullet',
   }
 
   sets.Weapons.Melee = {
