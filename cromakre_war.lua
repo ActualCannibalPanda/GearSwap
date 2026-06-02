@@ -149,7 +149,7 @@ function get_sets()
     body = "Sakpata's Plate",
     hands = "Sakpata's Gauntlets",
     legs = 'Pumm. Cuisses +3',
-    feet = 'Flam. Gambieras +2',
+    feet = 'Pumm. Calligae +2',
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',
     left_ear = 'Brutal Earring',
@@ -177,7 +177,7 @@ function get_sets()
     body = "Sakpata's Plate",
     hands = "Sakpata's Gauntlets",
     legs = 'Pumm. Cuisses +3',
-    feet = 'Flam. Gambieras +2',
+    feet = 'Pumm. Calligae +2',
     neck = 'Lissome Necklace',
     waist = 'Ioskeha Belt',
     left_ear = 'Eabani Earring',
@@ -213,6 +213,7 @@ function get_sets()
     ['Axe'] = {
       single = {
         main = { name = 'Purgation', augments = { 'Attack+4' } },
+        sub = 'Blurred Shield',
       },
       dual = {
         main = { name = 'Purgation', augments = { 'Attack+4' } },
@@ -222,6 +223,7 @@ function get_sets()
     ['Dagger'] = {
       single = {
         main = { name = 'Malevolence', augments = { 'INT+3', 'Mag. Acc.+5', '"Mag.Atk.Bns."+7' } },
+        sub = 'Blurred Shield',
       },
       dual = {
         main = { name = 'Malevolence', augments = { 'INT+3', 'Mag. Acc.+5', '"Mag.Atk.Bns."+7' } },
@@ -231,6 +233,7 @@ function get_sets()
     ['Sword'] = {
       single = {
         main = 'Naegling',
+        sub = 'Blurred Shield',
       },
       dual = {
         main = 'Naegling',
@@ -240,6 +243,7 @@ function get_sets()
     ['Club'] = {
       single = {
         main = 'Mafic Cudgel',
+        sub = 'Blurred Shield',
       },
       dual = {
         main = 'Mafic Cudgel',
