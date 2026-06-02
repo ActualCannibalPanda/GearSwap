@@ -190,7 +190,7 @@ function get_sets()
 
   sets.Movement = {
     ammo = 'Staunch Tathlum',
-    legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' }, hp = 50 },
+    -- legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' }, hp = 50 },
     right_ear = 'Chev. Earring +1',
   }
 
