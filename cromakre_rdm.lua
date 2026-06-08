@@ -113,11 +113,13 @@ function get_sets()
 
   -- Standard Idle set with -DT,Refresh,Regen and movement gear
   sets.Idle = {
-    ammo = 'Staunch Tathlum', -- 3/3
-    head = { name = 'Viti. Chapeau +3', augments = { 'Enfeebling Magic duration', 'Magic Accuracy' }, priority = 3 }, -- +3 Refresh
-    body = 'Lethargy Sayon +2', -- 14/14  +4 Refresh
-    hands = 'Leth. Ganth. +2', -- 11/11
-    neck = 'Loricate Torque', -- 6/6
+    ammo = 'Staunch Tathlum',
+    head = 'Viti. Chapeau +3',
+    body = 'Lethargy Sayon +2',
+    hands = 'Leth. Ganth. +2',
+    legs = 'Leth. Fuseau +2',
+    feet = 'Leth. Houseaux +2',
+    neck = 'Loricate Torque',
     waist = 'Sailfi Belt +1',
     left_ear = 'Alabaster Earring',
     right_ear = 'Brutal Earring',
@@ -492,13 +494,13 @@ function get_sets()
   -- Specific gear for spells
   sets.Midcast['Stoneskin'] = set_combine(sets.Midcast.Enhancing, {
     waist = 'Siegel Sash',
-    legs = 'Shedir Serawells',
+    legs = 'Shedir Seraweels',
     -- neck = 'Nodens Gorget',
     -- left_ear = 'Earthcry Earring',
   })
 
   sets.Midcast['Aquaveil'] = set_combine(sets.Midcast.Enhancing, {
-    legs = 'Shedir Serawells',
+    legs = 'Shedir Seraweels',
     -- hands = 'Regal Cuffs',
     -- head = 'Amalric Coif +1',
   })
