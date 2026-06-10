@@ -320,6 +320,10 @@ function get_sets()
   sets.midcast['Requiescat'] = sets.midcast.full_enmity
   sets.midcast['Chant du Cygne'] = sets.midcast.full_enmity
 
+  sets.midcast['Divine Emblem'] = set_combine(sets.midcast.full_enmity, {
+    feet = { name = 'Chev. Sabatons +2', hp = 42, mp = 34 },
+  })
+
   lockstyleset = 14
 
   macro_book = 7
@@ -335,8 +339,10 @@ function file_unload()
   destroy_bindings()
 end
 
-function precast()
-  equip(sets.precast.default)
+function precast(spell)
+  if string.match(spell.type, 'Magic$') then
+    equip(sets.precast.default)
+  end
   set_priorities('hp', 'mp')
 end
 
@@ -349,6 +355,8 @@ function midcast(spell)
     equip(sets.midcast[spell.name])
   elseif sets.midcast[spell.skill] then
     equip(sets.midcast[spell.skill])
+  elseif spell.type == 'JobAbility' then
+    equip(sets.midcast.full_enmity)
   end
 
   -- just add refresh gear here
