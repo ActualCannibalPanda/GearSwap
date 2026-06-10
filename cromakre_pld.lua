@@ -308,16 +308,6 @@ function get_sets()
   sets.midcast['Requiescat'] = sets.midcast.full_enmity
   sets.midcast['Chant du Cygne'] = sets.midcast.full_enmity
 
-  sets.obis = {}
-  sets.obis.Fire = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Earth = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Water = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Wind = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Ice = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Lightning = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Light = { waist = 'Hachirin-no-Obi' }
-  sets.obis.Dark = { waist = 'Hachirin-no-Obi' }
-
   lockstyleset = 14
 
   macro_book = 7
