@@ -128,8 +128,14 @@ function get_sets()
       hp = 239,
       mp = 14,
     },
+    legs = {
+      name = 'Souv. Diechlings +1',
+      augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
+      hp = 162,
+      mp = 41,
+    },
     head = { name = 'Chev. Armet +2', hp = 135, mp = 119 },
-    legs = { name = 'Chev. Cuisses +2', hp = 117, mp = 61 },
+    left_ear = { name = 'Alabaster Earring', hp = 100 },
     right_ring = { name = "K'ayres Ring", hp = 70 },
     feet = { name = "Sakpata's Leggings", hp = 68, mp = 35 },
     back = {
@@ -138,9 +144,8 @@ function get_sets()
       priority = 7,
       hp = 60,
     },
-    left_ear = { name = 'Cryptic Earring', hp = 40 },
+    waist = { name = 'Creed Baudrier', hp = 40 },
     left_ring = { name = 'Supershear Ring', hp = 30, mp = 30 },
-    waist = { name = 'Sailfi Belt +1' },
     right_ear = {
       name = 'Chev. Earring +1',
       augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+15', 'Mag. Acc.+15', 'Damage taken-5%' },
@@ -150,7 +155,7 @@ function get_sets()
   }
 
   sets.idle.speed = {
-    legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' }, hp = 50 },
+    legs = { name = 'Carmine Cuisses +1', augments = { 'HP+80', 'STR+12', 'INT+12' }, hp = 130 },
   }
 
   sets.tp = {}
@@ -162,8 +167,14 @@ function get_sets()
       hp = 239,
       mp = 14,
     },
+    legs = {
+      name = 'Souv. Diechlings +1',
+      augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
+      hp = 162,
+      mp = 41,
+    },
     head = { name = 'Chev. Armet +2', hp = 135, mp = 119 },
-    legs = { name = 'Chev. Cuisses +2', hp = 117, mp = 61 },
+    left_ear = { name = 'Alabaster Earring', hp = 100 },
     right_ring = { name = "K'ayres Ring", hp = 70 },
     feet = { name = "Sakpata's Leggings", hp = 68, mp = 35 },
     back = {
@@ -172,9 +183,8 @@ function get_sets()
       priority = 7,
       hp = 60,
     },
-    left_ear = { name = 'Cryptic Earring', hp = 40 },
+    waist = { name = 'Creed Baudrier', hp = 40 },
     left_ring = { name = 'Supershear Ring', hp = 30, mp = 30 },
-    waist = { name = 'Sailfi Belt +1' },
     right_ear = {
       name = 'Chev. Earring +1',
       augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+15', 'Mag. Acc.+15', 'Damage taken-5%' },
@@ -197,7 +207,7 @@ function get_sets()
       augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%', hp = 162, mp = 41 },
     },
     head = { name = 'Chev. Armet +2', hp = 135, mp = 119 },
-    right_ear = { name = 'Alabaster Earring', hp = 100 },
+    left_ear = { name = 'Alabaster Earring', hp = 100 },
     back = {
       name = "Rudianos's Mantle",
       augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' },
@@ -205,15 +215,10 @@ function get_sets()
       hp = 60,
     },
     waist = { name = 'Creed Baudrier', hp = 40 },
-    feet = {
-      name = 'Odyssean Greaves',
-      augments = { 'Attack+12', 'Enmity+6', 'VIT+6', 'Accuracy+3' },
-      hp = 20,
-      mp = 14,
-    },
+    feet = { name = 'Carmine Greaves', augments = { 'HP+60', 'MP+60', 'Phys. dmg. taken -3' }, hp = 75, mp = 60 },
     left_ring = { name = 'Gelatinous Ring +1', hp = 20 },
     neck = { name = 'Voltsurge Torque', mp = 20 },
-    left_ear = { name = 'Loquac. Earring', mp = 30 },
+    right_ear = { name = 'Loquac. Earring', mp = 30 },
     right_ring = { name = 'Kishar Ring' },
     ammo = 'Staunch Tathlum',
   }
@@ -225,19 +230,19 @@ function get_sets()
       augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
       hp = 239,
       mp = 14,
-    },
+    }, -- 5
     head = {
       name = 'Souveran Schaller',
       augments = { 'HP+80', 'Enmity+7', 'Potency of "Cure" effect received +10%' },
       hp = 205,
       mp = 109,
-    },
+    }, -- 7
     legs = {
       name = 'Souv. Diechlings +1',
       augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
       hp = 162,
       mp = 41,
-    },
+    }, -- 9
     body = {
       name = 'Souveran Cuirass',
       augments = { 'HP+80', 'Enmity+7', 'Potency of "Cure" effect received +10%' },
@@ -245,6 +250,7 @@ function get_sets()
       hp = 146,
       mp = 59,
     },
+    left_ear = { name = 'Alabaster Earring', hp = 100 },
     back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' }, hp = 60 },
     right_ear = { name = 'Cryptic Earring', hp = 40 },
     waist = { name = 'Creed Baudrier', hp = 40 },
@@ -253,9 +259,8 @@ function get_sets()
       name = 'Eschite Greaves',
       augments = { 'Mag. Evasion+15', 'Spell interruption rate down +15%', 'Enmity+7' },
       hp = 18,
-    },
+    }, -- 15
     left_ring = { name = 'Apeile Ring', priority = 4 },
-    left_ear = { name = 'Friomisi Earring', priority = 3 },
     neck = { name = 'Moonbeam Necklace', priority = 2 },
     ammo = { name = 'Staunch Tathlum', priority = 1 },
   }
@@ -273,26 +278,33 @@ function get_sets()
       mp = 109,
     },
     body = { name = 'Chev. Cuirass +2', hp = 141, mp = 134 },
-    left_ring = { name = 'Apeile Ring' },
+    legs = { name = 'Carmine Cuisses +1', augments = { 'HP+80', 'STR+12', 'INT+12' }, hp = 130 },
+    left_ear = { name = 'Alabaster Earring', hp = 100 },
+    right_ring = { name = "K'ayres Ring", hp = 70 },
     back = { name = "Rudianos's Mantle", augments = { 'HP+60', 'Eva.+20 /Mag. Eva.+20', 'Enmity+10' }, hp = 60 },
-    legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' }, hp = 50 },
-    right_ear = { name = 'Cryptic Earring', hp = 40 },
-    right_ring = { name = 'Supershear Ring', hp = 30, mp = 30 },
-    feet = { name = 'Odyssean Greaves', augments = { 'Attack+12', 'Enmity+6', 'VIT+6', 'Accuracy+3' } },
-    neck = { name = 'Moonbeam Necklace' },
     waist = { name = 'Creed Baudrier', hp = 40 },
-    left_ear = { name = 'Knightly Earring' },
+    feet = {
+      name = 'Odyssean Greaves',
+      augments = { 'Attack+12', 'Enmity+6', 'VIT+6', 'Accuracy+3' },
+      hp = 20,
+      mp = 14,
+    },
+    left_ring = { name = 'Defending Ring' },
+    neck = { name = 'Moonbeam Necklace' },
+    right_ear = { name = 'Knightly Earring' },
     ammo = { name = 'Staunch Tathlum' },
   }
 
-  sets.midcast['Phalanx'] = {
+  sets.midcast['Phalanx'] = set_combine(sets.idle.dt, {
     hands = {
       name = 'Souv. Handsch. +1',
       augments = { 'HP+105', 'Enmity+9', 'Potency of "Cure" effect received +15%' },
+      hp = 239,
+      mp = 14,
     },
-    legs = "Sakpata's Cuisses",
-    feet = 'Souveran Schuhs',
-  }
+    legs = { name = "Sakpata's Cuisses", hp = 144, mp = 44 },
+    feet = { name = 'Souveran Schuhs', hp = 72, mp = 14 },
+  })
   -- ###############################################################
 
   -- ###############################################################
@@ -333,6 +345,10 @@ function midcast(spell)
     if spell.name == 'Phalanx' then
       equip(sets.midcast['Phalanx'])
     end
+  elseif sets.midcast[spell.name] then
+    equip(sets.midcast[spell.name])
+  elseif sets.midcast[spell.skill] then
+    equip(sets.midcast[spell.skill])
   end
 
   -- just add refresh gear here
