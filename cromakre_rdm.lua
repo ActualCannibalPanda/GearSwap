@@ -147,7 +147,7 @@ function get_sets()
 
   -- Gear to swap out for Movement
   sets.Movement = {
-    legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' } },
+    legs = { name = 'Carmine Cuisses +1', augments = { 'HP+80', 'STR+12', 'INT+12' }, hp = 130 },
   }
 
   -- Set to be used if you get
