@@ -368,23 +368,22 @@ function get_sets()
     hands = 'Atrophy Gloves +3', -- 20
     legs = 'Atrophy Tights +3',
     feet = 'Leth. Houseaux +2', -- 35
-    neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } }, --25
+    neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } }, --20
     waist = 'Embla Sash', --10
-    left_ear = "Hecate's Earring",
-    right_ear = { name = 'Lethargy Earring', augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+7', 'Mag. Acc.+7' } },
-    left_ring = 'Metamor. Ring +1',
+    left_ear = 'Alabaster Earring',
+    right_ear = { name = 'Lethargy Earring', augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+7', 'Mag. Acc.+7' } }, -- 7
+    left_ring = 'Defending Ring',
     right_ring = 'Kishar Ring',
     back = {
       name = "Sucellos's Cape",
       augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
     }, -- 20
-  } -- 150% Duration
+  } -- 117% Duration
 
   -- Enhancing Duration on OTHERS
   sets.Midcast.Enhancing.Others = set_combine(sets.Midcast.Enhancing, {
     head = 'Leth. Chappel +2',
     body = 'Lethargy Sayon +2',
-    hands = 'Leth. Ganth. +2',
     legs = 'Leth. Fuseau +2',
     feet = 'Leth. Houseaux +2', -- 35
   })
@@ -399,6 +398,7 @@ function get_sets()
     feet = 'Leth. Houseaux +2',
     -- neck = "Incanter's Torque",
     waist = 'Olympus Sash',
+    back = 'Altruistic Cape',
     -- left_ear = 'Andoaa Earring',
     -- right_ear = 'Mimir Earring',
   })
@@ -444,19 +444,17 @@ function get_sets()
 
   -- Skill Based ('Dispel','Aspir','Aspir II','Aspir III','Drain','Drain II','Drain III','Frazzle','Frazzle II','Stun','Poison','Poison II','Poisonga')
   sets.Midcast.Enfeebling.MACC = set_combine(sets.Midcast.Enfeebling, {
-    main = 'Marin Staff +1',
-    sub = 'Mephitis Grip',
-    ammo = 'Kalboron Stone',
-    head = 'Atrophy Chapeau +3',
+    ammo = 'Staunch Tathlum',
+    head = 'Viti. Chapeau +3',
     body = 'Atrophy Tabard +3',
     hands = 'Leth. Ganth. +2',
-    legs = 'Leth. Fuseau +2',
-    feet = 'Jhakri Pigaches +2',
+    legs = 'Atrophy Tights +3',
+    feet = 'Atro. Boots +3',
     neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
     waist = 'Rumination Sash',
-    left_ear = 'Snotra Earring',
-    right_ear = { name = 'Lethargy Earring', augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+7', 'Mag. Acc.+7' } },
-    left_ring = 'Jhakri Ring',
+    left_ear = 'Alabaster Earring',
+    right_ear = 'Snotra Earring',
+    left_ring = 'Kishar Ring',
     right_ring = 'Metamor. Ring +1',
     back = {
       name = "Sucellos's Cape",
@@ -466,29 +464,42 @@ function get_sets()
 
   -- Potency Basted ('Paralyze','Paralyze II','Slow','Slow II','Addle','Addle II','Distract','Distract II','Distract III','Frazzle III','Blind','Blind II')
   sets.Midcast.Enfeebling.Potency = set_combine(sets.Midcast.Enfeebling, {
-    -- ammo = 'Regal Gem', -- 10%
-    body = 'Lethargy Sayon +2', -- 14%
+    ammo = 'Staunch Tathlum',
+    head = 'Viti. Chapeau +3',
+    body = 'Lethargy Sayon +2',
+    hands = 'Leth. Ganth. +2',
+    legs = 'Atrophy Tights +3',
+    feet = 'Atro. Boots +3',
+    neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
+    waist = 'Rumination Sash',
+    left_ear = 'Alabaster Earring',
+    right_ear = 'Snotra Earring',
+    left_ring = 'Kishar Ring',
+    right_ring = 'Metamor. Ring +1',
     back = {
       name = "Sucellos's Cape",
       augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
     },
-    -- feet = { name = 'Vitiation Boots +3', augments = { 'Immunobreak Chance' } }, -- 10%
-    neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } }, -- 10%
   })
 
   -- Duration Based ('Sleep','Sleep II','Sleepga','Sleepga II','Diaga','Dia','Dia II','Dia III','Bio','Bio II','Bio III','Silence','Gravity','Gravity II','Inundation','Break','Breakaga', 'Bind', 'Bind II')
   sets.Midcast.Enfeebling.Duration = set_combine(sets.Midcast.Enfeebling, {
+    ammo = 'Staunch Tathlum',
     head = 'Leth. Chappel +2',
     body = 'Lethargy Sayon +2',
     hands = 'Leth. Ganth. +2',
     legs = 'Leth. Fuseau +2',
-    feet = 'Leth. Houseaux +2', -- 35
-    -- head = { name = 'Viti. Chapeau +3', augments = { 'Enfeebling Magic duration', 'Magic Accuracy' } }, -- 15s (3 seconds x 5 merits)
-    -- hands = 'Regal Cuffs', --20% swaps out with Saboteur active
-    right_ear = 'Snotra Earring', -- 10%
-    left_ring = 'Kishar Ring', -- 10%
-    -- waist = { name = 'Obstin. Sash', augments = { 'Path: A' } }, -- 5%
-    neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } }, -- 25%
+    feet = 'Leth. Houseaux +2',
+    neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
+    waist = 'Rumination Sash',
+    left_ear = 'Alabaster Earring',
+    right_ear = 'Snotra Earring',
+    left_ring = 'Kishar Ring',
+    right_ring = 'Metamor. Ring +1',
+    back = {
+      name = "Sucellos's Cape",
+      augments = { 'MND+20', 'Mag. Acc+20 /Mag. Dmg.+20', 'Mag. Acc.+10', '"Fast Cast"+10' },
+    },
   })
 
   -- Specific gear for spells
@@ -502,7 +513,7 @@ function get_sets()
   sets.Midcast['Aquaveil'] = set_combine(sets.Midcast.Enhancing, {
     legs = 'Shedir Seraweels',
     -- hands = 'Regal Cuffs',
-    -- head = 'Amalric Coif +1',
+    -- head = 'Amalric Coif',
   })
 
   -- Spells that require SKILL - RDM only needs +500 skill except Temper II
@@ -515,7 +526,7 @@ function get_sets()
     -- left_ear = 'Mimir Earring',
     -- right_ear = 'Andoaa Earring',
     waist = 'Olympus Sash',
-    -- back = 'Perimede Cape',
+    back = 'Altruistic Cape',
   }) -- Max Enhancing 672
 
   sets.Midcast['Diaga'] = set_combine(sets.Midcast.Enfeebling, sets.TreasureHunter)
@@ -571,7 +582,13 @@ function get_sets()
   sets.JA['Spontaneity'] = {}
   sets.JA['Stymie'] = {}
   sets.JA['Convert'] = {}
-  sets.JA['Composure'] = {}
+  sets.JA['Composure'] = {
+    head = 'Leth. Chappel +2',
+    body = 'Lethargy Sayon +2',
+    hands = 'Leth. Ganth. +2',
+    legs = 'Leth. Fuseau +2',
+    feet = 'Leth. Houseaux +2',
+  }
 
   -- Dancer JA Section
   sets.Flourish = set_combine(sets.Idle.DT, {})
@@ -597,16 +614,16 @@ function get_sets()
   -- ===================================================================================================================
 
   sets.WS = {
-    ammo = { name = 'Coiste Bodhar' },
+    ammo = 'Coiste Bodhar',
     head = 'Viti. Chapeau +3',
-    body = { name = 'Nyame Mail', augments = { 'Path: B' } },
-    hands = { name = 'Nyame Gauntlets', augments = { 'Path: B' } },
-    legs = { name = 'Nyame Flanchard', augments = { 'Path: B' } },
+    body = 'Nyame Mail',
+    hands = 'Atrophy Gloves +3',
+    legs = 'Nyame Flanchard',
     feet = 'Leth. Houseaux +2',
     neck = { name = 'Dls. Torque +1', augments = { 'Path: A' } },
-    waist = { name = 'Sailfi Belt +1' },
+    waist = 'Sailfi Belt +1',
     left_ear = 'Moonshade Earring',
-    right_ear = { name = 'Lethargy Earring', augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+7', 'Mag. Acc.+7' } },
+    right_ear = 'Alabaster Earring',
     left_ring = 'Ayanmo Ring',
     right_ring = 'Karieyh Ring',
     back = {
