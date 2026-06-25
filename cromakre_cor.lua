@@ -18,7 +18,7 @@ AutoItem = false
 Random_Lockstyle = false
 
 --Lockstyle sets to randomly equip
-Lockstyle_List = { 1, 2, 6, 12 }
+Lockstyle_List = {}
 
 -- Add CRIT the base modes to allow AM3 Critical Builds
 state.OffenseMode:options('TP', 'ACC', 'DT', 'PDL', 'CRIT', 'MEVA', 'SB')
@@ -26,8 +26,8 @@ state.OffenseMode:set('TP')
 
 --Modes for specific to Corsair
 -- state.WeaponMode:options('Fomalhaut', 'Death Penalty', 'Savage Blade', 'Aeolian Edge', 'Evisceration')
-state.WeaponMode:options('Savage Blade', 'Aeolian Edge', 'Evisceration', 'Anarchy')
-state.WeaponMode:set('Savage Blade')
+state.WeaponMode:options('Leaden', 'Savage Blade', 'Aeolian Edge', 'Evisceration', 'Anarchy')
+state.WeaponMode:set('Leaden')
 
 --Enable JobMode for UI.
 UI_Name = 'TP Mode'
@@ -68,15 +68,16 @@ function get_sets()
     -- range = { name = 'Fomalhaut', augments = { 'Path: A' } },
   }
 
-  sets.Weapons['Death Penalty'] = {
-    -- main = { name = 'Rostam', augments = { 'Path: A' }, bag = 'Wardrobe 4' },
-    -- sub = 'Kaja Knife',
+  sets.Weapons['Leaden'] = {
+    main = 'Naegling',
+    sub = 'Kaja Knife',
+    range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
     -- range = { name = 'Death Penalty', augments = { 'Path: A' } },
   }
 
   sets.Weapons['Aeolian Edge'] = {
     main = 'Kaja Knife',
-    sub = { name = "Gleti's Knife" },
+    sub = { name = "Gleti's Knife", priority = 1, },
     range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
     ammo = Ammo.Bullet.MAG_WS,
     -- range = { name = 'Anarchy +2', augments = { 'Delay:+60', 'TP Bonus +1000' } },
@@ -122,30 +123,31 @@ function get_sets()
   -- Ammo.Bullet.MAG_WS = 'Living Bullet' -- Magic Weapon Skills
   Ammo = {}
   Ammo.Bullet = {}
-  Ammo.Bullet.RA = 'Eminent Bullet' -- TP Ammo
-  Ammo.Bullet.WS = 'Eminent Bullet' -- Physical Weaponskills
-  Ammo.Bullet.CRIT = 'Eminent Bullet' -- Critical Hit Mode
-  Ammo.Bullet.PDL = 'Eminent Bullet' -- Physical Damage Mode
-  Ammo.Bullet.SB = 'Eminent Bullet' -- Subtle Blow Mode
-  Ammo.Bullet.MAB = 'Eminent Bullet' -- Magical Weaponskills
-  Ammo.Bullet.MACC = 'Eminent Bullet' -- Magic Accuracy
-  Ammo.Bullet.QD = 'Eminent Bullet' -- Quick Draw
+  Ammo.Bullet.RA = 'Eminent Bullet'     -- TP Ammo
+  Ammo.Bullet.WS = 'Eminent Bullet'     -- Physical Weaponskills
+  Ammo.Bullet.CRIT = 'Eminent Bullet'   -- Critical Hit Mode
+  Ammo.Bullet.PDL = 'Eminent Bullet'    -- Physical Damage Mode
+  Ammo.Bullet.SB = 'Eminent Bullet'     -- Subtle Blow Mode
+  Ammo.Bullet.MAB = 'Orichalc. Bullet'
+  Ammo.Bullet.MACC = 'Eminent Bullet'   -- Magic Accuracy
+  Ammo.Bullet.QD = 'Orichalc. Bullet'   -- Quick Draw
   Ammo.Bullet.MAG_WS = 'Eminent Bullet' -- Magic Weapon Skills
 
   -- Standard Idle set with -DT,Refresh,Regen with NO movement gear
   sets.Idle = {
     ammo = Ammo.Bullet.RA,
-    head = 'Meghanada Visor',
-    body = 'Meghanada Cuirie',
-    hands = 'Meg. Gloves +2',
-    legs = 'Meg. Chausses',
-    feet = 'Meg. Jam. +1',
-    neck = 'Loricate Torque',
-    waist = 'Sailfi Belt +1',
-    left_ear = 'Brutal Earring',
-    right_ear = 'Alabaster Earring',
-    left_ring = 'Gelatinous Ring +1',
-    right_ring = 'Defending Ring',
+    head = { name = "Nyame Helm", augments = { 'Path: B', } },
+    body = { name = "Nyame Mail", augments = { "Path: B" } },
+    hands = { name = "Nyame Gauntlets", augments = { 'Path: B', } },
+    legs = { name = "Nyame Flanchard", augments = { 'Path: B', } },
+    feet = { name = "Nyame Sollerets", augments = { 'Path: B', } },
+    neck = "Loricate Torque",
+    waist = "Sailfi Belt +1",
+    left_ear = "Brutal Earring",
+    right_ear = "Alabaster Earring",
+    left_ring = "Gelatinous Ring +1",
+    right_ring = "Defending Ring",
+    -- back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     back = {
       name = "Camulus's Mantle",
       augments = { 'DEX+20', 'Accuracy+20 Attack+20', '"Dual Wield"+10', 'Phys. dmg. taken-10%' },
@@ -161,7 +163,7 @@ function get_sets()
   sets.Idle.Resting = set_combine(sets.Idle, {})
 
   sets.Movement = {
-    legs = { name = 'Carmine Cuisses +1', augments = { 'Accuracy+20', 'Attack+12', '"Dual Wield"+6' } },
+    legs = { name = 'Carmine Cuisses +1', augments = { 'HP+80', 'STR+12', 'INT+12' } },
     right_ring = 'Defending Ring',
   }
 
@@ -186,14 +188,14 @@ function get_sets()
 
   sets.OffenseMode = {
     ammo = Ammo.Bullet.RA,
-    head = 'Meghanada Visor',
-    body = { name = 'Adhemar Jacket', augments = { 'DEX+10', 'AGI+10', 'Accuracy+15' } },
-    hands = 'Meg. Gloves +2',
+    head = { name = "Adhemar Bonnet", augments = { 'STR+10', 'DEX+10', 'Attack+15', } },
+    body = { name = "Adhemar Jacket", augments = { 'DEX+10', 'AGI+10', 'Accuracy+15', } },
+    hands = { name = "Adhemar Wristbands", augments = { 'DEX+10', 'AGI+10', 'Accuracy+15', } },
     legs = 'Meg. Chausses',
-    feet = { name = 'Herculean Boots', augments = { 'Accuracy+1 Attack+1', '"Triple Atk."+1', 'DEX+9', 'Attack+9' } },
+    feet = { name = "Herculean Boots", augments = { '"Triple Atk."+3', 'VIT+5', 'Accuracy+9', } },
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',
-    left_ear = 'Brutal Earring',
+    left_ear = 'Eabani Earring',
     right_ear = {
       name = 'Chas. Earring +1',
       augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+12', 'Mag. Acc.+12', 'Crit.hit rate+4' },
@@ -282,12 +284,11 @@ function get_sets()
   --No flurry - 60 Snapshot needed
   sets.Precast.RA = {
     ammo = Ammo.Bullet.RA,
-    feet = 'Meg. Jam. +1',
     head = 'Chass. Tricorne +2', -- 0/14
     -- body = 'Oshosi Vest +1', -- 14/0
     -- hands = { name = 'Carmine Fin. Ga. +1', augments = { 'Rng.Atk.+20', '"Mag.Atk.Bns."+12', '"Store TP"+6' } }, -- 8/11
     -- legs = { name = 'Adhemar Kecks +1', augments = { 'AGI+12', '"Rapid Shot"+13', 'Enmity-6' } }, -- 10/13
-    -- feet = 'Meg. Jam. +2', -- 10/0
+    feet = 'Meg. Jam. +1', -- 10/0
     -- left_ear = { name = 'Tuisto Earring', priority = 2 },
     -- right_ear = { name = 'Etiolation Earring', priority = 1 },
     -- left_ring = 'Dingir Ring',
@@ -299,8 +300,8 @@ function get_sets()
 
   -- Flurry - 45 Snapshot Needed
   sets.Precast.RA.Flurry = set_combine(sets.Precast.RA, {
-    -- body = 'Laksa. Frac +4', -- 0/20
-  }) -- Totals 45/63
+    body = 'Laksa. Frac', -- 0/20
+  })                      -- Totals 45/63
 
   -- Flurry II - 30 Snapshot Needed
   sets.Precast.RA.Flurry_II = set_combine(sets.Precast.RA.Flurry, {
@@ -314,14 +315,14 @@ function get_sets()
     hands = { name = 'Leyline Gloves', augments = { 'Accuracy+10', 'Mag. Acc.+7', '"Fast Cast"+1' } },
     -- legs = { name = 'Herculean Trousers', augments = { 'Mag. Acc.+7', '"Fast Cast"+6' } }, -- 6
     feet = { name = 'Carmine Greaves', augments = { 'HP+60', 'MP+60', 'Phys. dmg. taken -3' } },
-    neck = 'Voltsurge Torque', -- 4
+    neck = 'Voltsurge Torque',    -- 4
     -- waist = 'Plat. Mog. Belt',
     left_ear = 'Loquac. Earring', -- 2
     -- right_ear = 'Etiolation Earring', -- 1
     -- left_ring = 'Lebeche Ring',
     right_ring = 'Kishar Ring', -- 4
     -- back = { name = "Camulus's Mantle", augments = { 'HP+60', 'HP+20', '"Fast Cast"+10' } }, -- 10
-  } -- 65 FC
+  }                             -- 65 FC
 
   --Base set for midcast - if not defined will notify and use your idle set for surviability
   sets.Midcast = set_combine(sets.Idle, {})
@@ -425,7 +426,7 @@ function get_sets()
   sets.QuickDraw.DMG = {
     ammo = Ammo.Bullet.QD,
     head = { name = 'Nyame Helm', augments = { 'Path: B' } },
-    -- body = { name = 'Lanun Frac +3', augments = { 'Enhances "Loaded Deck" effect' } },
+    body = { name = 'Lanun Frac +2', augments = { 'Enhances "Loaded Deck" effect' } },
     hands = 'Nyame Gauntlets',
     legs = 'Nyame Flanchard',
     feet = "Chasseur's Bottes",
@@ -477,23 +478,23 @@ function get_sets()
   sets.QuickDraw['Water Shot'] = set_combine(sets.QuickDraw.DMG, {})
   sets.QuickDraw['Light Shot'] = set_combine(sets.QuickDraw.DMG, {})
   sets.QuickDraw['Dark Shot'] = set_combine(sets.QuickDraw.DMG, {
-    -- right_ring = 'Archon Ring',
+    right_ring = 'Archon Ring',
     -- head = 'Pixie Hairpin +1',
   })
 
   -- Job Abilities
   sets.JA = {}
   sets.JA['Wild Card'] = {
-    -- feet = { name = 'Lanun Bottes +4', augments = { 'Enhances "Wild Card" effect' } },
+    feet = { name = 'Lanun Bottes +2', augments = { 'Enhances "Wild Card" effect' } },
   }
   sets.JA['Phantom Roll'] = {}
   sets.JA['Random Deal'] = {
-    -- body = { name = 'Lanun Frac +3', augments = { 'Enhances "Loaded Deck" effect' } },
+    body = { name = 'Lanun Frac +2', augments = { 'Enhances "Loaded Deck" effect' } },
   }
   sets.JA['Snake Eye'] = {
     -- legs = { name = 'Lanun Trews +3', augments = { 'Enhances "Snake Eye" effect' } },
   }
-  sets.JA['Fold'] = {} -- Use gloves for bust
+  sets.JA['Fold'] = {}        -- Use gloves for bust
   sets.JA['Triple Shot'] = {} -- Gear to be worn during Midshot
   sets.JA['Cutting Cards'] = {}
   sets.JA['Crooked Cards'] = {}
@@ -514,10 +515,10 @@ function get_sets()
   sets.PhantomRoll = {
     -- main = { name = 'Rostam', augments = { 'Path: C' }, bag = 'Wardrobe 2', priority = 1 }, -- +8 Effect and 60 sec Duration
     -- sub = { name = 'Nusku Shield', priority = 2 },
-    range = 'Compensator', -- 20 sec Duration
+    range = 'Compensator',         -- 20 sec Duration
     -- head = { name = 'Lanun Tricorne +4', augments = { 'Enhances "Winning Streak" effect' } }, -- 50% Job ability Bonus
     hands = "Chasseur's Gants +2", --60 sec Duration
-    neck = 'Regal Necklace', -- 20 sec Duration
+    neck = 'Regal Necklace',       -- 20 sec Duration
     -- right_ring = "Luzaf's Ring", -- 16 yalm range
     back = {
       name = "Camulus's Mantle",
@@ -590,9 +591,10 @@ function get_sets()
   sets.WS.SB = sets.Subtle_Blow
 
   sets.WS.MAB = set_combine(sets.WS, {
-    -- ammo = Ammo.Bullet.MAB,
-    -- feet = { name = 'Lanun Bottes +4', augments = { 'Enhances "Wild Card" effect' } },
+    ammo = Ammo.Bullet.MAB,
+    feet = { name = 'Lanun Bottes +2', augments = { 'Enhances "Wild Card" effect' } },
     -- waist = 'Eschan Stone',
+    neck = 'Sanctity Necklace',
     left_ear = 'Friomisi Earring',
     -- right_ear = 'Crematio Earring',
     -- back = {
@@ -671,7 +673,7 @@ function get_sets()
   sets.WS['Hot Shot'] = set_combine(sets.WS, sets.WS.RA, {})
   sets.WS['Split Shot'] = set_combine(sets.WS, sets.WS.RA, {})
   sets.WS['Sniper Shot'] = set_combine(sets.WS, sets.WS.RA, { -- MAX ACC for skillchaining
-    -- head = 'Chass. Tricorne +3',
+    head = 'Chass. Tricorne +2',
     -- body = "Chasseur's Frac +3",
     hands = "Chasseur's Gants +2",
     -- legs = 'Chas. Culottes +3',
@@ -696,7 +698,8 @@ function get_sets()
 
   sets.WS['Leaden Salute'] = set_combine(sets.WS.MAB, {
     -- head = 'Pixie Hairpin +1',
-    -- right_ring = 'Archon Ring',
+    body = "Lanun Frac +2",
+    right_ring = 'Archon Ring',
     right_ear = { name = 'Moonshade Earring', augments = { 'Attack+4', 'TP Bonus +250' } },
     -- waist = 'Svelt. Gouriz +1', -- Changes based off elemental function
   })
@@ -727,6 +730,7 @@ function precast_custom(spell)
   equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
+
 -- Augment basic equipment sets
 function midcast_custom(spell)
   local equipSet = {}
@@ -736,21 +740,25 @@ function midcast_custom(spell)
   equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
+
 -- Augment basic equipment sets
 function aftercast_custom(spell)
   local equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
+
 --Function is called when the player gains or loses a buff
 function buff_change_custom(name, gain)
   local equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
+
 --This function is called when a update request the correct equipment set
 function choose_set_custom()
   local equipSet = Job_Mode_Check(equipSet)
   return equipSet
 end
+
 --Function is called when the player changes states
 function status_change_custom(new, old)
   local equipSet = Job_Mode_Check(equipSet)
