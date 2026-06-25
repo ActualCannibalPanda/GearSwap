@@ -77,7 +77,7 @@ function get_sets()
 
   sets.Weapons['Aeolian Edge'] = {
     main = 'Kaja Knife',
-    sub = { name = "Gleti's Knife", priority = 1, },
+    sub = { name = "Gleti's Knife", priority = 1 },
     range = { name = 'Holliday', augments = { 'INT+5', 'Pet: INT+7', 'Weapon skill damage +9%' } },
     ammo = Ammo.Bullet.MAG_WS,
     -- range = { name = 'Anarchy +2', augments = { 'Delay:+60', 'TP Bonus +1000' } },
@@ -123,30 +123,30 @@ function get_sets()
   -- Ammo.Bullet.MAG_WS = 'Living Bullet' -- Magic Weapon Skills
   Ammo = {}
   Ammo.Bullet = {}
-  Ammo.Bullet.RA = 'Eminent Bullet'     -- TP Ammo
-  Ammo.Bullet.WS = 'Eminent Bullet'     -- Physical Weaponskills
-  Ammo.Bullet.CRIT = 'Eminent Bullet'   -- Critical Hit Mode
-  Ammo.Bullet.PDL = 'Eminent Bullet'    -- Physical Damage Mode
-  Ammo.Bullet.SB = 'Eminent Bullet'     -- Subtle Blow Mode
+  Ammo.Bullet.RA = 'Eminent Bullet' -- TP Ammo
+  Ammo.Bullet.WS = 'Eminent Bullet' -- Physical Weaponskills
+  Ammo.Bullet.CRIT = 'Eminent Bullet' -- Critical Hit Mode
+  Ammo.Bullet.PDL = 'Eminent Bullet' -- Physical Damage Mode
+  Ammo.Bullet.SB = 'Eminent Bullet' -- Subtle Blow Mode
   Ammo.Bullet.MAB = 'Orichalc. Bullet'
-  Ammo.Bullet.MACC = 'Eminent Bullet'   -- Magic Accuracy
-  Ammo.Bullet.QD = 'Orichalc. Bullet'   -- Quick Draw
+  Ammo.Bullet.MACC = 'Eminent Bullet' -- Magic Accuracy
+  Ammo.Bullet.QD = 'Orichalc. Bullet' -- Quick Draw
   Ammo.Bullet.MAG_WS = 'Eminent Bullet' -- Magic Weapon Skills
 
   -- Standard Idle set with -DT,Refresh,Regen with NO movement gear
   sets.Idle = {
     ammo = Ammo.Bullet.RA,
-    head = { name = "Nyame Helm", augments = { 'Path: B', } },
-    body = { name = "Nyame Mail", augments = { "Path: B" } },
-    hands = { name = "Nyame Gauntlets", augments = { 'Path: B', } },
-    legs = { name = "Nyame Flanchard", augments = { 'Path: B', } },
-    feet = { name = "Nyame Sollerets", augments = { 'Path: B', } },
-    neck = "Loricate Torque",
-    waist = "Sailfi Belt +1",
-    left_ear = "Brutal Earring",
-    right_ear = "Alabaster Earring",
-    left_ring = "Gelatinous Ring +1",
-    right_ring = "Defending Ring",
+    head = { name = 'Nyame Helm', augments = { 'Path: B' } },
+    body = { name = 'Nyame Mail', augments = { 'Path: B' } },
+    hands = { name = 'Nyame Gauntlets', augments = { 'Path: B' } },
+    legs = { name = 'Nyame Flanchard', augments = { 'Path: B' } },
+    feet = { name = 'Nyame Sollerets', augments = { 'Path: B' } },
+    neck = 'Loricate Torque',
+    waist = 'Sailfi Belt +1',
+    left_ear = 'Brutal Earring',
+    right_ear = 'Alabaster Earring',
+    left_ring = 'Gelatinous Ring +1',
+    right_ring = 'Defending Ring',
     -- back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     back = {
       name = "Camulus's Mantle",
@@ -188,11 +188,11 @@ function get_sets()
 
   sets.OffenseMode = {
     ammo = Ammo.Bullet.RA,
-    head = { name = "Adhemar Bonnet", augments = { 'STR+10', 'DEX+10', 'Attack+15', } },
-    body = { name = "Adhemar Jacket", augments = { 'DEX+10', 'AGI+10', 'Accuracy+15', } },
-    hands = { name = "Adhemar Wristbands", augments = { 'DEX+10', 'AGI+10', 'Accuracy+15', } },
-    legs = 'Meg. Chausses',
-    feet = { name = "Herculean Boots", augments = { '"Triple Atk."+3', 'VIT+5', 'Accuracy+9', } },
+    head = { name = 'Adhemar Bonnet', augments = { 'STR+10', 'DEX+10', 'Attack+15' } },
+    body = { name = 'Adhemar Jacket', augments = { 'DEX+10', 'AGI+10', 'Accuracy+15' } },
+    hands = { name = 'Adhemar Wristbands', augments = { 'DEX+10', 'AGI+10', 'Accuracy+15' } },
+    legs = 'Chas. Culottes +2',
+    feet = { name = 'Herculean Boots', augments = { '"Triple Atk."+3', 'VIT+5', 'Accuracy+9' } },
     neck = 'Lissome Necklace',
     waist = 'Sailfi Belt +1',
     left_ear = 'Eabani Earring',
@@ -213,7 +213,10 @@ function get_sets()
 
   --This set is used when OffenseMode is DT and Enaged
   sets.OffenseMode.DT = set_combine(sets.OffenseMode, {
-    -- legs = 'Chas. Culottes +3',
+    head = { name = 'Nyame Helm', augments = { 'Path: B' } },
+    body = { name = 'Nyame Mail', augments = { 'Path: B' } },
+    feet = { name = 'Nyame Sollerets', augments = { 'Path: B' } },
+    left_ring = 'Defending Ring',
     -- right_ear = { name = 'Odnowa Earring +1', augments = { 'Path: A' }, priority = 2 },
   })
 
@@ -301,7 +304,7 @@ function get_sets()
   -- Flurry - 45 Snapshot Needed
   sets.Precast.RA.Flurry = set_combine(sets.Precast.RA, {
     body = 'Laksa. Frac', -- 0/20
-  })                      -- Totals 45/63
+  }) -- Totals 45/63
 
   -- Flurry II - 30 Snapshot Needed
   sets.Precast.RA.Flurry_II = set_combine(sets.Precast.RA.Flurry, {
@@ -315,14 +318,14 @@ function get_sets()
     hands = { name = 'Leyline Gloves', augments = { 'Accuracy+10', 'Mag. Acc.+7', '"Fast Cast"+1' } },
     -- legs = { name = 'Herculean Trousers', augments = { 'Mag. Acc.+7', '"Fast Cast"+6' } }, -- 6
     feet = { name = 'Carmine Greaves', augments = { 'HP+60', 'MP+60', 'Phys. dmg. taken -3' } },
-    neck = 'Voltsurge Torque',    -- 4
+    neck = 'Voltsurge Torque', -- 4
     -- waist = 'Plat. Mog. Belt',
     left_ear = 'Loquac. Earring', -- 2
     -- right_ear = 'Etiolation Earring', -- 1
     -- left_ring = 'Lebeche Ring',
     right_ring = 'Kishar Ring', -- 4
     -- back = { name = "Camulus's Mantle", augments = { 'HP+60', 'HP+20', '"Fast Cast"+10' } }, -- 10
-  }                             -- 65 FC
+  } -- 65 FC
 
   --Base set for midcast - if not defined will notify and use your idle set for surviability
   sets.Midcast = set_combine(sets.Idle, {})
@@ -494,7 +497,7 @@ function get_sets()
   sets.JA['Snake Eye'] = {
     -- legs = { name = 'Lanun Trews +3', augments = { 'Enhances "Snake Eye" effect' } },
   }
-  sets.JA['Fold'] = {}        -- Use gloves for bust
+  sets.JA['Fold'] = {} -- Use gloves for bust
   sets.JA['Triple Shot'] = {} -- Gear to be worn during Midshot
   sets.JA['Cutting Cards'] = {}
   sets.JA['Crooked Cards'] = {}
@@ -515,10 +518,10 @@ function get_sets()
   sets.PhantomRoll = {
     -- main = { name = 'Rostam', augments = { 'Path: C' }, bag = 'Wardrobe 2', priority = 1 }, -- +8 Effect and 60 sec Duration
     -- sub = { name = 'Nusku Shield', priority = 2 },
-    range = 'Compensator',         -- 20 sec Duration
+    range = 'Compensator', -- 20 sec Duration
     -- head = { name = 'Lanun Tricorne +4', augments = { 'Enhances "Winning Streak" effect' } }, -- 50% Job ability Bonus
     hands = "Chasseur's Gants +2", --60 sec Duration
-    neck = 'Regal Necklace',       -- 20 sec Duration
+    neck = 'Regal Necklace', -- 20 sec Duration
     -- right_ring = "Luzaf's Ring", -- 16 yalm range
     back = {
       name = "Camulus's Mantle",
@@ -547,7 +550,7 @@ function get_sets()
   sets.PhantomRoll["Dancer's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Scholar's Roll"] = sets.PhantomRoll
   sets.PhantomRoll["Bolter's Roll"] = sets.PhantomRoll
-  sets.PhantomRoll["Caster's Roll"] = set_combine(sets.PhantomRoll, { legs = 'Nvrch. Culottes +1' })
+  sets.PhantomRoll["Caster's Roll"] = set_combine(sets.PhantomRoll, { legs = 'Chas. Culottes +2' })
   sets.PhantomRoll["Tactician's Roll"] = set_combine(sets.PhantomRoll, { body = "Navarch's Frac +1" })
   sets.PhantomRoll["Allies' Roll"] = set_combine(sets.PhantomRoll, { hands = "Chasseur's Gants +2" })
   sets.PhantomRoll["Miser's Roll"] = sets.PhantomRoll
@@ -570,7 +573,7 @@ function get_sets()
     left_ear = { name = 'Moonshade Earring', augments = { 'Attack+4', 'TP Bonus +250' } },
     -- right_ear = 'Ishvara Earring',
     -- left_ring = 'Regal Ring',
-    -- right_ring = "Epaminondas's Ring",
+    left_ring = 'Karieyh Ring',
     back = {
       name = "Camulus's Mantle",
       augments = { 'Rng.Acc.+20 Rng.Atk.+20', 'Weapon skill damage +10%' },
@@ -676,7 +679,7 @@ function get_sets()
     head = 'Chass. Tricorne +2',
     -- body = "Chasseur's Frac +3",
     hands = "Chasseur's Gants +2",
-    -- legs = 'Chas. Culottes +3',
+    legs = 'Chas. Culottes +2',
     -- feet = { name = "Ikenga's Clogs", augments = { 'Path: A' } },
     -- neck = 'Iskur Gorget',
     -- waist = { name = 'Tellen Belt', augments = { 'Path: A' } },
@@ -698,7 +701,7 @@ function get_sets()
 
   sets.WS['Leaden Salute'] = set_combine(sets.WS.MAB, {
     -- head = 'Pixie Hairpin +1',
-    body = "Lanun Frac +2",
+    body = 'Lanun Frac +2',
     right_ring = 'Archon Ring',
     right_ear = { name = 'Moonshade Earring', augments = { 'Attack+4', 'TP Bonus +250' } },
     -- waist = 'Svelt. Gouriz +1', -- Changes based off elemental function
