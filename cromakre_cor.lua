@@ -250,7 +250,7 @@ function get_sets()
   -- Subtle Blow Set
   sets.OffenseMode.SB = set_combine(sets.OffenseMode, {
     -- body = 'Adamantite Armor',
-    -- legs = 'Chas. Culottes +3',
+    legs = 'Chas. Culottes +2',
     -- neck = 'Null Loop',
     -- right_ear = { name = 'Odnowa Earring +1', augments = { 'Path: A' } },
     -- left_ring = { name = 'Chirich Ring +1', bag = 'wardrobe1', priority = 2 },
@@ -262,7 +262,7 @@ function get_sets()
     -- head = 'Malignance Chapeau',
     -- body = 'Malignance Tabard',
     -- hands = 'Malignance Gloves',
-    -- legs = 'Chas. Culottes +3',
+    legs = 'Chas. Culottes +2',
     -- feet = 'Malignance Boots',
     -- neck = "Warder's Charm +1",
     -- waist = "Carrier's Sash",
@@ -289,8 +289,8 @@ function get_sets()
     ammo = Ammo.Bullet.RA,
     head = 'Chass. Tricorne +2', -- 0/14
     -- body = 'Oshosi Vest +1', -- 14/0
-    -- hands = { name = 'Carmine Fin. Ga. +1', augments = { 'Rng.Atk.+20', '"Mag.Atk.Bns."+12', '"Store TP"+6' } }, -- 8/11
-    -- legs = { name = 'Adhemar Kecks +1', augments = { 'AGI+12', '"Rapid Shot"+13', 'Enmity-6' } }, -- 10/13
+    hands = { name = 'Carmine Fin. Ga.', augments = { 'Rng.Atk.+15', '"Mag.Atk.Bns."+10', '"Store TP"+5' } },
+    legs = { name = 'Adhemar Kecks', augments = { 'AGI+10', '"Rapid Shot"+10', 'Enmity-5' } },
     feet = 'Meg. Jam. +1', -- 10/0
     -- left_ear = { name = 'Tuisto Earring', priority = 2 },
     -- right_ear = { name = 'Etiolation Earring', priority = 1 },
@@ -333,11 +333,11 @@ function get_sets()
   -- Ranged Attack Gear (Normal Midshot)
   sets.Midcast.RA = set_combine(sets.Midcast, {
     ammo = Ammo.Bullet.RA,
-    -- head = "Ikenga's Hat",
-    -- body = "Ikenga's Vest",
-    -- hands = "Ikenga's Gloves",
-    -- legs = 'Chas. Culottes +3',
-    -- feet = "Ikenga's Clogs",
+    head = 'Chass. Tricorne +2',
+    body = 'Nyame Mail',
+    hands = "Chasseur's Gants +2", --60 sec Duration
+    legs = 'Chas. Culottes +2',
+    feet = 'Meg. Jam. +1',
     -- neck = 'Iskur Gorget',
     -- waist = 'Yemaya Belt',
     -- left_ear = 'Telos Earring',
@@ -454,7 +454,7 @@ function get_sets()
     -- head = 'Malignance Chapeau',
     -- body = 'Malignance Tabard',
     -- hands = 'Malignance Gloves',
-    -- legs = 'Chas. Culottes +3',
+    legs = 'Chas. Culottes +2',
     -- feet = 'Malignance Boots',
     -- neck = 'Iskur Gorget',
     -- waist = 'Yemaya Belt',
