@@ -245,7 +245,23 @@ function get_sets()
   })
 
   --This set is used when OffenseMode is ACC and Enaged (Augments the TP base set)
-  sets.OffenseMode.ACC = set_combine(sets.OffenseMode, {})
+  sets.OffenseMode.ACC = set_combine(sets.OffenseMode, {
+    head = 'Chass. Tricorne +2',
+    hands = "Chasseur's Gants +2",
+    legs = 'Chas. Culottes +2',
+    feet = 'Nyame Sollerets',
+    neck = 'Sanctity Necklace',
+    waist = 'Olseni Belt',
+    right_ear = {
+      name = 'Chas. Earring +1',
+      augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+12', 'Mag. Acc.+12', 'Crit.hit rate+4' },
+    },
+    left_ring = 'Meghanada Ring',
+    back = {
+      name = "Camulus's Mantle",
+      augments = { 'DEX+20', 'Accuracy+20 Attack+20', '"Dual Wield"+10', 'Phys. dmg. taken-10%' },
+    },
+  })
 
   -- Subtle Blow Set
   sets.OffenseMode.SB = set_combine(sets.OffenseMode, {
