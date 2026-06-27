@@ -611,7 +611,8 @@ function get_sets()
 
   sets.WS.MAB = set_combine(sets.WS, {
     ammo = Ammo.Bullet.MAB,
-    feet = { name = 'Lanun Bottes +2', augments = { 'Enhances "Wild Card" effect' } },
+    body = 'Lanun Frac +2',
+    feet = 'Lanun Bottes +2',
     -- waist = 'Eschan Stone',
     neck = 'Sanctity Necklace',
     left_ear = 'Friomisi Earring',
@@ -721,6 +722,14 @@ function get_sets()
     right_ring = 'Archon Ring',
     right_ear = { name = 'Moonshade Earring', augments = { 'Attack+4', 'TP Bonus +250' } },
     -- waist = 'Svelt. Gouriz +1', -- Changes based off elemental function
+  })
+
+  sets.WS['Evisceration'] = set_combine(sets.WS, {
+    head = { name = 'Adhemar Bonnet', augments = { 'STR+10', 'DEX+10', 'Attack+15' } },
+    hands = { name = 'Adhemar Wristbands', augments = { 'DEX+10', 'AGI+10', 'Accuracy+15' } },
+    right_ear = 'Mache Earring',
+    neck = 'Fotia Gorget',
+    waist = 'Fotia Belt',
   })
 
   sets.TreasureHunter = {
