@@ -152,6 +152,10 @@ function get_sets()
 
   sets.midcast = {}
 
+  sets.midcast['Meditate'] = {
+    head = 'Wakido Kabuto',
+  }
+
   -- ###############################################################
 
   sets.ws = set_combine(sets.idle, {
