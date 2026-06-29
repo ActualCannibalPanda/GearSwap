@@ -158,7 +158,7 @@ function get_sets()
 
   -- ###############################################################
 
-  sets.ws = set_combine(sets.idle, {
+  sets.ws = set_combine(sets.tp.dt, {
     head = 'Nyame Helm',
     legs = 'Nyame Flanchard',
     left_ear = 'Thrud Earring',
