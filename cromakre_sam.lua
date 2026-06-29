@@ -154,9 +154,11 @@ function get_sets()
 
   -- ###############################################################
 
-  sets.midcast.ws = set_combine(sets.idle, {
+  sets.ws = set_combine(sets.idle, {
     head = 'Nyame Helm',
     legs = 'Nyame Flanchard',
+    left_ear = 'Thrud Earring',
+    right_ear = 'Moonshade Earring',
   })
 
   -- ###############################################################
@@ -194,7 +196,7 @@ function midcast(spell)
     equip(sets.midcast[spell.skill])
   elseif spell.type == 'JobAbility' then
   elseif spell.type == 'WeaponSkill' then
-    equip(sets.midcast.ws)
+    equip(sets.ws)
   end
 
   -- just add refresh gear here
