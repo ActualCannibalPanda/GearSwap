@@ -167,7 +167,7 @@ function get_sets()
 
   -- ###############################################################
 
-  lockstyleset = 7
+  lockstyleset = 2
 
   macro_book = 18
   macro_page = 1
