@@ -312,6 +312,7 @@ function get_sets()
     -- right_ear = { name = 'Etiolation Earring', priority = 1 },
     -- left_ring = 'Dingir Ring',
     -- right_ring = 'Crepuscular Ring', -- 3/0
+    neck = { name = 'Comm. Charm +1', augments = { 'Path: A' } },
     -- neck = { name = 'Comm. Charm +2', augments = { 'Path: A' } }, -- 4/0
     -- waist = 'Yemaya Belt', -- 0/5
     -- back = { name = "Camulus's Mantle", augments = { 'HP+60', 'HP+20', '"Snapshot"+10' } }, -- 10/0
@@ -354,6 +355,7 @@ function get_sets()
     hands = "Chasseur's Gants +2", --60 sec Duration
     legs = 'Chas. Culottes +2',
     feet = 'Meg. Jam. +1',
+    neck = { name = 'Comm. Charm +1', augments = { 'Path: A' } },
     -- neck = 'Iskur Gorget',
     -- waist = 'Yemaya Belt',
     -- left_ear = 'Telos Earring',
@@ -426,6 +428,7 @@ function get_sets()
     -- hands = 'Malignance Gloves',
     -- legs = 'Malignance Tights',
     -- feet = 'Malignance Boots',
+    neck = { name = 'Comm. Charm +1', augments = { 'Path: A' } },
     -- neck = { name = 'Comm. Charm +2', augments = { 'Path: A' } },
     -- waist = 'Eschan Stone',
     -- left_ear = 'Hermetic Earring',
@@ -449,6 +452,7 @@ function get_sets()
     hands = 'Nyame Gauntlets',
     legs = 'Nyame Flanchard',
     feet = "Chasseur's Bottes",
+    neck = { name = 'Comm. Charm +1', augments = { 'Path: A' } },
     -- neck = { name = 'Comm. Charm +2', augments = { 'Path: A' } },
     -- waist = "Orpheus's Sash",
     left_ear = 'Friomisi Earring',
@@ -584,6 +588,7 @@ function get_sets()
     hands = "Chasseur's Gants +2",
     legs = { name = 'Nyame Flanchard', augments = { 'Path: B' } },
     feet = { name = 'Nyame Sollerets', augments = { 'Path: B' } },
+    neck = { name = 'Comm. Charm +1', augments = { 'Path: A' } },
     -- neck = { name = 'Comm. Charm +2', augments = { 'Path: A' } },
     waist = { name = 'Sailfi Belt +1' },
     left_ear = { name = 'Moonshade Earring', augments = { 'Attack+4', 'TP Bonus +250' } },
@@ -614,7 +619,7 @@ function get_sets()
     body = 'Lanun Frac +2',
     feet = 'Lanun Bottes +2',
     -- waist = 'Eschan Stone',
-    neck = 'Sanctity Necklace',
+    neck = { name = 'Comm. Charm +1', augments = { 'Path: A' } },
     left_ear = 'Friomisi Earring',
     -- right_ear = 'Crematio Earring',
     -- back = {
