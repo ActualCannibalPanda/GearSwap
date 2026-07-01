@@ -106,8 +106,12 @@ function get_sets()
   sets.weapons = {
     ['Ichigo'] = {
       main = { name = 'Ichigohitofuri', augments = { 'DMG:+30', 'STR+20', 'Accuracy+15' } },
+      sub = 'Utu Grip',
     },
-    ['Shining One'] = { main = 'Shining One' },
+    ['Shining One'] = {
+      main = 'Shining One',
+      sub = 'Utu Grip',
+    },
     ['Unlocked'] = { main = '' },
   }
 
